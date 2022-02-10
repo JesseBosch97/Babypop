@@ -1,12 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QMediaPlayer>
+
 
 #include <iostream>
 #include <QQmlContext>
 
 #include "requestmodel.h"
 #include "feedback.h"
+#include "audioplayer.h"
 
 
 int main(int argc, char *argv[])
@@ -16,9 +17,12 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
+    Audioplayer audioplayer;
     Feedback feedback;
     RequestModel requestModel;
     requestModel.output = &feedback;
+
+    audioplayer.playSound();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
@@ -30,26 +34,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
-
-    //play sound
-    QMediaPlayer player;
-    player.setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/HelloWorld_Male.mp3"));
-    player.setVolume(100);
-    player.play();
-
-
-    //measure time
-    QElapsedTimer timer;
-    timer.start();
-    std::cout << "timer started " << std::endl;
-
-    while (timer.elapsed() < 2000){
-        //wait
-    }
-
-    std::cout << "time elapsed: " << timer.elapsed() << std::endl;
 
 
 
