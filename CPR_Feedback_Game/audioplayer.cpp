@@ -6,10 +6,11 @@ Audioplayer::Audioplayer()
     player.setVolume(100);
 }
 
-void Audioplayer::giveFeedback()
+void Audioplayer::giveBpmFeedback(int bpm)
 {
-    playSound();
-
+    if (bpm > 90 && bpm < 110) {
+       playSound();
+    }
 }
 
 void Audioplayer::playSound(){

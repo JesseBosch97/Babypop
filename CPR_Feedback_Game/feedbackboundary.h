@@ -4,7 +4,7 @@
 class FeedbackBoundary
 {
 public:
-    virtual void giveFeedback() = 0;
+    virtual void giveBpmFeedback(int bpm) = 0;
 };
 
 
