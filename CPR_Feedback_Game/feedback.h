@@ -23,6 +23,7 @@ private:
     int calculateBPM(int intervalInMs);
     int performanceState = 0;
     int checkBPM(int bpm);
+    int handlePerformanceState(int count);
 };
 
 #endif // FEEDBACK_H
