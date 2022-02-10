@@ -25,7 +25,7 @@ Window {
         width: 200
         height: 200
         padding: 50
-        //onClicked:
+        onClicked: RequestModel.compressionButtonPressed()
     }
 
     Label {
