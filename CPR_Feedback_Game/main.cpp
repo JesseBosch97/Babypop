@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QMediaPlayer>
+#include <QTimer>
 
 
 
@@ -12,10 +13,18 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
 
-    QMediaPlayer * player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/HelloWorld_Male.mp3"));
-    player->setVolume(100);
-    player->play();
+
+    //play sound
+    QMediaPlayer player;
+    player.setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/HelloWorld_Male.mp3"));
+    player.setVolume(100);
+    player.play();
+
+
+
+
+
+
 
 
     QQmlApplicationEngine engine;
