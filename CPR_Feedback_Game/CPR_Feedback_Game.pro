@@ -5,6 +5,7 @@ QT += quick multimedia
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        feedback.cpp \
         main.cpp \
         requestmodel.cpp
 
@@ -22,4 +23,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    requestmodel.h
+    feedback.h \
+    requestmodel.h \
+    requestmodelboundary.h

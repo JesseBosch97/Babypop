@@ -3,12 +3,14 @@
 
 #include <QObject>
 #include <QDebug>
+#include "requestmodelboundary.h"
 
 class RequestModel : public QObject
 {
     Q_OBJECT
 public:
     RequestModel(QObject* parent = nullptr);
+    RequestModelBoundary * output;
 
 public slots:
     void compressionButtonPressed();

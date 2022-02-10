@@ -1,12 +1,12 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QMediaPlayer>
-#include <QElapsedTimer>
+
 #include <iostream>
 #include <QQmlContext>
 
 #include "requestmodel.h"
-
+#include "feedback.h"
 
 
 int main(int argc, char *argv[])
@@ -16,12 +16,11 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-
+    Feedback feedback;
     RequestModel requestModel;
-
+    requestModel.output = &feedback;
 
     QQmlApplicationEngine engine;
-
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
