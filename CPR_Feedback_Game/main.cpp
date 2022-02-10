@@ -8,6 +8,7 @@
 #include "requestmodel.h"
 #include "feedback.h"
 #include "audioplayer.h"
+#include "interactionprocessor.h"
 
 
 int main(int argc, char *argv[])
@@ -21,9 +22,11 @@ int main(int argc, char *argv[])
     Audioplayer audioplayer;
     Feedback feedback;
     RequestModel requestModel;
+    InteractionProcessor interactionProcessor;
 
     //connect objects
-    requestModel.output = &feedback;
+    requestModel.output = &interactionProcessor;
+    interactionProcessor.output = &feedback;
     feedback.output = &audioplayer;
 
     //create application

@@ -7,6 +7,7 @@ QT += quick multimedia
 SOURCES += \
         audioplayer.cpp \
         feedback.cpp \
+        interactionprocessor.cpp \
         main.cpp \
         requestmodel.cpp
 
@@ -24,8 +25,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    InteractionProcessorBoundary.h \
     audioplayer.h \
     feedback.h \
     feedbackboundary.h \
+    interactionprocessor.h \
     requestmodel.h \
     requestmodelboundary.h

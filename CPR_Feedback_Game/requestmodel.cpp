@@ -8,6 +8,8 @@ RequestModel::RequestModel(QObject *parent)
 
 void RequestModel::compressionButtonPressed()
 {
-    qDebug() << "CompressionButtonPressed";
+    std::cout << "RequestModel: Compression button pressed" << std::endl;
     output->compressionPerformed();
 }
+
+

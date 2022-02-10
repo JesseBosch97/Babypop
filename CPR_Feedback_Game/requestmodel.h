@@ -2,7 +2,7 @@
 #define REQUESTMODEL_H
 
 #include <QObject>
-#include <QDebug>
+#include <iostream>
 #include "requestmodelboundary.h"
 
 class RequestModel : public QObject

@@ -5,26 +5,22 @@ Feedback::Feedback()
 
 }
 
-void Feedback::compressionPerformed()
+void Feedback::handleBpmPerformance(int bpm)
 {
-    lastTimeInterval = timer.restart();
-    std::cout << "time interval is " << lastTimeInterval << std::endl;
+    int newBpmPerformanceState = handleBpmPerformanceState(bpm);
 
-    int newPerformanceState = handlePerformanceState(compressionCount);
-
-    compressionCount++;
-
-    if (newPerformanceState != performanceState){
-        performanceState = newPerformanceState;
-        output->giveBpmFeedback(performanceState);
+    if (newBpmPerformanceState != bpmPerformanceState){
+        bpmPerformanceState = newBpmPerformanceState;
+        output->giveBpmFeedback(bpmPerformanceState);
     }
+
 }
 
-int Feedback::calculateBPM(int intervalInMs){
-    int beatsPerMinute = 60000/intervalInMs;
-    std::cout << "BPM is " << beatsPerMinute << std::endl;
-    return beatsPerMinute;
+void Feedback::handleCompressionCountPerformance(int count)
+{
+    compressionCount = count;
 }
+
 
 int Feedback::checkBPM(int bpm)
 {
@@ -42,10 +38,10 @@ int Feedback::checkBPM(int bpm)
     return bpmPerformance;
 }
 
-int Feedback::handlePerformanceState(int count){
-    if (count > 0){
-        if (count < DESIRED_REPETITIONS){
-            return checkBPM(calculateBPM(lastTimeInterval));
+int Feedback::handleBpmPerformanceState(int bpm){
+    if (compressionCount > 0){
+        if (compressionCount <= DESIRED_REPETITIONS){
+            return checkBPM(bpm);
         }
         else return TOO_MANY;
     }
