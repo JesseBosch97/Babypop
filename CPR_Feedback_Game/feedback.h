@@ -6,6 +6,9 @@
 #include <QElapsedTimer>
 #include <iostream>
 
+#define DESIRED_FREQUENCY 100
+#define DESIRED_REPETITIONS 30
+
 class Feedback : public RequestModelBoundary
 {
 public:
