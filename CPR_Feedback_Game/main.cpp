@@ -1,7 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-
 #include <iostream>
 #include <QQmlContext>
 
@@ -35,6 +34,8 @@ int main(int argc, char *argv[])
     //connect application to c++ classes
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
 
+
+    //generated QT business
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
@@ -42,8 +43,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
 
     return app.exec();
 }
