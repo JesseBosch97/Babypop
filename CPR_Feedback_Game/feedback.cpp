@@ -30,10 +30,10 @@ int Feedback::checkBPM(int bpm)
 {
     int bpmPerformance = NEUTRAL;
 
-    if (bpm < DESIRED_FREQUENCY - ALLOWED_ERROR){
+    if (bpm < DESIRED_BPM - ALLOWED_ERROR){
         bpmPerformance = TOO_SLOW;
     }
-    else if (bpm > DESIRED_FREQUENCY + ALLOWED_ERROR) {
+    else if (bpm > DESIRED_BPM + ALLOWED_ERROR) {
         bpmPerformance = TOO_FAST;
     }
     else {

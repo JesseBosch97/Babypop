@@ -6,7 +6,7 @@
 #include <QElapsedTimer>
 #include <iostream>
 
-#define DESIRED_FREQUENCY 100
+#define DESIRED_BPM 100
 #define ALLOWED_ERROR 20
 #define DESIRED_REPETITIONS 30
 
