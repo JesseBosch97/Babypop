@@ -7,21 +7,17 @@ Feedback::Feedback()
 
 void Feedback::compressionPerformed()
 {
+    compressionCount++;
     lastTimeInterval = timer.restart();
     std::cout << "time interval is " << lastTimeInterval << std::endl;
 
-    int bpm = calculateBPM(lastTimeInterval);
+
     int newPerformanceState = 0;
 
-    if (bpm < 90){
-        newPerformanceState = TOO_SLOW;
+    if (compressionCount < 31){
+        newPerformanceState = checkBPM(calculateBPM(lastTimeInterval));
     }
-    else if (bpm > 110) {
-        newPerformanceState = TOO_FAST;
-    }
-    else {
-        newPerformanceState = PERFECT;
-    }
+    else newPerformanceState = TOO_MANY;
 
 
     if (newPerformanceState != performanceState){
@@ -36,3 +32,21 @@ int Feedback::calculateBPM(int intervalInMs){
     std::cout << "BPM is " << beatsPerMinute << std::endl;
     return beatsPerMinute;
 }
+
+int Feedback::checkBPM(int bpm)
+{
+    int bpmPerformance = NEUTRAL;
+
+    if (bpm < 90){
+        bpmPerformance = TOO_SLOW;
+    }
+    else if (bpm > 110) {
+        bpmPerformance = TOO_FAST;
+    }
+    else {
+        bpmPerformance = PERFECT;
+    }
+    return bpmPerformance;
+}
+
+

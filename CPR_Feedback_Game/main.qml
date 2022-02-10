@@ -11,7 +11,7 @@ Window {
 
 
     Label {
-        text: "Find the right BPM by pressing the button repeatedly ..."
+        text: "Press the button 30 times.\nFind the right BPM by listening to the feedback."
         font.pointSize: 18
         anchors.horizontalCenter: parent.horizontalCenter
     }
@@ -30,7 +30,6 @@ Window {
 
     Label {
         id: bpmLabel
-        text: "BPM:"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: compressionButton.bottom
         anchors.topMargin: 32

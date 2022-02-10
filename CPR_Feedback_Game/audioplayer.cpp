@@ -15,6 +15,8 @@ void Audioplayer::giveBpmFeedback(int feedbackType)
         break;
     case TOO_FAST: player.setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/less_speed_male.mp3"));
         break;
+    case TOO_MANY: player.setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/too_many_male.mp3"));
+        break;
     default: {} //nothing yet
         break;
     }

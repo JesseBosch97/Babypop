@@ -18,9 +18,11 @@ public:
     void compressionPerformed() override;
 
 private:
+    int compressionCount = 0;
     int lastTimeInterval = 0;
     int calculateBPM(int intervalInMs);
     int performanceState = 0;
+    int checkBPM(int bpm);
 };
 
 #endif // FEEDBACK_H
