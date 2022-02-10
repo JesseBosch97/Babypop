@@ -26,5 +26,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     audioplayer.h \
     feedback.h \
+    feedbackboundary.h \
     requestmodel.h \
     requestmodelboundary.h

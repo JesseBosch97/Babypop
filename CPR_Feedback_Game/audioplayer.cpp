@@ -6,6 +6,12 @@ Audioplayer::Audioplayer()
     player.setVolume(100);
 }
 
+void Audioplayer::giveFeedback()
+{
+    playSound();
+
+}
+
 void Audioplayer::playSound(){
     player.play();
 }

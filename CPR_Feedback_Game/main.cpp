@@ -17,14 +17,19 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
+    //create objects
     Audioplayer audioplayer;
     Feedback feedback;
     RequestModel requestModel;
+
+    //connect objects
     requestModel.output = &feedback;
+    feedback.output = &audioplayer;
 
-    audioplayer.playSound();
-
+    //create application
     QQmlApplicationEngine engine;
+
+    //connect application to c++ classes
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

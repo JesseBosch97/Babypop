@@ -2,12 +2,16 @@
 #define AUDIOPLAYER_H
 
 #include <QMediaPlayer>
+#include "feedbackboundary.h"
 
-class Audioplayer
+class Audioplayer : public FeedbackBoundary
 {
 public:
     Audioplayer();
 
+    void giveFeedback() override;
+
+private:
     QMediaPlayer player;
     void playSound();
 
