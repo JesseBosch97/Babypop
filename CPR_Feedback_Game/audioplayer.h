@@ -9,7 +9,7 @@ class Audioplayer : public FeedbackBoundary
 public:
     Audioplayer();
 
-    void giveBpmFeedback(int bpm) override;
+    void giveBpmFeedback(int feedbackType) override;
 
 private:
     QMediaPlayer player;

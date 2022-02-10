@@ -9,7 +9,18 @@ void Feedback::compressionPerformed()
 {
     lastTimeInterval = timer.restart();
     std::cout << "time interval is " << lastTimeInterval << std::endl;
-    output->giveBpmFeedback(calculateBPM(lastTimeInterval));
+
+    int bpm = calculateBPM(lastTimeInterval);
+
+    if (bpm < 90){
+        output->giveBpmFeedback(TOO_SLOW);
+    }
+    else if (bpm > 110) {
+        output->giveBpmFeedback(TOO_FAST);
+    }
+    else {
+        output->giveBpmFeedback(PERFECT);
+    }
 }
 
 int Feedback::calculateBPM(int intervalInMs){
