@@ -1,5 +1,5 @@
-#ifndef FEEDBACK_H
-#define FEEDBACK_H
+#ifndef FEEDBACKHANDLER_H
+#define FEEDBACKHANDLER_H
 
 #include "feedbackboundary.h"
 #include "InteractionProcessorBoundary.h"
@@ -9,10 +9,10 @@
 #define ALLOWED_ERROR 20
 #define DESIRED_REPETITIONS 30
 
-class Feedback : public InteractionProcessorBoundary
+class FeedbackHandler : public InteractionProcessorBoundary
 {
 public:
-    Feedback();
+    FeedbackHandler();
 
     FeedbackBoundary * output;
     void handleBpmPerformance(int bpm) override;
@@ -25,4 +25,4 @@ private:
     int handleBpmPerformanceState(int bpm);
 };
 
-#endif // FEEDBACK_H
+#endif // FEEDBACKHANDLER_H

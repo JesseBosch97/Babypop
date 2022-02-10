@@ -1,11 +1,11 @@
-#include "feedback.h"
+#include "FeedbackHandler.h"
 
-Feedback::Feedback()
+FeedbackHandler::FeedbackHandler()
 {
 
 }
 
-void Feedback::handleBpmPerformance(int bpm)
+void FeedbackHandler::handleBpmPerformance(int bpm)
 {
     int newBpmPerformanceState = handleBpmPerformanceState(bpm);
 
@@ -16,13 +16,13 @@ void Feedback::handleBpmPerformance(int bpm)
 
 }
 
-void Feedback::handleCompressionCountPerformance(int count)
+void FeedbackHandler::handleCompressionCountPerformance(int count)
 {
     compressionCount = count;
 }
 
 
-int Feedback::checkBPM(int bpm)
+int FeedbackHandler::checkBPM(int bpm)
 {
     int bpmPerformance = NEUTRAL;
 
@@ -38,8 +38,8 @@ int Feedback::checkBPM(int bpm)
     return bpmPerformance;
 }
 
-int Feedback::handleBpmPerformanceState(int bpm){
-    if (compressionCount > 0){
+int FeedbackHandler::handleBpmPerformanceState(int bpm){
+    if (compressionCount > 1){
         if (compressionCount <= DESIRED_REPETITIONS){
             return checkBPM(bpm);
         }

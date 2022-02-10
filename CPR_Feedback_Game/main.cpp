@@ -5,7 +5,7 @@
 #include <QQmlContext>
 
 #include "requestmodel.h"
-#include "feedback.h"
+#include "FeedbackHandler.h"
 #include "audioplayer.h"
 #include "interactionprocessor.h"
 
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     //create objects
     Audioplayer audioplayer;
-    Feedback feedback;
+    FeedbackHandler feedback;
     RequestModel requestModel;
     InteractionProcessor interactionProcessor;
 

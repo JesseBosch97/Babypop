@@ -5,8 +5,8 @@ QT += quick multimedia
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        FeedbackHandler.cpp \
         audioplayer.cpp \
-        feedback.cpp \
         interactionprocessor.cpp \
         main.cpp \
         requestmodel.cpp
@@ -25,9 +25,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    FeedbackHandler.h \
     InteractionProcessorBoundary.h \
     audioplayer.h \
-    feedback.h \
     feedbackboundary.h \
     interactionprocessor.h \
     requestmodel.h \
