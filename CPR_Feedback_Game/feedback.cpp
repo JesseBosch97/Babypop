@@ -7,17 +7,18 @@ Feedback::Feedback()
 
 void Feedback::compressionPerformed()
 {
-    compressionCount++;
     lastTimeInterval = timer.restart();
     std::cout << "time interval is " << lastTimeInterval << std::endl;
 
-    int newPerformanceState = handlePerformanceState(compressionCount);
+    if (compressionCount > 0){
+        int newPerformanceState = handlePerformanceState(compressionCount);
 
-    if (newPerformanceState != performanceState){
-        performanceState = newPerformanceState;
-        output->giveBpmFeedback(performanceState);
+        if (newPerformanceState != performanceState){
+            performanceState = newPerformanceState;
+            output->giveBpmFeedback(performanceState);
+        }
     }
-
+    compressionCount++;
 }
 
 int Feedback::calculateBPM(int intervalInMs){
