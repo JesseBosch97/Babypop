@@ -8,7 +8,6 @@ Audioplayer::Audioplayer()
 
 void Audioplayer::giveBpmFeedback(int feedbackType)
 {
-
     switch(feedbackType){
     case PERFECT: player.setMedia(QUrl::fromLocalFile("C:/Users/Niels/Documents/GitHub/Babypop/CPR_Feedback_Game/perfect_male.mp3"));
         break;

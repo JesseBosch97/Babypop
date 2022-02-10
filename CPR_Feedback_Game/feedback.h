@@ -20,6 +20,7 @@ public:
 private:
     int lastTimeInterval = 0;
     int calculateBPM(int intervalInMs);
+    int performanceState = 0;
 };
 
 #endif // FEEDBACK_H
