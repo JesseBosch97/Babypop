@@ -2,9 +2,9 @@
 #define AUDIOPLAYER_H
 
 #include <QMediaPlayer>
-#include "feedbackboundary.h"
+#include "FeedbackHandlerOutput.h"
 
-class Audioplayer : public FeedbackBoundary
+class Audioplayer : public FeedbackHandlerOutput
 {
 public:
     Audioplayer();

@@ -1,9 +1,9 @@
-#ifndef FEEDBACKBOUNDARY_H
-#define FEEDBACKBOUNDARY_H
+#ifndef FEEDBACKHANDLEROUTPUT_H
+#define FEEDBACKHANDLEROUTPUT_H
 
 enum feedBackType {NEUTRAL, PERFECT, TOO_SLOW, TOO_FAST, TOO_MANY };
 
-class FeedbackBoundary
+class FeedbackHandlerOutput
 {
 
 public:
@@ -11,4 +11,4 @@ public:
 };
 
 
-#endif // FEEDBACKBOUNDARY_H
+#endif // FEEDBACKHANDLEROUTPUT_H

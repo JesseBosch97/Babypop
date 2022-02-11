@@ -1,8 +1,8 @@
 #ifndef INTERACTIONPROCESSOR_H
 #define INTERACTIONPROCESSOR_H
 
-#include "requestmodel.h"
-#include "InteractionProcessorBoundary.h"
+#include "requestmodelboundary.h"
+#include "FeedbackHandlerInput.h"
 #include <QElapsedTimer>
 #include <iostream>
 
@@ -11,7 +11,7 @@ class InteractionProcessor : public RequestModelBoundary
 public:
     InteractionProcessor();
 
-    InteractionProcessorBoundary * output;
+    FeedbackHandlerInput * output;
 
     void compressionPerformed() override;
 
