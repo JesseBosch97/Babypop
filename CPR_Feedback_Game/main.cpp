@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
     //connect application to c++ classes
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
 
+    //engine.rootContext()->setContextProperty("ViewModel", &dataHandler.viewModel);
+
 
     //generated QT business
     const QUrl url(QStringLiteral("qrc:/main.qml"));

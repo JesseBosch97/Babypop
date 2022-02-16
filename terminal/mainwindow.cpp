@@ -104,6 +104,13 @@ MainWindow::~MainWindow()
 void MainWindow::openSerialPort()
 {
     const SettingsDialog::Settings p = m_settings->settings();
+    qDebug() << p.name;
+    qDebug() << p.baudRate;
+    qDebug() << p.dataBits;
+    qDebug() << p.parity;
+    qDebug() << p.stopBits;
+    qDebug() << p.flowControl;
+
     m_serial->setPortName(p.name);
     m_serial->setBaudRate(p.baudRate);
     m_serial->setDataBits(p.dataBits);
@@ -161,10 +168,10 @@ void MainWindow::readData()
     const QByteArray data = m_serial->readAll();
     m_console->putData(data);
 
-    for(int n=0; n < 10; n++)
-    {
-        qDebug() << data;
-    }
+//    for(int n=0; n < 10; n++)
+//    {
+//        qDebug() << data;
+//    }
 }
 //! [7]
 

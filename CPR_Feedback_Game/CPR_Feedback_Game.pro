@@ -1,4 +1,4 @@
-QT += quick multimedia
+QT += quick multimedia serialport
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -6,6 +6,8 @@ QT += quick multimedia
 
 SOURCES += \
         FeedbackHandler.cpp \
+        SerialPort.cpp \
+        ViewModel.cpp \
         audioplayer.cpp \
         interactionprocessor.cpp \
         main.cpp \
@@ -29,6 +31,8 @@ HEADERS += \
     FeedbackHandler.h \
     FeedbackHandlerInput.h \
     FeedbackHandlerOutput.h \
+    SerialPort.h \
+    ViewModel.h \
     audioplayer.h \
     interactionprocessor.h \
     requestmodel.h \
