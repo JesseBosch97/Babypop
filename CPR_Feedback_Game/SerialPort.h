@@ -4,6 +4,8 @@
 #include "QSerialPort"
 #include "QSerialPortInfo"
 
+//[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n
+
 class SerialPort
 {
 public:

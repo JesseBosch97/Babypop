@@ -9,7 +9,6 @@
 #include "audioplayer.h"
 #include "interactionprocessor.h"
 
-
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

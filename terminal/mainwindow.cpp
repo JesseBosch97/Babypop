@@ -168,10 +168,10 @@ void MainWindow::readData()
     const QByteArray data = m_serial->readAll();
     m_console->putData(data);
 
-//    for(int n=0; n < 10; n++)
-//    {
-//        qDebug() << data;
-//    }
+    for(int n=0; n < 10; n++)
+    {
+        qDebug() << data;
+    }
 }
 //! [7]
 
