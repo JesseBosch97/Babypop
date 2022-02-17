@@ -32,6 +32,7 @@ HEADERS += \
     FeedbackHandlerInput.h \
     FeedbackHandlerOutput.h \
     SerialPort.h \
+    SerialPortBoundary.h \
     ViewModel.h \
     audioplayer.h \
     interactionprocessor.h \

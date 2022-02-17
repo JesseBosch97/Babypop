@@ -2,12 +2,31 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 
+import StringListModel 1.0
+
 Window {
-    width: 640
-    height: 480
+    width: 1280
+    height: 960
     visible: true
     title: qsTr("CPR Feedback Game")
     color: "azure"
+
+
+
+    ComboBox {
+        id: portList
+        model: PortListModel
+        textRole: "display"
+        onActivated: RequestModel.serialPortSelected(currentText)
+        Component.onCompleted: RequestModel.serialPortSelected(currentText)
+    }
+
+    Button {
+        text: "Connect"
+        onPressed: RequestModel.serialConnectButtonPressed()
+        anchors.left: portList.right
+        anchors.leftMargin: 20
+    }
 
 
     Label {

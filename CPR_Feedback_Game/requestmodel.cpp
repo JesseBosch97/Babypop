@@ -8,8 +8,19 @@ RequestModel::RequestModel(QObject *parent)
 
 void RequestModel::compressionButtonPressed()
 {
-    std::cout << "RequestModel: Compression button pressed" << std::endl;
-    output->compressionPerformed();
+    qDebug() << "RequestModel: Compression button pressed";
+    processor->compressionPerformed();
+}
+
+void RequestModel::serialPortSelected(QString portName)
+{
+    serialPort->serialPortSelected(portName);
+}
+
+void RequestModel::serialConnectButtonPressed()
+{
+    qDebug() << "RequestModel: Serial connect button pressed";
+    serialPort->serialConnectButtonPressed();
 }
 
 

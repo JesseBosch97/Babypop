@@ -6,7 +6,7 @@
 #include <QElapsedTimer>
 #include <iostream>
 
-class InteractionProcessor : public RequestModelBoundary
+class InteractionProcessor : public RequestModelToProcessor
 {
 public:
     InteractionProcessor();
