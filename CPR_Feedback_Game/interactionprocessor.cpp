@@ -9,9 +9,12 @@ void InteractionProcessor::compressionPerformed()
 {
     compressionCount++;
     lastTimeInterval = timer.restart();
-    std::cout << "InteractionProcessor: Time interval is " << lastTimeInterval << std::endl;
-    output->handleCompressionCountPerformance(compressionCount);
-    output->handleBpmPerformance(calculateBPM(lastTimeInterval));
+
+    if (compressionCount > 1){
+        std::cout << "InteractionProcessor: Time interval is " << lastTimeInterval << std::endl;
+        output->handleCompressionCountPerformance(compressionCount);
+        output->handleBpmPerformance(calculateBPM(lastTimeInterval));
+    }
 }
 
 int InteractionProcessor::calculateBPM(int intervalInMs){
