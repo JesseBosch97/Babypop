@@ -2,13 +2,19 @@
 #define SERIALREAD_H
 
 #include "QSerialPort"
+#include "QSerialPortInfo"
+#include "iostream"
+#include <QDebug>
+#include <QStringListModel>
+#include <requestmodelboundary.h>
 
-class SerialRead
+class SerialRead : public QObject
 {
 public:
-    SerialRead();
+    SerialRead(QObject *parent = nullptr);
 
-    void SerialReadString();
+    char* DisectStringtoCharArray(std::string data);
+    void test();
 
 };
 

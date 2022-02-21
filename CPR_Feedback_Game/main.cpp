@@ -9,6 +9,7 @@
 #include "interactionprocessor.h"
 #include "ViewModel.h"
 #include "SerialPort.h"
+#include "serialread.h"
 
 
 int main(int argc, char *argv[])
