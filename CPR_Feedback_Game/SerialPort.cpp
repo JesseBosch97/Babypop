@@ -1,4 +1,5 @@
 #include "SerialPort.h"
+#include "serialread.h"
 
 
 SerialPort::SerialPort(QObject *parent)
@@ -45,12 +46,12 @@ void SerialPort::getSerialPortInformation()
    portListModel.setStringList(portList);
 }
 
-void SerialPort::readData()
-{
-    const QByteArray data = serialPort.readAll();
-    //m_console->putData(data);
-    qDebug() << data;
-}
+//void SerialPort::readData()
+//{
+//    const QByteArray data = serialPort.readAll();
+//    //m_console->putData(data)
+//    qDebug() << data;
+//}
 
 void SerialPort::handleError()
 {
