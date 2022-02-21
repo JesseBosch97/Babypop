@@ -11,7 +11,8 @@ SOURCES += \
         audioplayer.cpp \
         interactionprocessor.cpp \
         main.cpp \
-        requestmodel.cpp
+        requestmodel.cpp \
+        serialread.cpp
 
 RESOURCES += qml.qrc \
    sounds.qrc
@@ -37,4 +38,5 @@ HEADERS += \
     audioplayer.h \
     interactionprocessor.h \
     requestmodel.h \
-    requestmodelboundary.h
+    requestmodelboundary.h \
+    serialread.h
