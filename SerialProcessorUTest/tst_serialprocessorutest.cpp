@@ -22,10 +22,11 @@ public:
         return 0;
     }
 
-    std::string StringDesect(std::string inputSample, int StringPart)
+    std::vector<std::string> StringDesect(std::string inputSample)
     {
-        std::string DesectedString;
-        int StringNumber = 0;
+        std::vector<std::string> DesectedString;
+        std::vector<std::string> fault;
+        std::string temp;
         int stringlength = inputSample.length();
         char stringDesectedtoChars_array[stringlength + 1];
 
@@ -35,22 +36,22 @@ public:
         {
             if(std::isdigit(stringDesectedtoChars_array[i]))
             {
-                DesectedString += (inputSample.substr(i, 1));
+                temp += (inputSample.substr(i, 1));
             }
-            else if((stringDesectedtoChars_array[i] == ',') && (StringNumber != StringPart))
+            else if(stringDesectedtoChars_array[i] == ',')
             {
-                StringNumber++;
-                DesectedString = "";
+                DesectedString.push_back(temp);
+                temp = "";
             }
-            else if((stringDesectedtoChars_array[i] == ',') && StringNumber == StringPart)
+            else if(stringDesectedtoChars_array[i] == ']')
             {
-                std::cout << "string is:" << DesectedString << std::endl;
+                DesectedString.push_back(temp);
                 return DesectedString;
             }
 
 
         }
-        return 0;
+        return fault;
 
     }
 
@@ -71,6 +72,22 @@ public:
         return copy;
     }
 
+    std::vector<char> disecttochars(std::string teststring)
+    {
+        std::vector<char> desected;
+        char stringDesectedtoChars_array[teststring.length() + 1];
+
+        strcpy(stringDesectedtoChars_array, teststring.c_str());
+
+        for(int i = 0; i < (int)teststring.length(); i++)
+        {
+            desected.push_back(stringDesectedtoChars_array[i]);
+        }
+
+
+        return desected;
+    }
+
 private slots:
     void InputBelowThresholdDoesNotTriggerACompression();
 
@@ -79,6 +96,7 @@ private slots:
     void ValueXisFound();
     void AllValuesAreFound();
     void StringIsCopied();
+    void disect();
 };
 
 SerialProcessorUTest::SerialProcessorUTest()
@@ -91,7 +109,17 @@ SerialProcessorUTest::~SerialProcessorUTest()
 
 }
 
+void SerialProcessorUTest::disect()
+{
+    std::string inputSample = "[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n";
+    std::vector<char> inputSampleinChar {'[', '1', '0', '2', '0',};
 
+    for(int i = 0; i < 5; i++)
+    {
+        QCOMPARE(disecttochars(inputSample)[i], inputSampleinChar[i]);
+
+    }
+}
 void SerialProcessorUTest::TheFirstValueIsFound()
 {
     std::string inputSample = "[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n";
@@ -112,9 +140,9 @@ void SerialProcessorUTest::AllValuesAreFound()
     std::vector<std::string> inputSampledesect {"1020", "1020", "1020", "1020", "14", "13", "13", "13"};
 
 
-    for(int i = 0; i < 7; i++)
+    for(int i = 0; i < 8; i++)
     {
-        QCOMPARE(StringDesect(inputSample, i), inputSampledesect[i]);
+        QCOMPARE(StringDesect(inputSample)[i], inputSampledesect[i]);
     }
 }
 
