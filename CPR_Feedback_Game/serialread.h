@@ -13,9 +13,9 @@ class SerialRead : public QObject
 public:
     SerialRead(QObject *parent = nullptr);
 
-    char* DisectStringtoCharArray(std::string data);
-    void test();
-
+    std::vector<char> DisectStringtoChar(std::string data);
+    std::vector<std::string> BuildNewStringFromDisected(std::vector<char> Disectedstring);
+    std::vector<std::string> BuildNewStringFromOldString(std::string data);
 };
 
 #endif // SERIALREAD_H

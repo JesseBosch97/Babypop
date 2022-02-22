@@ -4,38 +4,88 @@
 SerialRead::SerialRead(QObject *parent)
 {
     Q_UNUSED(parent)
-    test();
     std::cout << "waddup" << std::endl;
 }
 
-void SerialPort::readData()
+std::string SerialPort::readData()
 {
-   const QByteArray data = serialPort.readAll();
+    std::string empty = "supp";
+    const QByteArray data = serialPort.readAll();
 
+    //std::cout << DisectStringtoChar(empty)[1] << std::endl;
+
+    qDebug() << data;
+    return empty;
 }
 
-char* SerialRead::DisectStringtoCharArray(std::string data)
+std::vector<char> SerialRead::DisectStringtoChar(std::string data)
 {
+    std::vector<char> desected;
     char stringDesectedtoChars_array[data.length() + 1];
 
-    strcpy(stringDesectedtoChars_array, data.c_str());
+    strncpy(stringDesectedtoChars_array, data.c_str(), sizeof(stringDesectedtoChars_array));
 
-    return stringDesectedtoChars_array;
-
-    std::cout << "here" << std::endl;
-
-}
-
-void SerialRead::test()
-{
-    std::string teststring = "test";
-    DisectStringtoCharArray(teststring);
-    std::string string;
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < (int)data.length(); i++)
     {
-        string += DisectStringtoCharArray(teststring)[i];
+        desected.push_back(stringDesectedtoChars_array[i]);
     }
-    std::cout << "string is:" << string << std::endl;
+    return desected;
 
 }
 
+std::vector<std::string> SerialRead::BuildNewStringFromDisected(std::vector<char> Disectedstring)
+{
+    std::vector<std::string> rebuildstring;
+    std::vector<std::string> fault = {""};
+    std::string temp;
+
+    for(int i = 0; i < (int)Disectedstring.size(); i++)
+    {
+        if(std::isdigit(Disectedstring[i]))
+        {
+            temp += Disectedstring[i];
+        }
+        else if(Disectedstring[i] == ',')
+        {
+            rebuildstring.push_back(temp);
+            temp = "";
+        }
+        else if(Disectedstring[i] == ']')
+        {
+
+            rebuildstring.push_back(temp);
+            return rebuildstring;
+            break;
+        }
+    }
+    return fault;
+}
+
+std::vector<std::string> SerialRead::BuildNewStringFromOldString(std::string data)
+{
+    std::vector<std::string> rebuildstring;
+    std::vector<std::string> fault = {""};
+    std::string temp;
+    std::vector<char> Disectedstring = DisectStringtoChar(data);
+
+    for(int i = 0; i < (int)Disectedstring.size(); i++)
+    {
+        if(std::isdigit(Disectedstring[i]))
+        {
+            temp += Disectedstring[i];
+        }
+        else if(Disectedstring[i] == ',')
+        {
+            rebuildstring.push_back(temp);
+            temp = "";
+        }
+        else if(Disectedstring[i] == ']')
+        {
+
+            rebuildstring.push_back(temp);
+            return rebuildstring;
+            break;
+        }
+    }
+    return fault;
+}

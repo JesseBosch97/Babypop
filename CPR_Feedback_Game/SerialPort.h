@@ -23,6 +23,8 @@ public:
    void openSerialPort();
    void getSerialPortInformation();
 
+   //virtual std::vector<char> DisectStringtoChar(std::string data);
+
    QStringListModel portListModel;
 
 private:
@@ -31,7 +33,7 @@ private:
    QSerialPort serialPort;
 
 private slots:
-   void readData();
+   std::string readData();
    void handleError();
 };
 
