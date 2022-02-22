@@ -32,37 +32,32 @@ public:
 
     }
 
-    std::vector<std::string> StringDesect(std::string inputSample)
+    std::vector<std::string> BuildStringfromdesectedString(std::vector<char> DesectedString)
     {
-        std::vector<std::string> DesectedString;
-        std::vector<std::string> fault;
+        std::vector<std::string> rebuildstring;
+        std::vector<std::string> fault = {""};
         std::string temp;
-        int stringlength = inputSample.length();
-        char stringDesectedtoChars_array[stringlength + 1];
 
-        strncpy(stringDesectedtoChars_array, inputSample.c_str(), sizeof(stringDesectedtoChars_array));
-
-        for(int i = 0; i < (int)inputSample.length(); i++)
+        for(int i = 0; i < (int)DesectedString.size(); i++)
         {
-            if(std::isdigit(stringDesectedtoChars_array[i]))
+            if(std::isdigit(DesectedString[i]))
             {
-                temp += (inputSample.substr(i, 1));
+                temp += DesectedString[i];
             }
-            else if(stringDesectedtoChars_array[i] == ',')
+            else if(DesectedString[i] == ',')
             {
-                DesectedString.push_back(temp);
+                rebuildstring.push_back(temp);
                 temp = "";
             }
-            else if(stringDesectedtoChars_array[i] == ']')
+            else if(DesectedString[i] == ']')
             {
-                DesectedString.push_back(temp);
-                return DesectedString;
+
+                rebuildstring.push_back(temp);
+                return rebuildstring;
+                break;
             }
-
-
         }
         return fault;
-
     }
 
     std::string copyString(std::string input){
@@ -84,6 +79,7 @@ public:
         {
             desected.push_back(stringDesectedtoChars_array[i]);
         }
+
         return desected;
     }
 
@@ -91,7 +87,7 @@ private slots:
 
     void StringIsCopied();
     void disect();
-    void AllValuesAreFound();
+    void BuildingStringsFromChars();
 };
 
 SerialProcessorUTest::SerialProcessorUTest()
@@ -123,7 +119,7 @@ void SerialProcessorUTest::StringIsCopied()
     QCOMPARE(copy, "[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n");
 }
 
-void SerialProcessorUTest::AllValuesAreFound()
+void SerialProcessorUTest::BuildingStringsFromChars()
 {
     std::string inputSample = "[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n";
     std::vector<std::string> inputSampledesect {"1020", "1020", "1020", "1020", "14", "13", "13", "13"};
@@ -131,7 +127,7 @@ void SerialProcessorUTest::AllValuesAreFound()
 
     for(int i = 0; i < 8; i++)
     {
-        QCOMPARE(StringDesect(inputSample)[i], inputSampledesect[i]);
+        QCOMPARE(BuildStringfromdesectedString(disecttochars(inputSample))[i], inputSampledesect[i]);
     }
 }
 
