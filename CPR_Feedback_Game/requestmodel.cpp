@@ -14,7 +14,14 @@ void RequestModel::compressionButtonPressed()
 
 void RequestModel::serialPortSelected(QString portName)
 {
-    serialPort->serialPortSelected(portName);
+   serialPort->serialPortSelected(portName);
+}
+
+void RequestModel::voiceSelected(QString voice)
+{
+   audioPlayer->voiceSelected(voice);
+   qDebug() << "RequestModel: selected voice is: " << voice;
+
 }
 
 void RequestModel::serialConnectButtonPressed()

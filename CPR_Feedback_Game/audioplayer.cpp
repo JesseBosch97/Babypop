@@ -5,22 +5,21 @@ Audioplayer::Audioplayer()
     player.setVolume(100);
 }
 
+
 void Audioplayer::giveBpmFeedback(int feedbackType)
 {
-   switch(feedbackType){
-      case PERFECT: player.setMedia(QUrl("qrc:/sounds/perfect_male.mp3"));
-         break;
-      case TOO_SLOW: player.setMedia(QUrl("qrc:/sounds/more_speed_male.mp3"));
-         break;
-      case TOO_FAST: player.setMedia(QUrl("qrc:/sounds/less_speed_male.mp3"));
-         break;
-      case TOO_MANY: player.setMedia(QUrl("qrc:/sounds/too_many_male.mp3"));
-         break;
-      default: {} //nothing yet
-         break;
-   }
+   player.setMedia(QUrl(createURL(feedbackWordMap.at(feedbackType))));
+   playSound();
+}
 
-    playSound();
+void Audioplayer::voiceSelected(QString voice)
+{
+   this->selectedVoice = voice;
+}
+
+QString Audioplayer::createURL(QString word)
+{
+   return QString("qrc:/sounds/%1/audiofiles/%2_%3.mp3").arg(selectedVoice, selectedVoice, word);
 }
 
 void Audioplayer::playSound(){

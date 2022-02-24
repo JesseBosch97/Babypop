@@ -6,12 +6,19 @@ import StringListModel 1.0
 
 Window {
     width: 1280
-    height: 960
+    height: 480
     visible: true
     title: qsTr("CPR Feedback Game")
     color: "azure"
 
 
+    ComboBox {
+        id: voiceSelection
+        model: ["MaleTTS", "FemaleTTS", "Male", "Female"]
+        anchors.right: parent.right
+        onActivated: RequestModel.voiceSelected(currentText)
+        Component.onCompleted: RequestModel.voiceSelected(currentText)
+    }
 
     ComboBox {
         id: portList

@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
     //connect objects
     requestModel.processor = &interactionProcessor;
     requestModel.serialPort = &serialPort;
-    interactionProcessor.output = &feedback;
+    requestModel.audioPlayer = &audioplayer;
+    interactionProcessor.output = &feedback;    
     feedback.output = &audioplayer;
 
     //create application
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     //connect application to c++ classes
     engine.rootContext()->setContextProperty("RequestModel", &requestModel);
     engine.rootContext()->setContextProperty("PortListModel", &serialPort.portListModel);
+
 
 
 

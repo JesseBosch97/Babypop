@@ -6,7 +6,7 @@
 #include <QElapsedTimer>
 #include <iostream>
 
-class InteractionProcessor : public RequestModelToProcessor
+class InteractionProcessor : public RequestModelToInteractionProcessor
 {
 public:
     InteractionProcessor();
@@ -14,6 +14,7 @@ public:
     FeedbackHandlerInput * output;
 
     void compressionPerformed() override;
+
 
 private:
     QElapsedTimer timer;

@@ -1,9 +1,15 @@
 <RCC>
-    <qresource prefix="/sounds">
-        <file>less_speed_male.mp3</file>
-        <file>more_speed_male.mp3</file>
-        <file>perfect_male.mp3</file>
-        <file>too_few_male.mp3</file>
-        <file>too_many_male.mp3</file>
+    <qresource prefix="/sounds/MaleTTS">
+        <file>audiofiles/MaleTTS_perfect.mp3</file>
+        <file>audiofiles/MaleTTS_too_few.mp3</file>
+        <file>audiofiles/MaleTTS_too_many.mp3</file>
+        <file>audiofiles/MaleTTS_faster.mp3</file>
+        <file>audiofiles/MaleTTS_slower.mp3</file>
+    </qresource>
+    <qresource prefix="/sounds/FemaleTTS">
+        <file>audiofiles/FemaleTTS_faster.mp3</file>
+        <file>audiofiles/FemaleTTS_perfect.mp3</file>
+        <file>audiofiles/FemaleTTS_slower.mp3</file>
+        <file>audiofiles/FemaleTTS_too_many.mp3</file>
     </qresource>
 </RCC>
