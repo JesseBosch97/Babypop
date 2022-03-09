@@ -12,9 +12,15 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
     if (compressionCount % FEEDBACK_FREQUENCY == 0){
         int newBpmPerformanceState = handleBpmPerformanceState();
 
-        if (PERFECT == bpmPerformanceState == newBpmPerformanceState){
+        if (PERFECT == newBpmPerformanceState){
+           bpmPerformanceState = newBpmPerformanceState;
+           output->giveBpmFeedback(bpmPerformanceState);
+        }
+
+        else if (PERFECT == bpmPerformanceState == newBpmPerformanceState){
             //do nothing
         }
+
         else {
             bpmPerformanceState = newBpmPerformanceState;
             output->giveBpmFeedback(bpmPerformanceState);
