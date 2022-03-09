@@ -30,10 +30,9 @@ void RequestModel::serialConnectButtonPressed()
     serialPort->serialConnectButtonPressed();
 }
 
-void RequestModel::sliderMoved(uint8_t value)
+void RequestModel::sliderMoved(float value)
 {
     qDebug() << "RequestModel: SliderValue is: " << value;
-
 }
 
 

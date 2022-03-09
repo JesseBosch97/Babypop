@@ -33,11 +33,6 @@ void FeedbackHandler::handleCompressionCountPerformance(int count)
     compressionCount = count;
 }
 
-void FeedbackHandler::feedbackAmountSelected(float amount)
-{
-
-}
-
 
 int FeedbackHandler::checkBPM()
 {
