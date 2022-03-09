@@ -24,6 +24,7 @@ public slots:
     void serialPortSelected(QString portName);
     void voiceSelected(QString voice);
     void serialConnectButtonPressed();
+    void sliderMoved(float value);
 };
 
 #endif // REQUESTMODEL_H

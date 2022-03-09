@@ -60,4 +60,15 @@ Window {
         anchors.top: compressionButton.bottom
         anchors.topMargin: 32
     }
+
+    Slider {
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        snapMode: "SnapOnRelease"
+        stepSize: 1
+        from: 0
+        value: 5
+        to: 10
+        onMoved: RequestModel.sliderMoved(value)
+    }
 }
