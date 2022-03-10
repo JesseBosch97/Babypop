@@ -46,12 +46,18 @@ void SerialPort::getSerialPortInformation()
    portListModel.setStringList(portList);
 }
 
-//void SerialPort::readData()
-//{
-//    const QByteArray data = serialPort.readAll();
-//    //m_console->putData(data)
-//    qDebug() << data;
-//}
+void SerialPort::readData()
+{
+    validData.append(serialPort.readAll());
+
+    if (validData.contains('\n'))
+    {
+        qDebug() << validData;
+        validData.clear();
+    }
+
+
+}
 
 void SerialPort::handleError()
 {

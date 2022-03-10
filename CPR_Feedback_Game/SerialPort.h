@@ -31,9 +31,10 @@ private:
    QString selectedPortName;
    QStringList portList;
    QSerialPort serialPort;
+   QString validData;
 
 private slots:
-   std::string readData();
+   void readData();
    void handleError();
 };
 

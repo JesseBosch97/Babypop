@@ -7,16 +7,16 @@ SerialRead::SerialRead(QObject *parent)
     std::cout << "waddup" << std::endl;
 }
 
-std::string SerialPort::readData()
-{
-    std::string empty = "supp";
-    const QByteArray data = serialPort.readAll();
+//std::string SerialPort::readData()
+//{
+//    std::string empty = "supp";
+//    const QByteArray data = serialPort.readAll();
 
-    //std::cout << DisectStringtoChar(empty)[1] << std::endl;
+//    //std::cout << DisectStringtoChar(empty)[1] << std::endl;
 
-    qDebug() << data;
-    return empty;
-}
+//    qDebug() << data;
+//    return empty;
+//}
 
 std::vector<char> SerialRead::DisectStringtoChar(std::string data)
 {
