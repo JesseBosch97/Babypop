@@ -9,16 +9,17 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
 {
     storeBpmSample(bpm);
 
-    if (compressionCount % FEEDBACK_FREQUENCY == 0){
+
+    if (compressionCount % feedbackAmount == 0){
         int newBpmPerformanceState = handleBpmPerformanceState();
 
-        if (PERFECT == newBpmPerformanceState){
-           bpmPerformanceState = newBpmPerformanceState;
-           output->giveBpmFeedback(bpmPerformanceState);
+        if ((PERFECT == bpmPerformanceState) == newBpmPerformanceState){
+            //do nothing
         }
 
-        else if (PERFECT == bpmPerformanceState == newBpmPerformanceState){
-            //do nothing
+        else if (PERFECT == newBpmPerformanceState){
+            bpmPerformanceState = newBpmPerformanceState;
+            output->giveBpmFeedback(bpmPerformanceState);
         }
 
         else {
@@ -26,11 +27,26 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
             output->giveBpmFeedback(bpmPerformanceState);
         }
     }
+
 }
 
 void FeedbackHandler::handleCompressionCountPerformance(int count)
 {
     compressionCount = count;
+}
+
+void FeedbackHandler::feedbackAmountSelected(float amount)
+{
+    if (this->feedbackAmountPercentage != amount)
+    {
+        this->feedbackAmountPercentage = amount;
+        std::cout << "Feedback Handler: feedBackAmountPercentage changed to: " << this->feedbackAmountPercentage << std::endl;
+
+        this->feedbackAmount = DESIRED_REPETITIONS - (DESIRED_REPETITIONS * (this->feedbackAmountPercentage*0.01)) + 1;
+        std::cout << "Feedback Handler: feedBackAmount changed to: " << this->feedbackAmount << std::endl;
+
+        viewModel->feedbackAmountSelected(this->feedbackAmountPercentage);
+    }
 }
 
 

@@ -32,7 +32,7 @@ void RequestModel::serialConnectButtonPressed()
 
 void RequestModel::sliderMoved(float value)
 {
-    qDebug() << "RequestModel: SliderValue is: " << value;
+    feedbackHandler->feedbackAmountSelected(value);
 }
 
 

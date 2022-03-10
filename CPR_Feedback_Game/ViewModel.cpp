@@ -5,19 +5,24 @@ ViewModel::ViewModel(QObject *parent) : QObject(parent)
 
 }
 
-
-void ViewModel::setPortList(const QStringList &v)
+void ViewModel::feedbackAmountSelected(int feedbackAmount)
 {
-    qDebug() << "in viewmodel: set portlist";
-    if (v != m_portList) {
-        m_portList = v;
-        emit portListChanged();
+    setFeedbackAmount(QString::number(feedbackAmount) + "%");
+}
+
+void ViewModel::setFeedbackAmount(const QString &v)
+{
+    if (v != m_feedbackAmount) {
+        m_feedbackAmount = v;
+        emit feedbackAmountChanged();
     }
-    qDebug() << "in viewmodel: after set portlist";
 }
 
-QStringList ViewModel::portList() const
+QString ViewModel::feedbackAmount() const
 {
-    return m_portList;
+    return m_feedbackAmount;
 }
+
+
+
 

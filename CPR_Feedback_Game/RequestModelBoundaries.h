@@ -1,5 +1,5 @@
-#ifndef REQUESTMODELBOUNDARY_H
-#define REQUESTMODELBOUNDARY_H
+#ifndef REQUESTMODELBOUNDARIES_H
+#define REQUESTMODELBOUNDARIES_H
 
 #include <QString>
 
@@ -22,6 +22,12 @@ public:
    virtual void voiceSelected(QString voice) = 0;
 };
 
+class RequestModelToFeedbackHandler
+{
+public:
+   virtual void feedbackAmountSelected(float amount) = 0;
+};
 
 
-#endif // REQUESTMODELBOUNDARY_H
+
+#endif // REQUESTMODELBOUNDARIES_H

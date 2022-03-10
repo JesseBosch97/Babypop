@@ -2,8 +2,8 @@
 #define AUDIOPLAYER_H
 
 #include <QMediaPlayer>
-#include "FeedbackHandlerOutput.h"
-#include "requestmodelboundary.h"
+#include "FeedbackHandlerBoundaries.h"
+#include "RequestModelBoundaries.h"
 #include "unordered_map"
 
 

@@ -30,13 +30,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     FeedbackHandler.h \
+    FeedbackHandlerBoundaries.h \
     FeedbackHandlerInput.h \
-    FeedbackHandlerOutput.h \
+    RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
     ViewModel.h \
     audioplayer.h \
     interactionprocessor.h \
     requestmodel.h \
-    requestmodelboundary.h \
     serialread.h

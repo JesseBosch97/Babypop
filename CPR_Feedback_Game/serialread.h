@@ -6,7 +6,7 @@
 #include "iostream"
 #include <QDebug>
 #include <QStringListModel>
-#include <requestmodelboundary.h>
+#include <RequestModelBoundaries.h>
 
 class SerialRead : public QObject
 {

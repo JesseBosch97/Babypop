@@ -61,14 +61,23 @@ Window {
         anchors.topMargin: 32
     }
 
+    Label {
+        id: sliderLabel
+        anchors.horizontalCenter: feedbackSlider.horizontalCenter
+        anchors.bottom: feedbackSlider.top
+        text: ViewModel.feedbackAmount
+    }
+
     Slider {
+        id: feedbackSlider
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         snapMode: "SnapOnRelease"
-        stepSize: 1
+        stepSize: 10
         from: 0
-        value: 5
-        to: 10
+        value: 50
+        to: 100
         onMoved: RequestModel.sliderMoved(value)
+        Component.onCompleted: RequestModel.sliderMoved(value)
     }
 }

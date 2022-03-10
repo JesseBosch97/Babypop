@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
-#include "requestmodelboundary.h"
+#include "RequestModelBoundaries.h"
 #include "interactionprocessor.h"
 
 class RequestModel : public QObject
@@ -14,6 +14,7 @@ public:
     RequestModelToInteractionProcessor * processor;
     RequestModelToSerialPort * serialPort;
     RequestModelToAudioPlayer * audioPlayer;
+    RequestModelToFeedbackHandler * feedbackHandler;
 
     InteractionProcessor interactionProcessor;
 

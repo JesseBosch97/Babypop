@@ -1,7 +1,7 @@
 #ifndef INTERACTIONPROCESSOR_H
 #define INTERACTIONPROCESSOR_H
 
-#include "requestmodelboundary.h"
+#include "RequestModelBoundaries.h"
 #include "FeedbackHandlerInput.h"
 #include <QElapsedTimer>
 #include <iostream>

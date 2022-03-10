@@ -3,29 +3,29 @@
 
 #include <QObject>
 #include <QDebug>
-#include <SerialPortBoundary.h>
+#include "FeedbackHandlerBoundaries.h"
 
-class ViewModel : public QObject
+class ViewModel : public QObject, public FeedbackHandlerToViewModel
 {
    Q_OBJECT
-   Q_PROPERTY(QStringList portList READ portList NOTIFY portListChanged)
+   Q_PROPERTY(QString feedbackAmount READ feedbackAmount NOTIFY feedbackAmountChanged)
 
 public:
    explicit ViewModel(QObject *parent = nullptr);
 
+   void feedbackAmountSelected(int feedbackAmount) override;
 
-   void setPortList(const QStringList &v);
+   void setFeedbackAmount(const QString &v);
 
-   QStringList portList() const;
-
+   QString feedbackAmount() const;
 
 
 private:
-   QStringList m_portList;
+   QString m_feedbackAmount = "";
 
 
 signals:
-   void portListChanged();
+   void feedbackAmountChanged();
 
 };
 
