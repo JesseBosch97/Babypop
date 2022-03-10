@@ -76,7 +76,7 @@ int FeedbackHandler::handleBpmPerformanceState()
 
 void FeedbackHandler::storeBpmSample(int bpm)
 {
-    for (int i=BPM_SAMPLE_AMOUNT-1; i>0; i--) {
+    for (int i=BPM_SAMPLE_AMOUNT-1; i>0; i--) {  //should be dynamic array
         bpmSamples[i] = bpmSamples[i-1];
     }
     bpmSamples[0] = bpm;

@@ -10,7 +10,6 @@
 #include "ViewModel.h"
 #include "SerialPort.h"
 #include "serialread.h"
-#include "ConfigurationHandler.h"
 
 
 int main(int argc, char *argv[])
@@ -27,7 +26,6 @@ int main(int argc, char *argv[])
     InteractionProcessor interactionProcessor;
     ViewModel viewModel;
     SerialPort serialPort;
-    ConfigurationHandler configurationHandler;
 
     //connect objects
     requestModel.processor = &interactionProcessor;
