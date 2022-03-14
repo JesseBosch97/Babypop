@@ -37,12 +37,12 @@ void FeedbackHandler::handleCompressionCountPerformance(int count)
 
 void FeedbackHandler::feedbackAmountSelected(float amount)
 {
-    if (this->feedbackAmountPercentage != amount)
+    if (this->feedbackAmountPercentage != int(amount))
     {
-        this->feedbackAmountPercentage = amount;
+        this->feedbackAmountPercentage = int(amount);
         std::cout << "Feedback Handler: feedBackAmountPercentage changed to: " << this->feedbackAmountPercentage << std::endl;
 
-        this->feedbackAmount = DESIRED_REPETITIONS - (DESIRED_REPETITIONS * (this->feedbackAmountPercentage*0.01)) + 1;
+        this->feedbackAmount = DESIRED_REPETITIONS - int((DESIRED_REPETITIONS * (this->feedbackAmountPercentage*0.01))) + 1;
         std::cout << "Feedback Handler: feedBackAmount changed to: " << this->feedbackAmount << std::endl;
 
         viewModel->feedbackAmountSelected(this->feedbackAmountPercentage);
