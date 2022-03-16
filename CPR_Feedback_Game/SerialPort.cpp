@@ -51,7 +51,7 @@ void SerialPort::readData()
 
     if (validData.contains('\n'))
     {
-        qDebug() << "SerialPort: " + validData;
+        //qDebug() << "SerialPort: " + validData;
 
         datahandler->handleData(validData.toStdString());
         validData.clear();

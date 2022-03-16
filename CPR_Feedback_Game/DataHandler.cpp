@@ -27,9 +27,6 @@ void DataHandler::handleData(std::string validdata)
 
    else std::cout << "DataHandler: data not detected!" << std::endl;
 
-
-    fingerPositionDataHandler.handleData(validdata);
-
 }
 
 
