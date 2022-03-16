@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QStringListModel>
 #include <RequestModelBoundaries.h>
+#include <SerialPortBoundary.h>
 
 //[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n
 
@@ -23,9 +24,9 @@ public:
    void openSerialPort();
    void getSerialPortInformation();
 
-   //virtual std::vector<char> DisectStringtoChar(std::string data);
 
    QStringListModel portListModel;
+   SerialPortToDataHandler *datahandler;
 
 private:
    QString selectedPortName;

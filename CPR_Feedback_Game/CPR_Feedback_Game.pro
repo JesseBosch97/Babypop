@@ -5,14 +5,14 @@ QT += quick multimedia serialport
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        DataHandler.cpp \
         FeedbackHandler.cpp \
         SerialPort.cpp \
         ViewModel.cpp \
         audioplayer.cpp \
         interactionprocessor.cpp \
         main.cpp \
-        requestmodel.cpp \
-        serialread.cpp
+        requestmodel.cpp
 
 RESOURCES += qml.qrc \
    sounds.qrc
@@ -29,6 +29,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    DataHandler.h \
     FeedbackHandler.h \
     FeedbackHandlerBoundaries.h \
     FeedbackHandlerInput.h \
@@ -38,5 +39,4 @@ HEADERS += \
     ViewModel.h \
     audioplayer.h \
     interactionprocessor.h \
-    requestmodel.h \
-    serialread.h
+    requestmodel.h

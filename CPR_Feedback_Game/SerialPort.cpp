@@ -1,5 +1,4 @@
 #include "SerialPort.h"
-#include "serialread.h"
 
 
 SerialPort::SerialPort(QObject *parent)
@@ -53,6 +52,7 @@ void SerialPort::readData()
     if (validData.contains('\n'))
     {
         qDebug() << validData;
+        datahandler->handleData(validData.toStdString());
         validData.clear();
     }
 

@@ -9,7 +9,8 @@
 #include "interactionprocessor.h"
 #include "ViewModel.h"
 #include "SerialPort.h"
-#include "serialread.h"
+#include "DataHandler.h"
+
 
 
 int main(int argc, char *argv[])
@@ -26,6 +27,8 @@ int main(int argc, char *argv[])
     InteractionProcessor interactionProcessor;
     ViewModel viewModel;
     SerialPort serialPort;
+    DataHandler datahandler;
+
 
     //connect objects
     requestModel.processor = &interactionProcessor;
@@ -35,6 +38,7 @@ int main(int argc, char *argv[])
     interactionProcessor.output = &feedback;    
     feedback.output = &audioplayer;
     feedback.viewModel = &viewModel;
+    serialPort.datahandler = &datahandler;
 
     //create application
     QQmlApplicationEngine engine;
