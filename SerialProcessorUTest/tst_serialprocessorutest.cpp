@@ -60,7 +60,8 @@ public:
         return fault;
     }
 
-    std::string copyString(std::string input){
+    std::string copyString(std::string input)
+    {
         std::string copy;
         for (int i = 0; i <(int)input.length(); i++){
             copy += input[i];
