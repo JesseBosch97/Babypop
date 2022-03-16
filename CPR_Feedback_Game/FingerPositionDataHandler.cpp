@@ -1,4 +1,5 @@
 #include "FingerPositionDataHandler.h"
+#include <iostream>
 
 FingerPositionDataHandler::FingerPositionDataHandler()
 {
@@ -8,13 +9,23 @@ FingerPositionDataHandler::~FingerPositionDataHandler()
 {
 
 }
-void FingerPositionDataHandler::PutFingerpositionsinstruct(std::vector<std::string> value)
+void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::string> value)
 {
-    Fingerposition pos;
+
+    positionOfFingers.bottomleft    = std::stoi(value[0]);
+    positionOfFingers.bottomleft    = std::stoi(value[1]);
+    positionOfFingers.bottomleft    = std::stoi(value[2]);
+    positionOfFingers.mid           = std::stoi(value[3]);
+    positionOfFingers.bottomright   = std::stoi(value[4]);
+    positionOfFingers.top           = std::stoi(value[5]);
+    positionOfFingers.bottom        = std::stoi(value[6]);
+    positionOfFingers.lowmid        = std::stoi(value[7]);
+
 }
 void FingerPositionDataHandler::handleData(std::string validdata)
 {
-    //return validdata;
+    putFingerPositionsInStruct(parseData(validdata));
+    std::cout << positionOfFingers.bottomright << " " << positionOfFingers.top << " " << positionOfFingers.bottom << " " << positionOfFingers.lowmid << std::endl;
 }
 
 std::vector<char> FingerPositionDataHandler::DisectStringtoChar(std::string data)
@@ -60,7 +71,7 @@ std::vector<std::string> FingerPositionDataHandler::BuildNewStringFromDisected(s
     return fault;
 }
 
-std::vector<std::string> FingerPositionDataHandler::BuildNewStringFromOldString(std::string data)
+std::vector<std::string> FingerPositionDataHandler::parseData(std::string data)
 {
     std::vector<std::string> rebuildstring;
     std::vector<std::string> fault = {""};
