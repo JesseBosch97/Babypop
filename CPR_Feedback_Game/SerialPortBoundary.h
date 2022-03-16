@@ -12,7 +12,7 @@ public:
 class SerialPortToDataHandler
 {
 public:
-    virtual void handleData(std::string validdata);
+    virtual void handleData(std::string validdata) = 0;
 };
 
 #endif // SERIALPORTBOUNDARY_H
