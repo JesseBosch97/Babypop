@@ -1,4 +1,5 @@
 #include "audioplayer.h"
+#include <iostream>
 
 Audioplayer::Audioplayer()
 {
@@ -14,7 +15,13 @@ void Audioplayer::giveBpmFeedback(int feedbackType)
 
 void Audioplayer::voiceSelected(QString voice)
 {
-   this->selectedVoice = voice;
+    this->selectedVoice = voice;
+}
+
+void Audioplayer::giveFingerPositionFeedback(int fingerFeedback)
+{
+    player.setMedia(QUrl(createURL(feedbackWordMap.at(fingerFeedback))));
+    playSound();
 }
 
 QString Audioplayer::createURL(QString word)

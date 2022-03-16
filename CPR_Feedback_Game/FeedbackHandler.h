@@ -23,7 +23,7 @@ public:
     void handleBpmPerformance(int bpm) override;
     void handleCompressionCountPerformance(int count) override;
     void feedbackAmountSelected(float amount) override;
-    void fingerPositionPerformance(Fingerposition posistionOfFingers) override;
+    void fingerPositionPerformance(Fingerposition positionOfFingers) override;
 
 private:
     int bpmSamples[BPM_SAMPLE_AMOUNT] = {DESIRED_BPM}; //should be dynamic array

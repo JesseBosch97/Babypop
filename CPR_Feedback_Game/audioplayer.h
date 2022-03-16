@@ -15,6 +15,7 @@ public:
 
    void giveBpmFeedback(int feedbackType) override;
    void voiceSelected(QString voice) override;
+   void giveFingerPositionFeedback(int fingerFeedback) override;
 
    QString createURL(QString word);
 private:
@@ -22,18 +23,18 @@ private:
     QString selectedVoice = "maleTTS";
     void playSound();
 
-    std::unordered_map<std::string, std::string> u = {
-            {"RED","#FF0000"},
-            {"GREEN","#00FF00"},
-            {"BLUE","#0000FF"}
-        };
-
     std::unordered_map<int, QString> feedbackWordMap
     {
-       {PERFECT, "perfect"},
-       {TOO_FAST, "slower"},
-       {TOO_SLOW, "faster"},
-       {TOO_MANY, "too_many"}
+        {PERFECT, "perfect"},
+        {TOO_FAST, "slower"},
+        {TOO_SLOW, "faster"},
+        {TOO_MANY, "too_many"},
+        {TOO_FAR_LEFT, "little_to_the_right"},
+        {TOO_FAR_RIGHT, "little_to_the_left"},
+        {WAY_TOO_LOW, "higher"},
+        {TOO_LOW, "little_higher"},
+        {TOO_HIGH, "little lower"}
+
     };
 
 };

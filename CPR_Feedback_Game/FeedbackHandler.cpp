@@ -49,9 +49,45 @@ void FeedbackHandler::feedbackAmountSelected(float amount)
     }
 }
 
-void FeedbackHandler::fingerPositionPerformance(Fingerposition posistionOfFingers)
+void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)
 {
-    std::cout << posistionOfFingers.bottom << std::endl;
+    int fingerPositionPerformance = CORRECT;
+
+    if (positionOfFingers.bottom > 200)
+    {
+        fingerPositionPerformance = WAY_TOO_LOW;
+    }
+    if (positionOfFingers.lowmid > 200)
+    {
+        fingerPositionPerformance = TOO_LOW;
+    }
+    if (positionOfFingers.top > 200)
+    {
+        fingerPositionPerformance = TOO_HIGH;
+    }
+    if (positionOfFingers.bottomright > 200)
+    {
+        fingerPositionPerformance = TOO_FAR_RIGHT;
+    }
+    if (positionOfFingers.mid > 200)
+    {
+        fingerPositionPerformance = PERFECT;
+    }
+    if (positionOfFingers.topright > 200)
+    {
+        fingerPositionPerformance = TOO_FAR_RIGHT;
+    }
+    if (positionOfFingers.topleft > 200)
+    {
+        fingerPositionPerformance = TOO_FAR_LEFT;
+    }
+    if (positionOfFingers.bottomleft > 200)
+    {
+        fingerPositionPerformance = TOO_FAR_LEFT;
+    }
+
+    output->giveFingerPositionFeedback(fingerPositionPerformance);
+    //std::cout << positionOfFingers.bottom << std::endl;
 }
 
 
