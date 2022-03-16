@@ -7,6 +7,7 @@ QT += quick multimedia serialport
 SOURCES += \
         DataHandler.cpp \
         FeedbackHandler.cpp \
+        FingerPositionDataHandler.cpp \
         SerialPort.cpp \
         ViewModel.cpp \
         audioplayer.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     FeedbackHandler.h \
     FeedbackHandlerBoundaries.h \
     FeedbackHandlerInput.h \
+    FingerPositionDataHandler.h \
     RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
