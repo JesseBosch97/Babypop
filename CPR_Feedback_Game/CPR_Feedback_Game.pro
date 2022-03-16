@@ -8,7 +8,9 @@ SOURCES += \
         DataHandler.cpp \
         FeedbackHandler.cpp \
         FingerPositionDataHandler.cpp \
+        FlowDataHandler.cpp \
         SerialPort.cpp \
+        StringFunctions.cpp \
         ViewModel.cpp \
         audioplayer.cpp \
         interactionprocessor.cpp \
@@ -35,9 +37,11 @@ HEADERS += \
     FeedbackHandlerBoundaries.h \
     FeedbackHandlerInput.h \
     FingerPositionDataHandler.h \
+    FlowDataHandler.h \
     RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
+    StringFunctions.h \
     ViewModel.h \
     audioplayer.h \
     interactionprocessor.h \
