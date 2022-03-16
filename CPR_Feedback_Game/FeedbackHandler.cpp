@@ -49,6 +49,11 @@ void FeedbackHandler::feedbackAmountSelected(float amount)
     }
 }
 
+void FeedbackHandler::fingerPositionPerformance(Fingerposition posistionOfFingers)
+{
+    std::cout << posistionOfFingers.bottom << std::endl;
+}
+
 
 int FeedbackHandler::checkBPM()
 {

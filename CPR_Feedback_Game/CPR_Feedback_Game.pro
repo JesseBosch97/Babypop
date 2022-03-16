@@ -37,6 +37,7 @@ HEADERS += \
     FeedbackHandlerBoundaries.h \
     FeedbackHandlerInput.h \
     FingerPositionDataHandler.h \
+    FingerPositionStruct.h \
     FlowDataHandler.h \
     RequestModelBoundaries.h \
     SerialPort.h \

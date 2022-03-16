@@ -1,7 +1,7 @@
 #ifndef FEEDBACKHANDLERBOUNDARIES_H
 #define FEEDBACKHANDLERBOUNDARIES_H
 
-enum feedBackType {NEUTRAL, PERFECT, TOO_SLOW, TOO_FAST, TOO_MANY };
+enum compressionFeedBackType {NEUTRAL, PERFECT, TOO_SLOW, TOO_FAST, TOO_MANY };
 
 class FeedbackHandlerOutput
 {

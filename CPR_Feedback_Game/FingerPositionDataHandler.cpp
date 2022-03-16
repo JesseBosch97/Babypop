@@ -22,10 +22,12 @@ void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::stri
     positionOfFingers.lowmid        = std::stoi(value[7]);
 
 }
-void FingerPositionDataHandler::handleData(std::string validdata)
+Fingerposition FingerPositionDataHandler::handleData(std::string validdata)
 {
     putFingerPositionsInStruct(parseData(validdata));
-    std::cout << positionOfFingers.bottomright << " " << positionOfFingers.top << " " << positionOfFingers.bottom << " " << positionOfFingers.lowmid << std::endl;
+
+    return positionOfFingers;
+
 }
 
 std::vector<char> FingerPositionDataHandler::DisectStringtoChar(std::string data)

@@ -10,22 +10,24 @@ DataHandler::~DataHandler()
 {
 
 }
+
 void DataHandler::handleData(std::string validdata)
 {
 
    if (detectString(validdata, "flow:"))
    {
-      std::cout << "DataHandler: flow detected!" << std::endl;
+      //std::cout << "DataHandler: flow detected!" << std::endl;
       flowDataHandler.handleFlowData(validdata);
    }
 
    else if (detectString(validdata, "["))
    {
-      std::cout << "DataHandler: finger position detected!" << std::endl;
-      fingerPositionDataHandler.handleData(validdata);
+      //std::cout << "DataHandler: finger position detected!" << std::endl;
+      feedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
    }
 
-   else std::cout << "DataHandler: data not detected!" << std::endl;
+   else //std::cout << "DataHandler: data not detected!" << std::endl
+       ;
 
 }
 

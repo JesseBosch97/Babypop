@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     InteractionProcessor interactionProcessor;
     ViewModel viewModel;
     SerialPort serialPort;
-    DataHandler datahandler;
+    DataHandler dataHandler;
 
 
     //connect objects
@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
     interactionProcessor.output = &feedback;    
     feedback.output = &audioplayer;
     feedback.viewModel = &viewModel;
-    serialPort.datahandler = &datahandler;
+    serialPort.datahandler = &dataHandler;
+    dataHandler.feedback = &feedback;
 
     //create application
     QQmlApplicationEngine engine;

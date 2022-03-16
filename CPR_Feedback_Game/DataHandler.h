@@ -4,6 +4,7 @@
 #include <SerialPortBoundary.h>
 #include "FingerPositionDataHandler.h"
 #include "FlowDataHandler.h"
+#include "FeedbackHandlerInput.h"
 
 class DataHandler : public SerialPortToDataHandler
 {
@@ -13,6 +14,7 @@ public:
 
     void handleData(std::string validdata) override;
 
+    FeedbackHandlerInput *feedback;
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
