@@ -25,7 +25,7 @@ public:
 class RequestModelToFeedbackHandler
 {
 public:
-   virtual void feedbackAmountSelected(float amount) = 0;
+   virtual void compressionFeedbackAmountSelected(float amount) = 0;
 };
 
 

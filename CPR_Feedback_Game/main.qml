@@ -101,7 +101,11 @@ Window {
             CheckBox {
                 id: compressionCheckbox
                 text: "Compression"
-                onCheckStateChanged: checkState ? compressionSubColumn.visible = true : compressionSubColumn.visible = false
+                onCheckStateChanged:
+                {
+                    RequestModel.compressionCheckboxSelected(checkState)
+                    compressionSubColumn.visible = checkState
+                }
             }
 
             Column {
@@ -119,8 +123,8 @@ Window {
                     from: 0
                     value: 50
                     to: 100
-                    onMoved: RequestModel.sliderMoved(value)
-                    Component.onCompleted: RequestModel.sliderMoved(value)
+                    onMoved: RequestModel.compressionSliderMoved(value)
+                    Component.onCompleted: RequestModel.compressionSliderMoved(value)
                 }
 
                 Label {
@@ -129,6 +133,14 @@ Window {
 
                 SpinBox {
                     value: 30
+                }
+
+                Label {
+                    text: "Error Margin: "
+                }
+
+                SpinBox {
+                    value: 5
                 }
             }
         }
@@ -139,7 +151,12 @@ Window {
             CheckBox {
                 id: ventilationCheckbox
                 text: "Ventilation"
-                onCheckStateChanged: checkState ? ventilationSubColumn.visible = true : ventilationSubColumn.visible = false
+                onCheckStateChanged:
+                {
+                    RequestModel.ventilationCheckboxSelected(checkState)
+                    ventilationSubColumn.visible = checkState
+                }
+
             }
 
             Column {
@@ -157,8 +174,8 @@ Window {
                     from: 0
                     value: 50
                     to: 100
-                    //onMoved: RequestModel.sliderMoved(value)
-                    //Component.onCompleted: RequestModel.sliderMoved(value)
+                    onMoved: RequestModel.ventilationSliderMoved(value)
+                    Component.onCompleted: RequestModel.ventilationSliderMoved(value)
                 }
 
                 Label {
@@ -167,6 +184,14 @@ Window {
 
                 SpinBox {
                     value: 2
+                }
+
+                Label {
+                    text: "Error Margin: "
+                }
+
+                SpinBox {
+                    value: 5
                 }
             }
         }
@@ -177,7 +202,12 @@ Window {
             CheckBox {
                 id: airwayCheckbox
                 text: "Airway Management"
-                onCheckStateChanged: checkState ? airwaySubColumn.visible = true : airwaySubColumn.visible = false
+                onCheckStateChanged:
+                {
+                    RequestModel.airwayCheckboxSelected(checkState)
+                    airwaySubColumn.visible = checkState
+                }
+
             }
 
             Column {
@@ -195,8 +225,16 @@ Window {
                     from: 0
                     value: 50
                     to: 100
-                    //onMoved: RequestModel.sliderMoved(value)
-                    //Component.onCompleted: RequestModel.sliderMoved(value)
+                    onMoved: RequestModel.airwaySliderMoved(value)
+                    Component.onCompleted: RequestModel.airwaySliderMoved(value)
+                }
+
+                Label {
+                    text: "Error Margin: "
+                }
+
+                SpinBox {
+                    value: 5
                 }
             }
         }

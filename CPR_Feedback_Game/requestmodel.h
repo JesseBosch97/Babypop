@@ -8,7 +8,8 @@
 
 class RequestModel : public QObject
 {
-    Q_OBJECT
+   Q_OBJECT
+
 public:
     RequestModel(QObject* parent = nullptr);
     RequestModelToInteractionProcessor * processor;
@@ -21,11 +22,17 @@ public:
 
 
 public slots:
+    void compressionCheckboxSelected(bool state);
+    void ventilationCheckboxSelected(bool state);
+    void airwayCheckboxSelected(bool state);
     void compressionButtonPressed();
     void serialPortSelected(QString portName);
     void voiceSelected(QString voice);
     void serialConnectButtonPressed();
-    void sliderMoved(float value);
+    void compressionSliderMoved(float value);
+    void ventilationSliderMoved(float value);
+
+    void airwaySliderMoved(float value);
 };
 
 #endif // REQUESTMODEL_H
