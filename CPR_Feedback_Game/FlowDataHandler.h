@@ -9,7 +9,7 @@ class FlowDataHandler
 {
 public:
    FlowDataHandler();
-   void handleFlowData(std::string flowData);
+   int handleFlowData(std::string flowData);
 };
 
 #endif // FLOWDATAHANDLER_H
