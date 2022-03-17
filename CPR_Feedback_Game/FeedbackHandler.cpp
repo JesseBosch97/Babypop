@@ -19,12 +19,12 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
 
         else if (PERFECT == newBpmPerformanceState){
             bpmPerformanceState = newBpmPerformanceState;
-            output->giveBpmFeedback(bpmPerformanceState);
+            output->giveFeedback(bpmPerformanceState);
         }
 
         else {
             bpmPerformanceState = newBpmPerformanceState;
-            output->giveBpmFeedback(bpmPerformanceState);
+            output->giveFeedback(bpmPerformanceState);
         }
     }
 
@@ -37,9 +37,41 @@ void FeedbackHandler::handleCompressionCountPerformance(int count)
 
 void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 {
-    std::cout << "FeedbackHandler: average flow strength is " << flowPerformance.averageFlowStrenght << std::endl;
+    std::cout << "FeedbackHandler: average flow strength is " << flowPerformance.averageFlowStrength << std::endl;
     std::cout << "FeedbackHandler: pause time is " << flowPerformance.pauseTime << std::endl;
     std::cout << "FeedbackHandler: ventilation time is " << flowPerformance.ventilationTime << std::endl;
+
+
+    if (flowPerformance.averageFlowStrength <= DESIRED_FLOW_STRENGTH - FLOW_STRENGTH_ALLOWED_ERROR)
+    {
+        output->giveFeedback(VENTILATION_TOO_LITTLE);
+    }
+
+    else if (flowPerformance.averageFlowStrength > DESIRED_FLOW_STRENGTH + FLOW_STRENGTH_ALLOWED_ERROR)
+    {
+        output->giveFeedback(VENTILATION_TOO_MUCH);
+    }
+
+    else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
+    {
+        output->giveFeedback(VENTILATION_TOO_SHORT);
+    }
+
+    else if (flowPerformance.ventilationTime > DESIRED_VENTILATION_TIME_MS + VENTILATION_TIME_ALLOWED_ERROR)
+    {
+        output->giveFeedback(VENTILATION_TOO_LONG);
+    }
+
+    else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
+    {
+        output->giveFeedback(PAUSE_TOO_SHORT);
+    }
+
+    else if (flowPerformance.pauseTime > DESIRED_PAUSE_TIME_MS + PAUSE_TIME_ALLOWED_ERROR)
+    {
+        output->giveFeedback(PAUSE_TOO_LONG);
+    }
+
 }
 
 

@@ -8,16 +8,11 @@
 #include <vector>
 #include "PerformanceTypes.h"
 
-#define DESIRED_FLOW 15
-#define FLOW_THRESHOLD 10
-#define FLOW_ERROR 5
+
+#define FLOW_THRESHOLD 2
 
 
-//struct FlowPerformance{
-//    int ventilationTime = 0;
-//    int pauseTime = 0;
-//    int averageFlowStrenght = 0;
-//};
+
 
 class FlowDataHandler
 {

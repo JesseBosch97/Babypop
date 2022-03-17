@@ -7,7 +7,7 @@ Audioplayer::Audioplayer()
 }
 
 
-void Audioplayer::giveBpmFeedback(int feedbackType)
+void Audioplayer::giveFeedback(int feedbackType)
 {
    player.setMedia(QUrl(createURL(feedbackWordMap.at(feedbackType))));
    playSound();

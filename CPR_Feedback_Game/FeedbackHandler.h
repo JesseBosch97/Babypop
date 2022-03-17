@@ -13,6 +13,16 @@
 //#define FEEDBACK_FREQUENCY 5
 
 
+#define DESIRED_PAUSE_TIME_MS 1000
+#define PAUSE_TIME_ALLOWED_ERROR 500
+
+#define DESIRED_VENTILATION_TIME_MS 1000
+#define VENTILATION_TIME_ALLOWED_ERROR 500
+
+#define DESIRED_FLOW_STRENGTH 10
+#define FLOW_STRENGTH_ALLOWED_ERROR 5
+
+
 
 class FeedbackHandler : public FeedbackHandlerInput, public RequestModelToFeedbackHandler
 {

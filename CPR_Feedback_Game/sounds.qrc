@@ -5,11 +5,23 @@
         <file>audiofiles/MaleTTS_too_many.mp3</file>
         <file>audiofiles/MaleTTS_faster.mp3</file>
         <file>audiofiles/MaleTTS_slower.mp3</file>
+        <file>audiofiles/MaleTTS_blow_harder.mp3</file>
+        <file>audiofiles/MaleTTS_blow_longer.mp3</file>
+        <file>audiofiles/MaleTTS_blow_shorter.mp3</file>
+        <file>audiofiles/MaleTTS_blow_softer.mp3</file>
+        <file>audiofiles/MaleTTS_pause_longer.mp3</file>
+        <file>audiofiles/MaleTTS_pause_shorter.mp3</file>
     </qresource>
     <qresource prefix="/sounds/FemaleTTS">
         <file>audiofiles/FemaleTTS_faster.mp3</file>
         <file>audiofiles/FemaleTTS_perfect.mp3</file>
         <file>audiofiles/FemaleTTS_slower.mp3</file>
         <file>audiofiles/FemaleTTS_too_many.mp3</file>
+        <file>audiofiles/FemaleTTS_blow_harder.mp3</file>
+        <file>audiofiles/FemaleTTS_blow_longer.mp3</file>
+        <file>audiofiles/FemaleTTS_blow_shorter.mp3</file>
+        <file>audiofiles/FemaleTTS_blow_softer.mp3</file>
+        <file>audiofiles/FemaleTTS_pause_longer.mp3</file>
+        <file>audiofiles/FemaleTTS_pause_shorter.mp3</file>
     </qresource>
 </RCC>

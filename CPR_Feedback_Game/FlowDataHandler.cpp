@@ -52,7 +52,7 @@ void FlowDataHandler::handleFlowData(std::string flowData)
 
       if (flowSamples.size() > 0)
       {
-          flowPerformance.averageFlowStrenght = sampleTotal / flowSamples.size();
+          flowPerformance.averageFlowStrength = sampleTotal / flowSamples.size();
           flowPerformanceCollected = true;
       }
 

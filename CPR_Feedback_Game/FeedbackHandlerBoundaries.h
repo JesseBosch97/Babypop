@@ -3,14 +3,15 @@
 
 enum feedBackTypes {NEUTRAL, PERFECT, TOO_SLOW, TOO_FAST, TOO_MANY,
                     CORRECT, WAY_TOO_LOW, TOO_LOW, TOO_HIGH, TOO_FAR_RIGHT, TOO_FAR_LEFT,
-                    VENTILATION_TOO_SHORT, VENTILATION_TOO_LONG, VENTILATION_TOO_MUCH, VENTILATION_TOO_LITTLE };
+                    VENTILATION_TOO_SHORT, VENTILATION_TOO_LONG, VENTILATION_TOO_MUCH, VENTILATION_TOO_LITTLE, PAUSE_TOO_LONG, PAUSE_TOO_SHORT };
 
 //enum fingerPositionFeedBackType {CORRECT, WAY_TOO_LOW, TOO_LOW, TOO_HIGH, TOO_FAR_RIGHT, TOO_FAR_LEFT};
 
 class FeedbackHandlerOutput
 {
 public:
-    virtual void giveBpmFeedback(int feedbackType) = 0;
+    virtual void giveFeedback(int feedbackType) = 0;
+    //virtual void giveBpmFeedback(int feedbackType) = 0;
     virtual void giveFingerPositionFeedback(int fingerFeedback) = 0;
 };
 

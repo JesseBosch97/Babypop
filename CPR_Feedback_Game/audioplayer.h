@@ -13,7 +13,7 @@ class Audioplayer : public FeedbackHandlerOutput, public RequestModelToAudioPlay
 public:
     Audioplayer();
 
-   void giveBpmFeedback(int feedbackType) override;
+   void giveFeedback(int feedbackType) override;
    void voiceSelected(QString voice) override;
    void giveFingerPositionFeedback(int fingerFeedback) override;
 
@@ -29,12 +29,19 @@ private:
         {TOO_FAST, "slower"},
         {TOO_SLOW, "faster"},
         {TOO_MANY, "too_many"},
+
         {TOO_FAR_LEFT, "little_to_the_right"},
         {TOO_FAR_RIGHT, "little_to_the_left"},
         {WAY_TOO_LOW, "higher"},
         {TOO_LOW, "little_higher"},
-        {TOO_HIGH, "little lower"}
+        {TOO_HIGH, "little lower"},
 
+        {VENTILATION_TOO_SHORT, "blow_longer"},
+        {VENTILATION_TOO_LONG, "blow_shorter"},
+        {VENTILATION_TOO_LITTLE, "blow_harder"},
+        {VENTILATION_TOO_MUCH, "blow_softer"},
+        {PAUSE_TOO_SHORT, "pause_longer"},
+        {PAUSE_TOO_LONG, "pause_shorter"}
     };
 
 };

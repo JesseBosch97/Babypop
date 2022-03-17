@@ -16,7 +16,7 @@ struct Fingerposition
 struct FlowPerformance{
     int ventilationTime = 0;
     int pauseTime = 0;
-    int averageFlowStrenght = 0;
+    int averageFlowStrength = 0;
 };
 
 #endif // PERFORMANCETYPES_H
