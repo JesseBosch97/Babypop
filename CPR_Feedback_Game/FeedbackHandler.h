@@ -12,6 +12,8 @@
 #define BPM_SAMPLE_AMOUNT 5 //should be const
 //#define FEEDBACK_FREQUENCY 5
 
+
+
 class FeedbackHandler : public FeedbackHandlerInput, public RequestModelToFeedbackHandler
 {
 public:
@@ -20,10 +22,11 @@ public:
     FeedbackHandlerOutput * output;
     FeedbackHandlerToViewModel * viewModel;
 
+    void compressionFeedbackAmountSelected(float amount) override;
+
     void handleBpmPerformance(int bpm) override;
     void handleCompressionCountPerformance(int count) override;
-
-    void compressionFeedbackAmountSelected(float amount) override;
+    void handleFlowPerformance(FlowPerformance flowPerformance) override;
     void fingerPositionPerformance(Fingerposition positionOfFingers) override;
 
 
@@ -36,8 +39,11 @@ private:
 
     int compressionCount = 0;
     int bpmPerformanceState = 0;
+
+
     int checkBPM();
     int handleBpmPerformanceState();
+
     void storeBpmSample(int bpm);
     int averageBpm();
 

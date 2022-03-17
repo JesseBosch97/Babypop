@@ -35,6 +35,15 @@ void FeedbackHandler::handleCompressionCountPerformance(int count)
     compressionCount = count;
 }
 
+void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
+{
+    std::cout << "FeedbackHandler: average flow strength is " << flowPerformance.averageFlowStrenght << std::endl;
+    std::cout << "FeedbackHandler: pause time is " << flowPerformance.pauseTime << std::endl;
+    std::cout << "FeedbackHandler: ventilation time is " << flowPerformance.ventilationTime << std::endl;
+}
+
+
+
 void FeedbackHandler::compressionFeedbackAmountSelected(float amount)
 {
     if (this->feedbackAmountPercentage != int(amount))

@@ -14,10 +14,15 @@ DataHandler::~DataHandler()
 void DataHandler::handleData(std::string validdata)
 {
 
-   if (detectString(validdata, "flow:"))
+   if (detectString(validdata, "flow:") && validdata.length() < 14)
    {
       //std::cout << "DataHandler: flow detected!" << std::endl;
       flowDataHandler.handleFlowData(validdata);
+      if (flowDataHandler.flowPerformanceCollected){
+          flowDataHandler.flowPerformanceCollected = false;
+          feedback->handleFlowPerformance(flowDataHandler.flowPerformance);
+      }
+
    }
 
    else if (detectString(validdata, "["))
@@ -26,8 +31,8 @@ void DataHandler::handleData(std::string validdata)
       feedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
    }
 
-   else //std::cout << "DataHandler: data not detected!" << std::endl
-       ;
+   else std::cout << "DataHandler: data not detected!" << std::endl;
+
 
 }
 
