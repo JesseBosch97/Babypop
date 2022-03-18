@@ -9,13 +9,13 @@ RequestModel::RequestModel(QObject *parent)
 void RequestModel::compressionCheckboxSelected(bool state)
 {
    qDebug() << "RequestModel: compression checkbox is" << state;
-   //TODO
+   feedbackHandler->setCompressionFeedbackSelected(state);
 }
 
 void RequestModel::ventilationCheckboxSelected(bool state)
 {
    qDebug() << "RequestModel: ventilation checkbox is" << state;
-   //TODO
+   feedbackHandler->setVentilationFeedbackSelected(state);
 }
 
 void RequestModel::airwayCheckboxSelected(bool state)
@@ -50,19 +50,18 @@ void RequestModel::serialConnectButtonPressed()
 
 void RequestModel::compressionSliderMoved(float value)
 {
-   qDebug() << "RequestModel: Compression slider is: " << value;
-   feedbackHandler->compressionFeedbackAmountSelected(value);
+   feedbackHandler->setCompressionFeedbackAmountSelection(value);
 }
 
 void RequestModel::ventilationSliderMoved(float value)
 {
-   qDebug() << "RequestModel: Ventilation slider is: " << value;
-
+   feedbackHandler->setVentilationFeedbackAmountSelection(value);
 }
 
 void RequestModel::airwaySliderMoved(float value)
 {
    qDebug() << "RequestModel: Airway slider is: " << value;
+   //TODO
 }
 
 

@@ -121,7 +121,7 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 50
+                    value: 90
                     to: 100
                     onMoved: RequestModel.compressionSliderMoved(value)
                     Component.onCompleted: RequestModel.compressionSliderMoved(value)
@@ -172,7 +172,7 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 50
+                    value: 90
                     to: 100
                     onMoved: RequestModel.ventilationSliderMoved(value)
                     Component.onCompleted: RequestModel.ventilationSliderMoved(value)

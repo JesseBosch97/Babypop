@@ -7,33 +7,31 @@ FeedbackHandler::FeedbackHandler()
 
 void FeedbackHandler::handleBpmPerformance(int bpm)
 {
-    storeBpmSample(bpm);
+    if (compressionFeedbackSelected)
+    {
+        compressionCount++;
+        storeBpmSample(bpm);
 
+        if (compressionCount % compressionFeedbackAmount == 0){
+            int newBpmPerformanceState = handleBpmPerformanceState();
 
-    if (compressionCount % feedbackAmount == 0){
-        int newBpmPerformanceState = handleBpmPerformanceState();
+            if ((PERFECT == bpmPerformanceState) == newBpmPerformanceState){
+                //do nothing
+            }
 
-        if ((PERFECT == bpmPerformanceState) == newBpmPerformanceState){
-            //do nothing
-        }
+            else if (PERFECT == newBpmPerformanceState){
+                bpmPerformanceState = newBpmPerformanceState;
+                output->giveFeedback(bpmPerformanceState);
+            }
 
-        else if (PERFECT == newBpmPerformanceState){
-            bpmPerformanceState = newBpmPerformanceState;
-            output->giveFeedback(bpmPerformanceState);
-        }
-
-        else {
-            bpmPerformanceState = newBpmPerformanceState;
-            output->giveFeedback(bpmPerformanceState);
+            else {
+                bpmPerformanceState = newBpmPerformanceState;
+                output->giveFeedback(bpmPerformanceState);
+            }
         }
     }
-
 }
 
-void FeedbackHandler::handleCompressionCountPerformance(int count)
-{
-    compressionCount = count;
-}
 
 void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 {
@@ -41,53 +39,79 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
     std::cout << "FeedbackHandler: pause time is " << flowPerformance.pauseTime << std::endl;
     std::cout << "FeedbackHandler: ventilation time is " << flowPerformance.ventilationTime << std::endl;
 
+    if (ventilationFeedbackSelected){
 
-    if (flowPerformance.averageFlowStrength <= DESIRED_FLOW_STRENGTH - FLOW_STRENGTH_ALLOWED_ERROR)
-    {
-        output->giveFeedback(VENTILATION_TOO_LITTLE);
+        ventilationCount++;
+
+        if (ventilationCount % ventilationFeedbackAmount == 0)
+        {
+            if (flowPerformance.averageFlowStrength <= DESIRED_FLOW_STRENGTH - FLOW_STRENGTH_ALLOWED_ERROR)
+            {
+                output->giveFeedback(VENTILATION_TOO_LITTLE);
+            }
+
+            else if (flowPerformance.averageFlowStrength > DESIRED_FLOW_STRENGTH + FLOW_STRENGTH_ALLOWED_ERROR)
+            {
+                output->giveFeedback(VENTILATION_TOO_MUCH);
+            }
+
+            else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
+            {
+                output->giveFeedback(VENTILATION_TOO_SHORT);
+            }
+
+            else if (flowPerformance.ventilationTime > DESIRED_VENTILATION_TIME_MS + VENTILATION_TIME_ALLOWED_ERROR)
+            {
+                output->giveFeedback(VENTILATION_TOO_LONG);
+            }
+
+            else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
+            {
+                output->giveFeedback(PAUSE_TOO_SHORT);
+            }
+
+            else if (flowPerformance.pauseTime > DESIRED_PAUSE_TIME_MS + PAUSE_TIME_ALLOWED_ERROR)
+            {
+                output->giveFeedback(PAUSE_TOO_LONG);
+            }
+        }
     }
-
-    else if (flowPerformance.averageFlowStrength > DESIRED_FLOW_STRENGTH + FLOW_STRENGTH_ALLOWED_ERROR)
-    {
-        output->giveFeedback(VENTILATION_TOO_MUCH);
-    }
-
-    else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
-    {
-        output->giveFeedback(VENTILATION_TOO_SHORT);
-    }
-
-    else if (flowPerformance.ventilationTime > DESIRED_VENTILATION_TIME_MS + VENTILATION_TIME_ALLOWED_ERROR)
-    {
-        output->giveFeedback(VENTILATION_TOO_LONG);
-    }
-
-    else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
-    {
-        output->giveFeedback(PAUSE_TOO_SHORT);
-    }
-
-    else if (flowPerformance.pauseTime > DESIRED_PAUSE_TIME_MS + PAUSE_TIME_ALLOWED_ERROR)
-    {
-        output->giveFeedback(PAUSE_TOO_LONG);
-    }
-
 }
 
 
 
-void FeedbackHandler::compressionFeedbackAmountSelected(float amount)
+void FeedbackHandler::setCompressionFeedbackAmountSelection(float amount)
 {
-    if (this->feedbackAmountPercentage != int(amount))
+    if (this->compressionFeedbackAmountPercentage != int(amount))
     {
-        this->feedbackAmountPercentage = int(amount);
-        std::cout << "Feedback Handler: feedBackAmountPercentage changed to: " << this->feedbackAmountPercentage << std::endl;
+        this->compressionFeedbackAmountPercentage = int(amount);
+        std::cout << "Feedback Handler: compressionFeedBackAmountPercentage changed to: " << this->compressionFeedbackAmountPercentage << std::endl;
 
-        this->feedbackAmount = DESIRED_REPETITIONS - int((DESIRED_REPETITIONS * (this->feedbackAmountPercentage*0.01))) + 1;
-        std::cout << "Feedback Handler: feedBackAmount changed to: " << this->feedbackAmount << std::endl;
-
-        viewModel->feedbackAmountSelected(this->feedbackAmountPercentage);
+        this->compressionFeedbackAmount = COMPRESSION_REPETITIONS - int((COMPRESSION_REPETITIONS * (this->compressionFeedbackAmountPercentage*0.01))) + 1;
+        std::cout << "Feedback Handler: compressionFeedbackAmount changed to: " << this->compressionFeedbackAmount << std::endl;
     }
+}
+
+void FeedbackHandler::setVentilationFeedbackAmountSelection(float amount)
+{
+    if (this->ventilationFeedbackAmountPercentage != int(amount))
+    {
+        this->ventilationFeedbackAmountPercentage = int(amount);
+        std::cout << "Feedback Handler: ventilationFeedBackAmountPercentage changed to: " << this->ventilationFeedbackAmountPercentage << std::endl;
+
+        this->ventilationFeedbackAmount = VENTILATION_REPETITIONS - int((VENTILATION_REPETITIONS * (this->ventilationFeedbackAmountPercentage*0.01))) + 1;
+        std::cout << "Feedback Handler: ventilationFeedBackAmount changed to: " << this->ventilationFeedbackAmount << std::endl;
+    }
+}
+
+void FeedbackHandler::setCompressionFeedbackSelected(bool state)
+{
+    this->compressionFeedbackSelected = state;
+}
+
+void FeedbackHandler::setVentilationFeedbackSelected(bool state)
+{
+    this->ventilationFeedbackSelected = state;
 }
 
 void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)
@@ -150,10 +174,13 @@ int FeedbackHandler::checkBPM()
 
 int FeedbackHandler::handleBpmPerformanceState()
 {
-    if (compressionCount < DESIRED_REPETITIONS){
+    if (compressionCount < COMPRESSION_REPETITIONS){
         return checkBPM();
     }
-    else return TOO_MANY;
+    else {
+        compressionCount = 0;
+        return TOO_MANY;
+    }
 }
 
 void FeedbackHandler::storeBpmSample(int bpm)
