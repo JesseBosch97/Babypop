@@ -27,8 +27,6 @@ public:
 
 
    bool ventilationLengthTimerRunning = false;
-   bool pauseLengthTimerRunning = false;
-
    bool flowPerformanceCollected = false;
 
 
