@@ -13,8 +13,8 @@ void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::stri
 {
 
     positionOfFingers.bottomleft    = std::stoi(value[0]);
-    positionOfFingers.bottomleft    = std::stoi(value[1]);
-    positionOfFingers.bottomleft    = std::stoi(value[2]);
+    positionOfFingers.topleft       = std::stoi(value[1]);
+    positionOfFingers.topright      = std::stoi(value[2]);
     positionOfFingers.mid           = std::stoi(value[3]);
     positionOfFingers.bottomright   = std::stoi(value[4]);
     positionOfFingers.top           = std::stoi(value[5]);

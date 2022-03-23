@@ -26,7 +26,13 @@
 #define DESIRED_FLOW_STRENGTH 10
 #define FLOW_STRENGTH_ALLOWED_ERROR 5
 
+struct Coordinates
+{
+    float x;
+    float y;
+};
 
+enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
 
 class FeedbackHandler : public FeedbackHandlerInput, public RequestModelToFeedbackHandler
 {
@@ -67,6 +73,9 @@ private:
 
     int bpmPerformanceState = 0;
 
+    location locationOfFingers(Fingerposition positionOfFingers);
+    location calculateLocation(Coordinates);
+    int pressurePoints(Fingerposition positionOfFingers);
 
     int checkBPM();
     int handleBpmPerformanceState();
