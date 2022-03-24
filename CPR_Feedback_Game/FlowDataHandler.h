@@ -31,6 +31,8 @@ public:
 
 
 
+private:
+   int getMaxValue();
 };
 
 #endif // FLOWDATAHANDLER_H

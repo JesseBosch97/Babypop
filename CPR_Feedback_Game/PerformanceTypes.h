@@ -17,6 +17,7 @@ struct FlowPerformance{
     int ventilationTime = 0;
     int pauseTime = 0;
     int averageFlowStrength = 0;
+    int maxFlowStrength = 0;
 };
 
 #endif // PERFORMANCETYPES_H

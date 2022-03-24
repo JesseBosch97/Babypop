@@ -36,6 +36,7 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
 void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 {
     std::cout << "FeedbackHandler: average flow strength is " << flowPerformance.averageFlowStrength << std::endl;
+    std::cout << "FeedbackHandler: max flow strength is " << flowPerformance.maxFlowStrength << std::endl;
     std::cout << "FeedbackHandler: pause time is " << flowPerformance.pauseTime << std::endl;
     std::cout << "FeedbackHandler: ventilation time is " << flowPerformance.ventilationTime << std::endl;
 
@@ -45,12 +46,12 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 
         if (ventilationCount % ventilationFeedbackAmount == 0)
         {
-            if (flowPerformance.averageFlowStrength <= DESIRED_FLOW_STRENGTH - FLOW_STRENGTH_ALLOWED_ERROR)
+            if (flowPerformance.maxFlowStrength <= FLOW_STRENGTH_MIN - FLOW_STRENGTH_ALLOWED_ERROR)
             {
                 output->giveFeedback(VENTILATION_TOO_LITTLE);
             }
 
-            else if (flowPerformance.averageFlowStrength > DESIRED_FLOW_STRENGTH + FLOW_STRENGTH_ALLOWED_ERROR)
+            else if (flowPerformance.maxFlowStrength > FLOW_STRENGHT_MAX + FLOW_STRENGTH_ALLOWED_ERROR)
             {
                 output->giveFeedback(VENTILATION_TOO_MUCH);
             }

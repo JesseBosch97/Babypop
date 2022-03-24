@@ -47,6 +47,7 @@ void FlowDataHandler::handleFlowData(std::string flowData)
           if (flowSamples.size() > 0)
           {
               flowPerformance.averageFlowStrength = sampleTotal / flowSamples.size();
+              flowPerformance.maxFlowStrength = getMaxValue();
               flowPerformanceCollected = true;
           }
 
@@ -54,6 +55,20 @@ void FlowDataHandler::handleFlowData(std::string flowData)
           flowSamples.clear();
       }
   }
+}
+
+int FlowDataHandler::getMaxValue()
+{
+    int maxValue = 0;
+    for (auto i : flowSamples)
+    {
+        if (i > maxValue)
+        {
+            maxValue = i;
+        }
+    }
+
+    return maxValue;
 }
 
 
