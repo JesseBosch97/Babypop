@@ -14,6 +14,8 @@ void FlowDataHandler::handleFlowData(std::string flowData)
 {
   std::string parsedFlowData = removeFromString(flowData, "flow: ");
 
+  std::cout << parsedFlowData << std::endl;
+
   float flowStrength = std::stof(parsedFlowData);
 
   if (flowStrength >= FLOW_THRESHOLD && !ventilationLengthTimerRunning)

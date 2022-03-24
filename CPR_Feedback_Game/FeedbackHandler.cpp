@@ -55,25 +55,27 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
                 output->giveFeedback(VENTILATION_TOO_MUCH);
             }
 
-            else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
-            {
-                output->giveFeedback(VENTILATION_TOO_SHORT);
-            }
+//            else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
+//            {
+//                output->giveFeedback(VENTILATION_TOO_SHORT);
+//            }
 
-            else if (flowPerformance.ventilationTime > DESIRED_VENTILATION_TIME_MS + VENTILATION_TIME_ALLOWED_ERROR)
-            {
-                output->giveFeedback(VENTILATION_TOO_LONG);
-            }
-
-            else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
-            {
-                output->giveFeedback(PAUSE_TOO_SHORT);
-            }
+//            else if (flowPerformance.ventilationTime > DESIRED_VENTILATION_TIME_MS + VENTILATION_TIME_ALLOWED_ERROR)
+//            {
+//                output->giveFeedback(VENTILATION_TOO_LONG);
+//            }
 
             else if (flowPerformance.pauseTime > DESIRED_PAUSE_TIME_MS + PAUSE_TIME_ALLOWED_ERROR)
             {
                 output->giveFeedback(PAUSE_TOO_LONG);
             }
+
+//            else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
+//            {
+//                output->giveFeedback(PAUSE_TOO_SHORT);
+//            }
+
+
         }
     }
 }
@@ -107,11 +109,13 @@ void FeedbackHandler::setVentilationFeedbackAmountSelection(float amount)
 void FeedbackHandler::setCompressionFeedbackSelected(bool state)
 {
     this->compressionFeedbackSelected = state;
+   if (state == true) output->giveFeedback(START_COMPRESSION);
 }
 
 void FeedbackHandler::setVentilationFeedbackSelected(bool state)
 {
     this->ventilationFeedbackSelected = state;
+   if (state == true) output->giveFeedback(START_VENTILATION);
 }
 
 void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)

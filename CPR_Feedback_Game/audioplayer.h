@@ -25,6 +25,7 @@ private:
 
     std::unordered_map<int, QString> feedbackWordMap
     {
+        {START_COMPRESSION, "chest_compression"},
         {PERFECT, "perfect"},
         {TOO_FAST, "slower"},
         {TOO_SLOW, "faster"},
@@ -36,11 +37,12 @@ private:
         {TOO_LOW, "little_higher"},
         {TOO_HIGH, "little lower"},
 
+        {START_VENTILATION, "ventilate"},
         {VENTILATION_TOO_SHORT, "blow_longer"},
         {VENTILATION_TOO_LONG, "blow_shorter"},
-        {VENTILATION_TOO_LITTLE, "blow_harder"},
-        {VENTILATION_TOO_MUCH, "blow_softer"},
-        {PAUSE_TOO_SHORT, "pause_longer"},
+        {VENTILATION_TOO_LITTLE, "more"},
+        {VENTILATION_TOO_MUCH, "less"},
+        {PAUSE_TOO_SHORT, "faster"},
         {PAUSE_TOO_LONG, "pause_shorter"}
     };
 
