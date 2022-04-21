@@ -33,8 +33,8 @@ public:
     {
         removeFrom(volumeData, "Volume: ");
 
-        std::string volumeIn = copyAndClean(volumeData);
-        std::string volumeOut = copyAndClean(volumeData);
+        std::string volumeIn = copyAndRemoveNextValue(volumeData);
+        std::string volumeOut = copyAndRemoveNextValue(volumeData);
         std::string ventilationTime = *volumeData;
 
         volumePerformance.volumeIn = stof(volumeIn);
@@ -43,7 +43,7 @@ public:
     }
 
 
-    std::string copyAndClean(std::string * volumeData)
+    std::string copyAndRemoveNextValue(std::string * volumeData)
     {
         std::string string = copyUntil(*volumeData, ',');
 
@@ -101,7 +101,7 @@ void VolumeDataHandlerUTest::ValueUntilCommaIsCopied()
 void VolumeDataHandlerUTest::StringIsCleanedFromValueAndCommaAndSpace()
 {
     std::string parsedVolumeData = "36.55, 40.47, 563";
-    copyAndClean(&parsedVolumeData);
+    copyAndRemoveNextValue(&parsedVolumeData);
     QCOMPARE(parsedVolumeData, "40.47, 563");
 }
 
@@ -110,15 +110,6 @@ void VolumeDataHandlerUTest::ValueIsConvertedToFloat()
     std::string value = "36.55";
     QVERIFY(qFuzzyCompare(std::stof(value), 36.55f));
 }
-
-
-
-
-
-
-
-
-
 
 
 QTEST_APPLESS_MAIN(VolumeDataHandlerUTest)
