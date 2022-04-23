@@ -4,6 +4,7 @@
 #include <SerialPortBoundary.h>
 #include "FingerPositionDataHandler.h"
 #include "FlowDataHandler.h"
+#include "VolumeDataHandler.h"
 #include "FeedbackHandlerInput.h"
 
 class DataHandler : public SerialPortToDataHandler
@@ -19,6 +20,7 @@ public:
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
     FlowDataHandler flowDataHandler;
+    VolumeDataHandler volumeDataHandler;
 
 
 
