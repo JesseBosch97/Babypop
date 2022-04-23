@@ -56,8 +56,6 @@ void SerialPort::readData()
         datahandler->handleData(validData.toStdString());
         validData.clear();
     }
-
-
 }
 
 void SerialPort::handleError()

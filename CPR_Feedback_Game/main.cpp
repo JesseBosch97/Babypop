@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     requestModel.audioPlayer = &audioplayer;
     requestModel.feedbackHandler = &feedback;
     interactionProcessor.output = &feedback;    
-    feedback.output = &audioplayer;
+    feedback.audioPlayer = &audioplayer;
     feedback.viewModel = &viewModel;
     serialPort.datahandler = &dataHandler;
     dataHandler.feedback = &feedback;
