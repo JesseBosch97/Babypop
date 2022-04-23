@@ -12,6 +12,7 @@ SOURCES += \
         SerialPort.cpp \
         StringFunctions.cpp \
         ViewModel.cpp \
+        VolumeDataHandler.cpp \
         audioplayer.cpp \
         interactionprocessor.cpp \
         main.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     SerialPortBoundary.h \
     StringFunctions.h \
     ViewModel.h \
+    VolumeDataHandler.h \
     audioplayer.h \
     interactionprocessor.h \
     requestmodel.h
