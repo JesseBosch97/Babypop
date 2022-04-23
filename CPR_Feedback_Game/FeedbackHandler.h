@@ -21,12 +21,16 @@
 #define PAUSE_TIME_ALLOWED_ERROR 500
 
 #define DESIRED_VENTILATION_TIME_MS 1000
-#define VENTILATION_TIME_ALLOWED_ERROR 500
+#define VENTILATION_TIME_ALLOWED_ERROR 200
 
 #define FLOW_STRENGTH_ALLOWED_ERROR 1
-
 #define FLOW_STRENGTH_MIN 10
 #define FLOW_STRENGHT_MAX 20
+
+#define VOLUME_MIN 50
+#define VOLUME_MAX 80
+#define VENTILATION_TIME_MIN 800
+#define VENTILATION_TIME_MAX 1200
 
 struct Coordinates
 {
@@ -41,7 +45,7 @@ class FeedbackHandler : public FeedbackHandlerInput, public RequestModelToFeedba
 public:
     FeedbackHandler();
 
-    FeedbackHandlerOutput * output;
+    FeedbackHandlerOutput * audioPlayer;
     FeedbackHandlerToViewModel * viewModel;
 
     void setCompressionFeedbackAmountSelection(float amount) override;
@@ -52,6 +56,7 @@ public:
     void handleBpmPerformance(int bpm) override;
     void handleFlowPerformance(FlowPerformance flowPerformance) override;
     void fingerPositionPerformance(Fingerposition positionOfFingers) override;
+    void handleVolumePerformance(VolumePerformance performance) override;
 
 
 

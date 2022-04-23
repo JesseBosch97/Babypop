@@ -11,6 +11,7 @@ public:
     virtual void handleBpmPerformance(int bpm) = 0;
     virtual void fingerPositionPerformance(Fingerposition posistionOfFingers) = 0;
     virtual void handleFlowPerformance(FlowPerformance flowPerformance) = 0;
+    virtual void handleVolumePerformance(VolumePerformance performance) = 0;
 };
 
 #endif // FEEDBACKHANDLERINPUT_H

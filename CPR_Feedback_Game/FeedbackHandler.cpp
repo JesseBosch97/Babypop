@@ -21,12 +21,12 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
 
             else if (PERFECT == newBpmPerformanceState){
                 bpmPerformanceState = newBpmPerformanceState;
-                output->giveFeedback(bpmPerformanceState);
+                audioPlayer->giveFeedback(bpmPerformanceState);
             }
 
             else {
                 bpmPerformanceState = newBpmPerformanceState;
-                output->giveFeedback(bpmPerformanceState);
+                audioPlayer->giveFeedback(bpmPerformanceState);
             }
         }
     }
@@ -48,12 +48,12 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
         {
             if (flowPerformance.maxFlowStrength <= FLOW_STRENGTH_MIN - FLOW_STRENGTH_ALLOWED_ERROR)
             {
-                output->giveFeedback(VENTILATION_TOO_LITTLE);
+                audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
             }
 
             else if (flowPerformance.maxFlowStrength > FLOW_STRENGHT_MAX + FLOW_STRENGTH_ALLOWED_ERROR)
             {
-                output->giveFeedback(VENTILATION_TOO_MUCH);
+                audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
             }
 
 //            else if (flowPerformance.ventilationTime <= DESIRED_VENTILATION_TIME_MS - VENTILATION_TIME_ALLOWED_ERROR)
@@ -68,7 +68,7 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 
             else if (flowPerformance.pauseTime > DESIRED_PAUSE_TIME_MS + PAUSE_TIME_ALLOWED_ERROR)
             {
-                output->giveFeedback(PAUSE_TOO_LONG);
+                audioPlayer->giveFeedback(PAUSE_TOO_LONG);
             }
 
 //            else if (flowPerformance.pauseTime <= DESIRED_PAUSE_TIME_MS - PAUSE_TIME_ALLOWED_ERROR)
@@ -110,13 +110,13 @@ void FeedbackHandler::setVentilationFeedbackAmountSelection(float amount)
 void FeedbackHandler::setCompressionFeedbackSelected(bool state)
 {
     this->compressionFeedbackSelected = state;
-   if (state == true) output->giveFeedback(START_COMPRESSION);
+   if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
 }
 
 void FeedbackHandler::setVentilationFeedbackSelected(bool state)
 {
     this->ventilationFeedbackSelected = state;
-   if (state == true) output->giveFeedback(START_VENTILATION);
+   if (state == true) audioPlayer->giveFeedback(START_VENTILATION);
 }
 
 void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)
@@ -163,7 +163,37 @@ void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers
         fingerPositionPerformance = TOO_MANY_PRESSURE_POINTS;
     }
 
-    output->giveFingerPositionFeedback(fingerPositionPerformance);
+    audioPlayer->giveFingerPositionFeedback(fingerPositionPerformance);
+}
+
+void FeedbackHandler::handleVolumePerformance(VolumePerformance performance)
+{
+    std::cout << "FeedbackHandler: volume in is " << performance.volumeIn << std::endl;
+    std::cout << "FeedbackHandler: volume out is " << performance.volumeOut << std::endl;
+    std::cout << "FeedbackHandler: ventilation time is " << performance.ventilationTime << std::endl;
+
+
+    if (performance.volumeIn < VOLUME_MIN)
+    {
+        audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+    }
+    else if (performance.volumeIn > VOLUME_MAX)
+    {
+        audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+    }
+
+    else if (performance.ventilationTime > VENTILATION_TIME_MAX)
+    {
+        audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
+    }
+
+    else if (performance.ventilationTime < VENTILATION_TIME_MIN)
+    {
+        audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+    }
+
+
+
 }
 
 location FeedbackHandler::locationOfFingers(Fingerposition positionOfFingers)
