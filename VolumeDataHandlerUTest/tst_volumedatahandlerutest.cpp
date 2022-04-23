@@ -29,7 +29,7 @@ public:
 
     VolumePerformance volumePerformance;
 
-    void handleVolumeData(std::string * volumeData)
+    void handleData(std::string * volumeData)
     {
         removeFrom(volumeData, "Volume: ");
 
@@ -76,7 +76,7 @@ VolumeDataHandlerUTest::~VolumeDataHandlerUTest()
 void VolumeDataHandlerUTest::VolumeDataIsStoredInVolumePerformance()
 {
     std::string volumeData = "Volume: 36.55, 40.47, 563";
-    handleVolumeData(&volumeData);
+    handleData(&volumeData);
 
     QVERIFY(qFuzzyCompare(volumePerformance.volumeIn, 36.55f));
     QVERIFY(qFuzzyCompare(volumePerformance.volumeOut, 40.47f));
