@@ -164,25 +164,23 @@ Window {
                 visible: false
 
                 Label {
-                    text: "Feedback Amount: " + ventilationFeedbackAmountSlider.value
+                    text: "Feedback every " + feedbackFrequencyBox.value + " ventilations"
                 }
 
-                Slider {
-                    id: ventilationFeedbackAmountSlider
-                    snapMode: "SnapOnRelease"
-                    stepSize: 10
+                SpinBox {
+                    id: feedbackFrequencyBox
+                    value: 1
                     from: 0
-                    value: 90
-                    to: 100
-                    onMoved: RequestModel.ventilationSliderMoved(value)
-                    Component.onCompleted: RequestModel.ventilationSliderMoved(value)
+                    to: ventilationAmountBox.value
                 }
+
 
                 Label {
                     text: "Ventilation Amount: "
                 }
 
                 SpinBox {
+                    id: ventilationAmountBox
                     value: 2
                 }
 
@@ -240,51 +238,6 @@ Window {
         }
     }
 
-
-
-
-
-    //    Column {
-    //        id: ventilationColumn
-    //        anchors.top: feedbackLabel.bottom
-    //        anchors.left: compressionColumn.right
-
-    //        CheckBox {
-    //            id: ventilationCheckbox
-    //            text: "Ventilation"
-    //            anchors.left: parent.left
-    //        }
-
-    //        Slider {
-
-    //        }
-
-    //        Label {
-    //            text: "Ventilation Amount: "
-    //        }
-
-    //        SpinBox {
-    //            id: ventilationAmountBox
-    //            value: 2
-    //        }
-
-
-    //    }
-
-
-    //    CheckBox {
-    //        id: ventilationCheckbox
-    //        text: "Ventilation"
-    //        anchors.left: compressionCheckbox.right
-    //        anchors.top: feedbackLabel.bottom
-    //    }
-
-    //    CheckBox {
-    //        id: airwayManagementCheckbox
-    //        text: "Airway Management"
-    //        anchors.left: ventilationCheckbox.right
-    //        anchors.top: feedbackLabel.bottom
-    //    }
 
 
 }
