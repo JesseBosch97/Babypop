@@ -166,33 +166,39 @@ void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers
     audioPlayer->giveFingerPositionFeedback(fingerPositionPerformance);
 }
 
-void FeedbackHandler::handleVolumePerformance(VolumePerformance performance)
+void FeedbackHandler::handleVolumeInPerformance(VolumePerformance performance)
 {
-    std::cout << "FeedbackHandler: volume in is " << performance.volumeIn << std::endl;
-    std::cout << "FeedbackHandler: volume out is " << performance.volumeOut << std::endl;
-    std::cout << "FeedbackHandler: ventilation time is " << performance.ventilationTime << std::endl;
+    std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
+    std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
 
 
-    if (performance.volumeIn < VOLUME_MIN)
+    if (performance.volume < VOLUME_MIN)
     {
         audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
     }
-    else if (performance.volumeIn > VOLUME_MAX)
+    else if (performance.volume > VOLUME_MAX)
     {
         audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
     }
 
-    else if (performance.ventilationTime > VENTILATION_TIME_MAX)
+    else if (performance.time > VENTILATION_TIME_MAX)
     {
         audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
     }
 
-    else if (performance.ventilationTime < VENTILATION_TIME_MIN)
+    else if (performance.time < VENTILATION_TIME_MIN)
     {
         audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
     }
 
 
+
+}
+
+void FeedbackHandler::handleVolumeOutPerformance(VolumePerformance performance)
+{
+    std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
+    std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
 
 }
 

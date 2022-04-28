@@ -4,19 +4,24 @@
 // add necessary includes here
 
 
+//Volume In: 51.88, 377
+//Volume Out: 45.94, 690
 
-//Volume: 36.55, 40.47, 563
 
 // Remove header Volume:
 // Add 36.55 to VolumePerformance.volumeIn
 // Add 40.37 to VolumePerformance.volumeOut
 // Add 563 to VolumePerformance.ventilationTime
 
+
+const std::string VOLUME_IN_HEADER = "Volume In: ";
+const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+
+
 struct VolumePerformance
 {
-    float volumeIn = 0;
-    float volumeOut = 0;
-    int ventilationTime = 0;
+    float volume = 0;
+    int time = 0;
 };
 
 class VolumeDataHandlerUTest : public QObject
@@ -29,17 +34,16 @@ public:
 
     VolumePerformance volumePerformance;
 
-    void handleData(std::string * volumeData)
-    {
-        removeFrom(volumeData, "Volume: ");
 
-        std::string volumeIn = copyAndRemoveNextValue(volumeData);
-        std::string volumeOut = copyAndRemoveNextValue(volumeData);
+    void handleVolume(std::string * volumeData, std::string header)
+    {
+        removeFrom(volumeData, header);
+
+        std::string volume = copyAndRemoveNextValue(volumeData);
         std::string ventilationTime = *volumeData;
 
-        volumePerformance.volumeIn = stof(volumeIn);
-        volumePerformance.volumeOut = stof(volumeOut);
-        volumePerformance.ventilationTime = stoi(ventilationTime);
+        volumePerformance.volume = stof(volume);
+        volumePerformance.time = stoi(ventilationTime);
     }
 
 
@@ -56,11 +60,12 @@ public:
 
 
 private slots:
+    void VolumeInDataIsStoredInVolumeInPerformance();
+    void VolumeOutDataIsStoredInVolumeOutPerformance();
     void VolumeHeaderIsRemovedFromString();
     void ValueUntilCommaIsCopied();
     void StringIsCleanedFromValueAndCommaAndSpace();
     void ValueIsConvertedToFloat();
-    void VolumeDataIsStoredInVolumePerformance();
 };
 
 VolumeDataHandlerUTest::VolumeDataHandlerUTest()
@@ -73,42 +78,49 @@ VolumeDataHandlerUTest::~VolumeDataHandlerUTest()
 
 }
 
-void VolumeDataHandlerUTest::VolumeDataIsStoredInVolumePerformance()
+void VolumeDataHandlerUTest::VolumeInDataIsStoredInVolumeInPerformance()
 {
-    std::string volumeData = "Volume: 36.55, 40.47, 563";
-    handleData(&volumeData);
+    std::string volumeData = "Volume In: 51.88, 377";
+    handleVolume(&volumeData, VOLUME_IN_HEADER);
 
-    QVERIFY(qFuzzyCompare(volumePerformance.volumeIn, 36.55f));
-    QVERIFY(qFuzzyCompare(volumePerformance.volumeOut, 40.47f));
-    QCOMPARE(volumePerformance.ventilationTime, 563);
+    QVERIFY(qFuzzyCompare(volumePerformance.volume, 51.88f));
+    QCOMPARE(volumePerformance.time, 377);
+}
 
+void VolumeDataHandlerUTest::VolumeOutDataIsStoredInVolumeOutPerformance()
+{
+    std::string volumeData = "Volume Out: 45.94, 690";
+    handleVolume(&volumeData, VOLUME_OUT_HEADER);
+
+    QVERIFY(qFuzzyCompare(volumePerformance.volume, 45.94f));
+    QCOMPARE(volumePerformance.time, 690);
 }
 
 void VolumeDataHandlerUTest::VolumeHeaderIsRemovedFromString()
 {
-    std::string volumeData = "Volume: 36.55, 40.47, 563";
-    removeFrom(&volumeData, "Volume: ");
-    QCOMPARE(volumeData, "36.55, 40.47, 563");
+    std::string volumeData = "Volume In: 51.88, 377";
+    removeFrom(&volumeData, "Volume In: ");
+    QCOMPARE(volumeData, "51.88, 377");
 }
 
 void VolumeDataHandlerUTest::ValueUntilCommaIsCopied()
 {
-    std::string parsedVolumeData = "36.55, 40.47, 563";
-    QCOMPARE(copyUntil(parsedVolumeData, ','), "36.55");
+    std::string parsedVolumeData = "51.88, 377";
+    QCOMPARE(copyUntil(parsedVolumeData, ','), "51.88");
 }
 
 
 void VolumeDataHandlerUTest::StringIsCleanedFromValueAndCommaAndSpace()
 {
-    std::string parsedVolumeData = "36.55, 40.47, 563";
+    std::string parsedVolumeData = "51.88, 377";
     copyAndRemoveNextValue(&parsedVolumeData);
-    QCOMPARE(parsedVolumeData, "40.47, 563");
+    QCOMPARE(parsedVolumeData, "377");
 }
 
 void VolumeDataHandlerUTest::ValueIsConvertedToFloat()
 {
-    std::string value = "36.55";
-    QVERIFY(qFuzzyCompare(std::stof(value), 36.55f));
+    std::string value = "51.88";
+    QVERIFY(qFuzzyCompare(std::stof(value), 51.88f));
 }
 
 

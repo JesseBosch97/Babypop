@@ -23,9 +23,8 @@ struct FlowPerformance
 
 struct VolumePerformance
 {
-    float volumeIn = 0;
-    float volumeOut = 0;
-    int ventilationTime = 0;
+    float volume = 0;
+    int time = 0;
 };
 
 #endif // PERFORMANCETYPES_H

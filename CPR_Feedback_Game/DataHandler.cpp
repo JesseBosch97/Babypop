@@ -35,11 +35,18 @@ void DataHandler::handleData(std::string validdata)
       feedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
    }
 
-   else if (detectString(validdata, "Volume: "))
+   else if (detectString(validdata, VOLUME_IN_HEADER))
    {
-      std::cout << "DataHandler: volume detected!" << std::endl;
-      volumeDataHandler.handleData(&validdata);
-      feedback->handleVolumePerformance(volumeDataHandler.volumePerformance);
+      //std::cout << "DataHandler: volume in detected!" << std::endl;
+      volumeDataHandler.handleVolume(&validdata, VOLUME_IN_HEADER);
+      feedback->handleVolumeInPerformance(volumeDataHandler.volumePerformance);
+   }
+
+   else if (detectString(validdata, VOLUME_OUT_HEADER))
+   {
+      //std::cout << "DataHandler: volume out detected!" << std::endl;
+      volumeDataHandler.handleVolume(&validdata, VOLUME_OUT_HEADER);
+      feedback->handleVolumeOutPerformance(volumeDataHandler.volumePerformance);
    }
 
    else std::cout << "DataHandler: data not detected!" << std::endl;

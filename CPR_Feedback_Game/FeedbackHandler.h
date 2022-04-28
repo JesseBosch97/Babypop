@@ -27,10 +27,10 @@
 #define FLOW_STRENGTH_MIN 10
 #define FLOW_STRENGHT_MAX 20
 
-#define VOLUME_MIN 50
-#define VOLUME_MAX 80
-#define VENTILATION_TIME_MIN 800
-#define VENTILATION_TIME_MAX 1200
+const int VOLUME_MIN = 50;
+const int VOLUME_MAX = 70;
+const int VENTILATION_TIME_MIN = 800;
+const int VENTILATION_TIME_MAX = 1200;
 
 struct Coordinates
 {
@@ -56,7 +56,8 @@ public:
     void handleBpmPerformance(int bpm) override;
     void handleFlowPerformance(FlowPerformance flowPerformance) override;
     void fingerPositionPerformance(Fingerposition positionOfFingers) override;
-    void handleVolumePerformance(VolumePerformance performance) override;
+    void handleVolumeInPerformance(VolumePerformance performance) override;
+    void handleVolumeOutPerformance(VolumePerformance performance) override;
 
 
 

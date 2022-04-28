@@ -7,17 +7,16 @@ VolumeDataHandler::VolumeDataHandler()
 
 }
 
-void VolumeDataHandler::handleData(std::string * volumeData)
-{
-    removeFrom(volumeData, "Volume: ");
 
-    std::string volumeIn = copyAndRemoveNextValue(volumeData);
-    std::string volumeOut = copyAndRemoveNextValue(volumeData);
+void VolumeDataHandler::handleVolume(std::string * volumeData, std::string header)
+{
+    removeFrom(volumeData, header);
+
+    std::string volume = copyAndRemoveNextValue(volumeData);
     std::string ventilationTime = *volumeData;
 
-    volumePerformance.volumeIn = stof(volumeIn);
-    volumePerformance.volumeOut = stof(volumeOut);
-    volumePerformance.ventilationTime = stoi(ventilationTime);
+    volumePerformance.volume = stof(volume);
+    volumePerformance.time = stoi(ventilationTime);
 }
 
 
