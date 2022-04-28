@@ -44,7 +44,7 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
 
         ventilationCount++;
 
-        if (ventilationCount % ventilationFeedbackAmount == 0)
+        if (ventilationCount % ventilationFeedbackFrequency == 0)
         {
             if (flowPerformance.maxFlowStrength <= FLOW_STRENGTH_MIN - FLOW_STRENGTH_ALLOWED_ERROR)
             {
@@ -81,6 +81,18 @@ void FeedbackHandler::handleFlowPerformance(FlowPerformance flowPerformance)
     }
 }
 
+void FeedbackHandler::setCompressionFeedbackSelected(bool state)
+{
+    this->compressionFeedbackSelected = state;
+   if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
+}
+
+void FeedbackHandler::setVentilationFeedbackSelected(bool state)
+{
+    this->ventilationFeedbackSelected = state;
+    if (state == true) audioPlayer->giveFeedback(START_VENTILATION);
+}
+
 
 
 void FeedbackHandler::setCompressionFeedbackAmountSelection(float amount)
@@ -95,28 +107,24 @@ void FeedbackHandler::setCompressionFeedbackAmountSelection(float amount)
     }
 }
 
-void FeedbackHandler::setVentilationFeedbackAmountSelection(float amount)
+void FeedbackHandler::setVentilationFeedbackFrequency(int amount)
 {
-    if (this->ventilationFeedbackAmountPercentage != int(amount))
-    {
-        this->ventilationFeedbackAmountPercentage = int(amount);
-        std::cout << "Feedback Handler: ventilationFeedBackAmountPercentage changed to: " << this->ventilationFeedbackAmountPercentage << std::endl;
+    this->ventilationFeedbackFrequency = amount;
+//    if (this->ventilationFeedbackAmountPercentage != int(amount))
+//    {
+//        this->ventilationFeedbackAmountPercentage = int(amount);
+//        std::cout << "Feedback Handler: ventilationFeedBackAmountPercentage changed to: " << this->ventilationFeedbackAmountPercentage << std::endl;
 
-        this->ventilationFeedbackAmount = VENTILATION_REPETITIONS - int((VENTILATION_REPETITIONS * (this->ventilationFeedbackAmountPercentage*0.01))) + 1;
-        std::cout << "Feedback Handler: ventilationFeedBackAmount changed to: " << this->ventilationFeedbackAmount << std::endl;
-    }
+//        this->ventilationFeedbackAmount = VENTILATION_REPETITIONS - int((VENTILATION_REPETITIONS * (this->ventilationFeedbackAmountPercentage*0.01))) + 1;
+//        std::cout << "Feedback Handler: ventilationFeedBackAmount changed to: " << this->ventilationFeedbackAmount << std::endl;
+//    }
 }
 
-void FeedbackHandler::setCompressionFeedbackSelected(bool state)
-{
-    this->compressionFeedbackSelected = state;
-   if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
-}
 
-void FeedbackHandler::setVentilationFeedbackSelected(bool state)
+
+void FeedbackHandler::setVentilationAmount(int amount)
 {
-    this->ventilationFeedbackSelected = state;
-   if (state == true) audioPlayer->giveFeedback(START_VENTILATION);
+    this->ventilationAmount = amount;
 }
 
 void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)
@@ -173,24 +181,33 @@ void FeedbackHandler::handleVolumeInPerformance(VolumePerformance performance)
         std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
         std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
 
+        ventilationCount++;
 
-        if (performance.volume < VOLUME_MIN)
+        if (ventilationCount > ventilationAmount)
         {
-            audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
-        }
-        else if (performance.volume > VOLUME_MAX)
-        {
-            audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+            audioPlayer->giveFeedback(TOO_MANY);
         }
 
-        else if (performance.time > VENTILATION_TIME_MAX)
+        else
         {
-            audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
-        }
+            if (performance.volume < VOLUME_MIN)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+            }
+            else if (performance.volume > VOLUME_MAX)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+            }
 
-        else if (performance.time < VENTILATION_TIME_MIN)
-        {
-            audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+            else if (performance.time > VENTILATION_TIME_MAX)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
+            }
+
+            else if (performance.time < VENTILATION_TIME_MIN)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+            }
         }
     }
 }

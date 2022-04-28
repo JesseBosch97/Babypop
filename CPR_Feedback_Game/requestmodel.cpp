@@ -53,9 +53,16 @@ void RequestModel::compressionSliderMoved(float value)
    feedbackHandler->setCompressionFeedbackAmountSelection(value);
 }
 
-void RequestModel::ventilationSliderMoved(float value)
+void RequestModel::ventilationAmountChanged(int value)
 {
-   feedbackHandler->setVentilationFeedbackAmountSelection(value);
+    qDebug() << "RequestModel: Ventilation amount changed to " << value;
+    feedbackHandler->setVentilationAmount(value);
+}
+
+void RequestModel::ventilationFeedbackFrequencyChanged(int value)
+{
+    qDebug() << "RequestModel: Ventilation feedback frequency changed to " << value;
+    feedbackHandler->setVentilationFeedbackFrequency(value);
 }
 
 void RequestModel::airwaySliderMoved(float value)

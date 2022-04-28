@@ -49,9 +49,11 @@ public:
     FeedbackHandlerToViewModel * viewModel;
 
     void setCompressionFeedbackAmountSelection(float amount) override;
-    void setVentilationFeedbackAmountSelection(float amount) override;
+    void setVentilationFeedbackFrequency(int amount) override;
     void setCompressionFeedbackSelected(bool state) override;
     void setVentilationFeedbackSelected(bool state) override;
+    void setVentilationAmount(int amount) override;
+
 
     void handleBpmPerformance(int bpm) override;
     void handleFlowPerformance(FlowPerformance flowPerformance) override;
@@ -70,8 +72,10 @@ private:
     int compressionFeedbackAmountPercentage = 0;
     int ventilationFeedbackAmountPercentage = 0;
 
-    int ventilationFeedbackAmount = 0;
+    int ventilationFeedbackFrequency = 0;
     int compressionFeedbackAmount = 0;
+
+    int ventilationAmount = 0;
 
     bool compressionFeedbackSelected = false;
     bool ventilationFeedbackSelected = false;

@@ -30,7 +30,8 @@ public slots:
     void voiceSelected(QString voice);
     void serialConnectButtonPressed();
     void compressionSliderMoved(float value);
-    void ventilationSliderMoved(float value);
+    void ventilationAmountChanged(int value);
+    void ventilationFeedbackFrequencyChanged(int value);
 
     void airwaySliderMoved(float value);
 };

@@ -164,6 +164,18 @@ Window {
                 visible: false
 
                 Label {
+                    text: "Ventilation Amount: "
+                }
+
+                SpinBox {
+                    id: ventilationAmountBox
+                    from: 0
+                    value: 2
+                    onValueChanged: RequestModel.ventilationAmountChanged(value)
+                    Component.onCompleted: RequestModel.ventilationAmountChanged(value)
+                }
+
+                Label {
                     text: "Feedback every " + feedbackFrequencyBox.value + " ventilations"
                 }
 
@@ -172,16 +184,8 @@ Window {
                     value: 1
                     from: 0
                     to: ventilationAmountBox.value
-                }
-
-
-                Label {
-                    text: "Ventilation Amount: "
-                }
-
-                SpinBox {
-                    id: ventilationAmountBox
-                    value: 2
+                    onValueChanged: RequestModel.ventilationFeedbackAmountChanged(value)
+                    Component.onCompleted: RequestModel.ventilationFeedbackAmountChanged(value)
                 }
 
                 Label {

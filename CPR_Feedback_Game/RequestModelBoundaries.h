@@ -26,9 +26,11 @@ class RequestModelToFeedbackHandler
 {
 public:
    virtual void setCompressionFeedbackAmountSelection(float amount) = 0;
-   virtual void setVentilationFeedbackAmountSelection(float amount) = 0;
+   virtual void setVentilationFeedbackFrequency(int amount) = 0;
+   virtual void setVentilationAmount(int amount) = 0;
    virtual void setCompressionFeedbackSelected(bool state) = 0;
    virtual void setVentilationFeedbackSelected(bool state) = 0;
+
 };
 
 
