@@ -168,38 +168,40 @@ void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers
 
 void FeedbackHandler::handleVolumeInPerformance(VolumePerformance performance)
 {
-    std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
-    std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
-
-
-    if (performance.volume < VOLUME_MIN)
+    if (ventilationFeedbackSelected)
     {
-        audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+        std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
+        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+
+
+        if (performance.volume < VOLUME_MIN)
+        {
+            audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+        }
+        else if (performance.volume > VOLUME_MAX)
+        {
+            audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+        }
+
+        else if (performance.time > VENTILATION_TIME_MAX)
+        {
+            audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
+        }
+
+        else if (performance.time < VENTILATION_TIME_MIN)
+        {
+            audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+        }
     }
-    else if (performance.volume > VOLUME_MAX)
-    {
-        audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
-    }
-
-    else if (performance.time > VENTILATION_TIME_MAX)
-    {
-        audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
-    }
-
-    else if (performance.time < VENTILATION_TIME_MIN)
-    {
-        audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
-    }
-
-
-
 }
 
 void FeedbackHandler::handleVolumeOutPerformance(VolumePerformance performance)
 {
-    std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
-    std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
-
+    if (ventilationFeedbackSelected)
+    {
+        std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
+        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+    }
 }
 
 location FeedbackHandler::locationOfFingers(Fingerposition positionOfFingers)
