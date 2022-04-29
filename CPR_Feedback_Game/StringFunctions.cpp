@@ -1,7 +1,5 @@
 #include "StringFunctions.h"
 
-
-
 bool detectString(std::string completeString, std::string desiredString)
 {
   std::size_t found = completeString.find(desiredString);
@@ -19,9 +17,9 @@ std::string removeFromString(std::string completeString, std::string unwantedStr
   return newString;
 }
 
-void removeFrom(std::string * completeString, std::string unwantedString)
+void removeFrom(std::string & completeString, std::string unwantedString)
 {
-  completeString->erase(completeString->find(unwantedString), unwantedString.length());
+  completeString.erase(completeString.find(unwantedString), unwantedString.length());
 }
 
 
@@ -35,3 +33,4 @@ std::string copyUntil(std::string completeString, char endChar)
 
     return newString;
 }
+
