@@ -5,6 +5,57 @@ VentilationFeedback::VentilationFeedback()
 
 }
 
+
+
+
+
+void VentilationFeedback::handleVolumeInPerformance(VolumePerformance performance)
+{
+    if (ventilationFeedbackSelected)
+    {
+        std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
+        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+
+        ventilationCount++;
+
+        if (ventilationCount > ventilationAmount)
+        {
+            audioPlayer->giveFeedback(TOO_MANY);
+        }
+
+        else
+        {
+            if (performance.volume < VOLUME_MIN)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+            }
+            else if (performance.volume > VOLUME_MAX)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+            }
+
+            else if (performance.time > VENTILATION_TIME_MAX)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
+            }
+
+            else if (performance.time < VENTILATION_TIME_MIN)
+            {
+                audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+            }
+        }
+    }
+}
+
+void VentilationFeedback::handleVolumeOutPerformance(VolumePerformance performance)
+{
+    if (ventilationFeedbackSelected)
+    {
+        std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
+        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+    }
+}
+
 void VentilationFeedback::handleFlowPerformance(FlowPerformance flowPerformance)
 {
     std::cout << "FeedbackHandler: average flow strength is " << flowPerformance.averageFlowStrength << std::endl;
@@ -53,6 +104,7 @@ void VentilationFeedback::handleFlowPerformance(FlowPerformance flowPerformance)
     }
 }
 
+
 void VentilationFeedback::setVentilationFeedbackSelected(bool state)
 {
     this->ventilationFeedbackSelected = state;
@@ -62,64 +114,9 @@ void VentilationFeedback::setVentilationFeedbackSelected(bool state)
 void VentilationFeedback::setVentilationFeedbackFrequency(int amount)
 {
     this->ventilationFeedbackFrequency = amount;
-//    if (this->ventilationFeedbackAmountPercentage != int(amount))
-//    {
-//        this->ventilationFeedbackAmountPercentage = int(amount);
-//        std::cout << "Feedback Handler: ventilationFeedBackAmountPercentage changed to: " << this->ventilationFeedbackAmountPercentage << std::endl;
-
-//        this->ventilationFeedbackAmount = VENTILATION_REPETITIONS - int((VENTILATION_REPETITIONS * (this->ventilationFeedbackAmountPercentage*0.01))) + 1;
-//        std::cout << "Feedback Handler: ventilationFeedBackAmount changed to: " << this->ventilationFeedbackAmount << std::endl;
-//    }
 }
 
 void VentilationFeedback::setVentilationAmount(int amount)
 {
     this->ventilationAmount = amount;
-}
-
-void VentilationFeedback::handleVolumeInPerformance(VolumePerformance performance)
-{
-    if (ventilationFeedbackSelected)
-    {
-        std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
-        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
-
-        ventilationCount++;
-
-        if (ventilationCount > ventilationAmount)
-        {
-            audioPlayer->giveFeedback(TOO_MANY);
-        }
-
-        else
-        {
-            if (performance.volume < VOLUME_MIN)
-            {
-                audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
-            }
-            else if (performance.volume > VOLUME_MAX)
-            {
-                audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
-            }
-
-            else if (performance.time > VENTILATION_TIME_MAX)
-            {
-                audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
-            }
-
-            else if (performance.time < VENTILATION_TIME_MIN)
-            {
-                audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
-            }
-        }
-    }
-}
-
-void VentilationFeedback::handleVolumeOutPerformance(VolumePerformance performance)
-{
-    if (ventilationFeedbackSelected)
-    {
-        std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
-        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
-    }
 }

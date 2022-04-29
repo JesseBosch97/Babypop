@@ -1,5 +1,5 @@
-#ifndef FEEDBACKHANDLER_H
-#define FEEDBACKHANDLER_H
+#ifndef COMPRESSIONFEEDBACK_H
+#define COMPRESSIONFEEDBACK_H
 
 #include "FeedbackHandlerBoundaries.h"
 #include "DataHandlerBoundaries.h"
@@ -23,10 +23,10 @@ struct Coordinates
 
 enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
 
-class FeedbackHandler : public DataToCompressionFeedback, public RequestModelToCompressionFeedback
+class CompressionFeedback : public DataToCompressionFeedback, public RequestModelToCompressionFeedback
 {
 public:
-    FeedbackHandler();
+    CompressionFeedback();
 
     FeedbackToAudio * audioPlayer;
     FeedbackToViewModel * viewModel;
@@ -64,4 +64,4 @@ private:
 
 };
 
-#endif // FEEDBACKHANDLER_H
+#endif // COMPRESSIONFEEDBACK_H

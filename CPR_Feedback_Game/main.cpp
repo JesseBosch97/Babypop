@@ -4,7 +4,7 @@
 #include <QStringListModel>
 
 #include "requestmodel.h"
-#include "FeedbackHandler.h"
+#include "CompressionFeedback.h"
 #include "audioplayer.h"
 #include "interactionprocessor.h"
 #include "ViewModel.h"
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     //create objects
     Audioplayer audioplayer;
-    FeedbackHandler compressionFeedback;
+    CompressionFeedback compressionFeedback;
     VentilationFeedback ventilationFeedback;
     RequestModel requestModel;
     InteractionProcessor interactionProcessor;

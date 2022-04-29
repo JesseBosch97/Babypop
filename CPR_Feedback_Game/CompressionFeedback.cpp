@@ -1,6 +1,6 @@
-#include "FeedbackHandler.h"
+#include "CompressionFeedback.h"
 
-FeedbackHandler::FeedbackHandler()
+CompressionFeedback::CompressionFeedback()
 {
 
 }
@@ -8,7 +8,7 @@ FeedbackHandler::FeedbackHandler()
 
 
 
-void FeedbackHandler::handleBpmPerformance(int bpm)
+void CompressionFeedback::handleBpmPerformance(int bpm)
 {
     if (compressionFeedbackSelected)
     {
@@ -37,7 +37,7 @@ void FeedbackHandler::handleBpmPerformance(int bpm)
 
 
 
-void FeedbackHandler::setCompressionFeedbackSelected(bool state)
+void CompressionFeedback::setCompressionFeedbackSelected(bool state)
 {
     this->compressionFeedbackSelected = state;
    if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
@@ -47,7 +47,7 @@ void FeedbackHandler::setCompressionFeedbackSelected(bool state)
 
 
 
-void FeedbackHandler::setCompressionFeedbackAmountSelection(float amount)
+void CompressionFeedback::setCompressionFeedbackAmountSelection(float amount)
 {
     if (this->compressionFeedbackAmountPercentage != int(amount))
     {
@@ -65,7 +65,7 @@ void FeedbackHandler::setCompressionFeedbackAmountSelection(float amount)
 
 
 
-void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers)
+void CompressionFeedback::fingerPositionPerformance(Fingerposition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
 
@@ -114,7 +114,7 @@ void FeedbackHandler::fingerPositionPerformance(Fingerposition positionOfFingers
 
 
 
-location FeedbackHandler::locationOfFingers(Fingerposition positionOfFingers)
+location CompressionFeedback::locationOfFingers(Fingerposition positionOfFingers)
 {
     Coordinates bottomLeft;
     bottomLeft.x = -1 * positionOfFingers.bottomleft;
@@ -157,7 +157,7 @@ location FeedbackHandler::locationOfFingers(Fingerposition positionOfFingers)
     return calculateLocation(thorax);
 }
 
-location FeedbackHandler::calculateLocation(Coordinates thorax)
+location CompressionFeedback::calculateLocation(Coordinates thorax)
 {
     location retval;
     bool up = 0;
@@ -233,7 +233,7 @@ location FeedbackHandler::calculateLocation(Coordinates thorax)
     return retval;
 }
 
-int FeedbackHandler::pressurePoints(Fingerposition positionOfFingers)
+int CompressionFeedback::pressurePoints(Fingerposition positionOfFingers)
 {
     int pressurePoints = 0;
 
@@ -274,7 +274,7 @@ int FeedbackHandler::pressurePoints(Fingerposition positionOfFingers)
 }
 
 
-int FeedbackHandler::checkBPM()
+int CompressionFeedback::checkBPM()
 {
     int bpmPerformance = NEUTRAL;
 
@@ -290,7 +290,7 @@ int FeedbackHandler::checkBPM()
     return bpmPerformance;
 }
 
-int FeedbackHandler::handleBpmPerformanceState()
+int CompressionFeedback::handleBpmPerformanceState()
 {
     if (compressionCount < COMPRESSION_REPETITIONS){
         return checkBPM();
@@ -301,7 +301,7 @@ int FeedbackHandler::handleBpmPerformanceState()
     }
 }
 
-void FeedbackHandler::storeBpmSample(int bpm)
+void CompressionFeedback::storeBpmSample(int bpm)
 {
     for (int i=BPM_SAMPLE_AMOUNT-1; i>0; i--) {  //should be dynamic array
         bpmSamples[i] = bpmSamples[i-1];
@@ -309,7 +309,7 @@ void FeedbackHandler::storeBpmSample(int bpm)
     bpmSamples[0] = bpm;
 }
 
-int FeedbackHandler::averageBpm()
+int CompressionFeedback::averageBpm()
 {
     int total = 0;
     int count = 0;
