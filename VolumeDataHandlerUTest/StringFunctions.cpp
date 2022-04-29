@@ -17,9 +17,9 @@ std::string removeFromString(std::string completeString, std::string unwantedStr
   return newString;
 }
 
-void removeFrom(std::string * completeString, std::string unwantedString)
+void removeFrom(std::string & completeString, std::string unwantedString)
 {
-  completeString->erase(completeString->find(unwantedString), unwantedString.length());
+  completeString.erase(completeString.find(unwantedString), unwantedString.length());
 }
 
 

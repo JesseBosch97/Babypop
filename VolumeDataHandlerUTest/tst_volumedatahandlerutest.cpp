@@ -35,21 +35,21 @@ public:
     VolumePerformance volumePerformance;
 
 
-    void handleVolume(std::string * volumeData, std::string header)
+    void handleVolume(std::string & volumeData, std::string header)
     {
         removeFrom(volumeData, header);
 
         std::string volume = copyAndRemoveNextValue(volumeData);
-        std::string ventilationTime = *volumeData;
+        std::string ventilationTime = volumeData;
 
         volumePerformance.volume = stof(volume);
         volumePerformance.time = stoi(ventilationTime);
     }
 
 
-    std::string copyAndRemoveNextValue(std::string * volumeData)
+    std::string copyAndRemoveNextValue(std::string & volumeData)
     {
-        std::string string = copyUntil(*volumeData, ',');
+        std::string string = copyUntil(volumeData, ',');
 
         removeFrom(volumeData, string);
         removeFrom(volumeData, ", ");
@@ -81,7 +81,7 @@ VolumeDataHandlerUTest::~VolumeDataHandlerUTest()
 void VolumeDataHandlerUTest::VolumeInDataIsStoredInVolumeInPerformance()
 {
     std::string volumeData = "Volume In: 51.88, 377";
-    handleVolume(&volumeData, VOLUME_IN_HEADER);
+    handleVolume(volumeData, VOLUME_IN_HEADER);
 
     QVERIFY(qFuzzyCompare(volumePerformance.volume, 51.88f));
     QCOMPARE(volumePerformance.time, 377);
@@ -90,7 +90,7 @@ void VolumeDataHandlerUTest::VolumeInDataIsStoredInVolumeInPerformance()
 void VolumeDataHandlerUTest::VolumeOutDataIsStoredInVolumeOutPerformance()
 {
     std::string volumeData = "Volume Out: 45.94, 690";
-    handleVolume(&volumeData, VOLUME_OUT_HEADER);
+    handleVolume(volumeData, VOLUME_OUT_HEADER);
 
     QVERIFY(qFuzzyCompare(volumePerformance.volume, 45.94f));
     QCOMPARE(volumePerformance.time, 690);
@@ -99,7 +99,7 @@ void VolumeDataHandlerUTest::VolumeOutDataIsStoredInVolumeOutPerformance()
 void VolumeDataHandlerUTest::VolumeHeaderIsRemovedFromString()
 {
     std::string volumeData = "Volume In: 51.88, 377";
-    removeFrom(&volumeData, "Volume In: ");
+    removeFrom(volumeData, "Volume In: ");
     QCOMPARE(volumeData, "51.88, 377");
 }
 
@@ -113,7 +113,7 @@ void VolumeDataHandlerUTest::ValueUntilCommaIsCopied()
 void VolumeDataHandlerUTest::StringIsCleanedFromValueAndCommaAndSpace()
 {
     std::string parsedVolumeData = "51.88, 377";
-    copyAndRemoveNextValue(&parsedVolumeData);
+    copyAndRemoveNextValue(parsedVolumeData);
     QCOMPARE(parsedVolumeData, "377");
 }
 
