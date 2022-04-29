@@ -6,7 +6,6 @@
 #include "RequestModelBoundaries.h"
 #include <iostream>
 #include <vector>
-#include "CircularBuffer.hpp"
 
 #define DESIRED_BPM 100
 #define ALLOWED_ERROR 10
