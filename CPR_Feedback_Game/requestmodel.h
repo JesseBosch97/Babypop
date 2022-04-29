@@ -15,7 +15,8 @@ public:
     RequestModelToInteractionProcessor * processor;
     RequestModelToSerialPort * serialPort;
     RequestModelToAudioPlayer * audioPlayer;
-    RequestModelToFeedbackHandler * feedbackHandler;
+    RequestModelToCompressionFeedback * compressionFeedback;
+    RequestModelToVentilationFeedback * ventilationFeedback;
 
     InteractionProcessor interactionProcessor;
 

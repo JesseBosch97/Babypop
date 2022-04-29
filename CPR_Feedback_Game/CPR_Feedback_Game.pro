@@ -11,6 +11,7 @@ SOURCES += \
         FlowDataHandler.cpp \
         SerialPort.cpp \
         StringFunctions.cpp \
+        VentilationFeedback.cpp \
         ViewModel.cpp \
         VolumeDataHandler.cpp \
         audioplayer.cpp \
@@ -34,9 +35,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     DataHandler.h \
+    DataHandlerBoundaries.h \
     FeedbackHandler.h \
     FeedbackHandlerBoundaries.h \
-    FeedbackHandlerInput.h \
     FingerPositionDataHandler.h \
     FlowDataHandler.h \
     PerformanceTypes.h \
@@ -44,6 +45,7 @@ HEADERS += \
     SerialPort.h \
     SerialPortBoundary.h \
     StringFunctions.h \
+    VentilationFeedback.h \
     ViewModel.h \
     VolumeDataHandler.h \
     audioplayer.h \

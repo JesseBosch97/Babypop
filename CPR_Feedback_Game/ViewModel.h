@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "FeedbackHandlerBoundaries.h"
 
-class ViewModel : public QObject, public FeedbackHandlerToViewModel
+class ViewModel : public QObject, public FeedbackToViewModel
 {
    Q_OBJECT
    Q_PROPERTY(QString feedbackAmount READ feedbackAmount NOTIFY feedbackAmountChanged)

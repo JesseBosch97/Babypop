@@ -10,6 +10,7 @@
 #include "ViewModel.h"
 #include "SerialPort.h"
 #include "DataHandler.h"
+#include "VentilationFeedback.h"
 
 
 
@@ -22,7 +23,8 @@ int main(int argc, char *argv[])
 
     //create objects
     Audioplayer audioplayer;
-    FeedbackHandler feedback;
+    FeedbackHandler compressionFeedback;
+    VentilationFeedback ventilationFeedback;
     RequestModel requestModel;
     InteractionProcessor interactionProcessor;
     ViewModel viewModel;
@@ -30,16 +32,20 @@ int main(int argc, char *argv[])
     DataHandler dataHandler;
 
 
+
     //connect objects
     requestModel.processor = &interactionProcessor;
     requestModel.serialPort = &serialPort;
     requestModel.audioPlayer = &audioplayer;
-    requestModel.feedbackHandler = &feedback;
-    interactionProcessor.output = &feedback;    
-    feedback.audioPlayer = &audioplayer;
-    feedback.viewModel = &viewModel;
+    requestModel.compressionFeedback = &compressionFeedback;
+    requestModel.ventilationFeedback = &ventilationFeedback;
+    interactionProcessor.output = &compressionFeedback;
+    compressionFeedback.audioPlayer = &audioplayer;
+    compressionFeedback.viewModel = &viewModel;
+    ventilationFeedback.audioPlayer = &audioplayer;
     serialPort.datahandler = &dataHandler;
-    dataHandler.feedback = &feedback;
+    dataHandler.compressionFeedback = &compressionFeedback;
+    dataHandler.ventilationFeedback = &ventilationFeedback;
 
     //create application
     QQmlApplicationEngine engine;

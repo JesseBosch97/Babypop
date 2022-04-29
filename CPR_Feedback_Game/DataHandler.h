@@ -5,7 +5,7 @@
 #include "FingerPositionDataHandler.h"
 #include "FlowDataHandler.h"
 #include "VolumeDataHandler.h"
-#include "FeedbackHandlerInput.h"
+#include "DataHandlerBoundaries.h"
 
 class DataHandler : public SerialPortToDataHandler
 {
@@ -15,7 +15,8 @@ public:
 
     void handleData(std::string validdata) override;
 
-    FeedbackHandlerInput *feedback;
+    DataToCompressionFeedback * compressionFeedback;
+    DataToVentilationFeedback * ventilationFeedback;
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;

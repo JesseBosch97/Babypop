@@ -24,7 +24,7 @@ void DataHandler::handleData(std::string validdata)
       flowDataHandler.handleFlowData(validdata);
       if (flowDataHandler.flowPerformanceCollected){
           flowDataHandler.flowPerformanceCollected = false;
-          feedback->handleFlowPerformance(flowDataHandler.flowPerformance);
+          ventilationFeedback->handleFlowPerformance(flowDataHandler.flowPerformance);
       }
 
    }
@@ -32,21 +32,21 @@ void DataHandler::handleData(std::string validdata)
    else if (detectString(validdata, "["))
    {
       //std::cout << "DataHandler: finger position detected!" << std::endl;
-      feedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
+      compressionFeedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
       //std::cout << "DataHandler: volume in detected!" << std::endl;
       volumeDataHandler.handleVolume(&validdata, VOLUME_IN_HEADER);
-      feedback->handleVolumeInPerformance(volumeDataHandler.volumePerformance);
+      ventilationFeedback->handleVolumeInPerformance(volumeDataHandler.volumePerformance);
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
       //std::cout << "DataHandler: volume out detected!" << std::endl;
       volumeDataHandler.handleVolume(&validdata, VOLUME_OUT_HEADER);
-      feedback->handleVolumeOutPerformance(volumeDataHandler.volumePerformance);
+      ventilationFeedback->handleVolumeOutPerformance(volumeDataHandler.volumePerformance);
    }
 
    else std::cout << "DataHandler: data not detected!" << std::endl;

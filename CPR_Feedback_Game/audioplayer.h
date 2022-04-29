@@ -8,7 +8,7 @@
 
 
 
-class Audioplayer : public FeedbackHandlerOutput, public RequestModelToAudioPlayer
+class Audioplayer : public FeedbackToAudio, public RequestModelToAudioPlayer
 {
 public:
     Audioplayer();

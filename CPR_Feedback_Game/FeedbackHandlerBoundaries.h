@@ -7,7 +7,7 @@ enum feedBackTypes {NEUTRAL, START_COMPRESSION, PERFECT, TOO_SLOW, TOO_FAST, TOO
                     START_VENTILATION, VENTILATION_TOO_SHORT, VENTILATION_TOO_LONG, VENTILATION_TOO_MUCH, VENTILATION_TOO_LITTLE, PAUSE_TOO_LONG, PAUSE_TOO_SHORT };
 
 
-class FeedbackHandlerOutput
+class FeedbackToAudio
 {
 public:
     virtual void giveFeedback(int feedbackType) = 0;
@@ -15,7 +15,7 @@ public:
     virtual void giveFingerPositionFeedback(int fingerFeedback) = 0;
 };
 
-class FeedbackHandlerToViewModel
+class FeedbackToViewModel
 {
 public:
     virtual void feedbackAmountSelected(int feedbackAmount) = 0;
