@@ -3,6 +3,12 @@
 VentilationFeedback::VentilationFeedback()
 {
 
+
+}
+
+VentilationFeedback::~VentilationFeedback()
+{
+
 }
 
 
@@ -16,43 +22,79 @@ void VentilationFeedback::handleVolumeInPerformance(VolumePerformance performanc
         std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
         std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
 
+        volumeInBuffer.push_back(performance.volume);
+        timeVolumeInBuffer.push_back(performance.time);
         ventilationCount++;
+        uint8_t feedBackType = 0;
 
         if (ventilationCount > ventilationAmount)
         {
-            audioPlayer->giveFeedback(TOO_MANY);
+            feedBackType = TOO_MANY;
         }
 
-        else
+        else if (ventilationCount % ventilationFeedbackFrequency == 0)
         {
-            if (performance.volume < VOLUME_MIN)
+
+            float averageVolume = calculateAverageVolume();
+            float averageTime = calculateAverageTime();
+
+            if (averageVolume < VOLUME_MIN)
             {
-                audioPlayer->giveFeedback(VENTILATION_TOO_LITTLE);
+                feedBackType = VENTILATION_TOO_LITTLE;
             }
-            else if (performance.volume > VOLUME_MAX)
+            else if (averageVolume > VOLUME_MAX)
             {
-                audioPlayer->giveFeedback(VENTILATION_TOO_MUCH);
+                feedBackType = VENTILATION_TOO_MUCH;
             }
 
-            else if (performance.time > VENTILATION_TIME_MAX)
+            else if (averageTime > VENTILATION_TIME_MAX)
             {
-                audioPlayer->giveFeedback(VENTILATION_TOO_LONG);
+                feedBackType = VENTILATION_TOO_LONG;
             }
 
-            else if (performance.time < VENTILATION_TIME_MIN)
+            else if (averageTime < VENTILATION_TIME_MIN)
             {
-                audioPlayer->giveFeedback(VENTILATION_TOO_SHORT);
+                feedBackType = VENTILATION_TOO_SHORT;
             }
+
+            volumeInBuffer.clear();
+            timeVolumeInBuffer.clear();
         }
+
+        if (feedBackType > 0) audioPlayer->giveFeedback(feedBackType);
     }
 }
+
+
+float VentilationFeedback::calculateAverageVolume()
+{
+    float total = 0;
+    for (auto & el : volumeInBuffer)
+    {
+        total += el;
+    }
+
+    return total/volumeInBuffer.size();
+}
+
+float VentilationFeedback::calculateAverageTime()
+{
+    float total = 0;
+    for (auto & el : timeVolumeInBuffer)
+    {
+        total += el;
+    }
+
+    return total/timeVolumeInBuffer.size();
+}
+
 
 void VentilationFeedback::handleVolumeOutPerformance(VolumePerformance performance)
 {
     if (ventilationFeedbackSelected)
     {
-        std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
-        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+        //std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
+        //std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
     }
 }
 
@@ -114,9 +156,11 @@ void VentilationFeedback::setVentilationFeedbackSelected(bool state)
 void VentilationFeedback::setVentilationFeedbackFrequency(int amount)
 {
     this->ventilationFeedbackFrequency = amount;
+    ventilationCount = 0;
 }
 
 void VentilationFeedback::setVentilationAmount(int amount)
 {
     this->ventilationAmount = amount;
+    ventilationCount = 0;
 }

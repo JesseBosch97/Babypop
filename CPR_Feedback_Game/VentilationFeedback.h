@@ -5,6 +5,8 @@
 #include "RequestModelBoundaries.h"
 #include "FeedbackBoundaries.h"
 #include <iostream>
+#include <vector>
+
 
 #define FLOW_STRENGTH_ALLOWED_ERROR 1
 #define FLOW_STRENGTH_MIN 10
@@ -23,6 +25,7 @@ class VentilationFeedback : public DataToVentilationFeedback, public RequestMode
 {
 public:
     VentilationFeedback();
+    ~VentilationFeedback();
 
     FeedbackToAudio * audioPlayer;
 
@@ -34,12 +37,20 @@ public:
     void handleFlowPerformance(FlowPerformance flowPerformance) override;
 
 
+
+
 private:
     int ventilationFeedbackAmountPercentage = 0;
     int ventilationFeedbackFrequency = 0;
     int ventilationAmount = 0;
     bool ventilationFeedbackSelected = false;
     int ventilationCount = 0;
+
+    std::vector<float> volumeInBuffer;
+    std::vector<int> timeVolumeInBuffer;
+
+    float calculateAverageVolume();
+    float calculateAverageTime();
 };
 
 #endif // VENTILATIONFEEDBACK_H
