@@ -5,7 +5,7 @@
 #include "FingerPositionDataHandler.h"
 #include "FlowDataHandler.h"
 #include "VolumeDataHandler.h"
-#include "DataHandlerBoundaries.h"
+#include "DataBoundaries.h"
 
 class DataHandler : public SerialPortToDataHandler
 {

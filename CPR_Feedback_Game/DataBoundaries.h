@@ -1,5 +1,5 @@
-#ifndef DATAHANDLERBOUNDARIES_H
-#define DATAHANDLERBOUNDARIES_H
+#ifndef DATABOUNDARIES_H
+#define DATABOUNDARIES_H
 
 #include "PerformanceTypes.h"
 
@@ -20,4 +20,4 @@ public:
     virtual void handleVolumeOutPerformance(VolumePerformance performance) = 0;
 };
 
-#endif // DATAHANDLERBOUNDARIES_H
+#endif // DATABOUNDARIES_H

@@ -35,9 +35,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     CompressionFeedback.h \
+    DataBoundaries.h \
     DataHandler.h \
-    DataHandlerBoundaries.h \
-    FeedbackHandlerBoundaries.h \
+    FeedbackBoundaries.h \
     FingerPositionDataHandler.h \
     FlowDataHandler.h \
     PerformanceTypes.h \

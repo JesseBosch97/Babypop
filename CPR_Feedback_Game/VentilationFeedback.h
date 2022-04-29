@@ -1,9 +1,9 @@
 #ifndef VENTILATIONFEEDBACK_H
 #define VENTILATIONFEEDBACK_H
 
-#include "DataHandlerBoundaries.h"
+#include "DataBoundaries.h"
 #include "RequestModelBoundaries.h"
-#include "FeedbackHandlerBoundaries.h"
+#include "FeedbackBoundaries.h"
 #include <iostream>
 
 #define FLOW_STRENGTH_ALLOWED_ERROR 1

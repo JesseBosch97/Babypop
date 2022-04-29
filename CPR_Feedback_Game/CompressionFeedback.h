@@ -1,8 +1,8 @@
 #ifndef COMPRESSIONFEEDBACK_H
 #define COMPRESSIONFEEDBACK_H
 
-#include "FeedbackHandlerBoundaries.h"
-#include "DataHandlerBoundaries.h"
+#include "FeedbackBoundaries.h"
+#include "DataBoundaries.h"
 #include "RequestModelBoundaries.h"
 #include <iostream>
 #include <vector>

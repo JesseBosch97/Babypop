@@ -2,7 +2,7 @@
 #define INTERACTIONPROCESSOR_H
 
 #include "RequestModelBoundaries.h"
-#include "DataHandlerBoundaries.h"
+#include "DataBoundaries.h"
 #include <QElapsedTimer>
 #include <iostream>
 

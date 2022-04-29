@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
-#include "FeedbackHandlerBoundaries.h"
+#include "FeedbackBoundaries.h"
 
 class ViewModel : public QObject, public FeedbackToViewModel
 {
