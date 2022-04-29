@@ -184,8 +184,8 @@ Window {
                     value: 1
                     from: 0
                     to: ventilationAmountBox.value
-                    onValueChanged: RequestModel.ventilationFeedbackAmountChanged(value)
-                    Component.onCompleted: RequestModel.ventilationFeedbackAmountChanged(value)
+                    onValueChanged: RequestModel.ventilationFeedbackFrequencyChanged(value)
+                    Component.onCompleted: RequestModel.ventilationFeedbackFrequencyChanged(value)
                 }
 
                 Label {
