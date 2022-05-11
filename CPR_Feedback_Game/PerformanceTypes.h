@@ -1,7 +1,7 @@
 #ifndef PERFORMANCETYPES_H
 #define PERFORMANCETYPES_H
 
-struct Fingerposition
+struct FingerPosition
 {
     int top;
     int mid;
@@ -17,6 +17,14 @@ struct Ventilation
 {
     float volume = 0;
     int time = 0;
+};
+
+struct Compression
+{
+};
+
+struct HeadPosition
+{
 };
 
 

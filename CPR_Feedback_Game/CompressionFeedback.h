@@ -33,7 +33,7 @@ public:
     void setCompressionFeedbackAmountSelection(float amount) override;  
     void setCompressionFeedbackSelected(bool state) override;
     void handleBpmPerformance(int bpm) override;
-    void fingerPositionPerformance(Fingerposition positionOfFingers) override;
+    void fingerPositionPerformance(FingerPosition positionOfFingers) override;
 
 
 
@@ -50,9 +50,9 @@ private:
     int compressionCount = 0;
     int bpmPerformanceState = 0;
 
-    location locationOfFingers(Fingerposition positionOfFingers);
+    location locationOfFingers(FingerPosition positionOfFingers);
     location calculateLocation(Coordinates);
-    int pressurePoints(Fingerposition positionOfFingers);
+    int pressurePoints(FingerPosition positionOfFingers);
 
     int checkBPM();
     int handleBpmPerformanceState();

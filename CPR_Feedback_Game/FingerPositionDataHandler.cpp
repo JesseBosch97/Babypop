@@ -22,7 +22,7 @@ void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::stri
     positionOfFingers.lowmid        = std::stoi(value[7]);
 
 }
-Fingerposition FingerPositionDataHandler::handleData(std::string validdata)
+FingerPosition FingerPositionDataHandler::handleData(std::string validdata)
 {
     putFingerPositionsInStruct(parseData(validdata));
 

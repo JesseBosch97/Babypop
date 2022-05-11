@@ -9,7 +9,7 @@ class DataToCompressionFeedback
 {
 public:
     virtual void handleBpmPerformance(int bpm) = 0;
-    virtual void fingerPositionPerformance(Fingerposition posistionOfFingers) = 0;
+    virtual void fingerPositionPerformance(FingerPosition posistionOfFingers) = 0;
 };
 
 class DataToVentilationFeedback

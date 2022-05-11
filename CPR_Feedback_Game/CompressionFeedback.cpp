@@ -65,7 +65,7 @@ void CompressionFeedback::setCompressionFeedbackAmountSelection(float amount)
 
 
 
-void CompressionFeedback::fingerPositionPerformance(Fingerposition positionOfFingers)
+void CompressionFeedback::fingerPositionPerformance(FingerPosition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
 
@@ -114,7 +114,7 @@ void CompressionFeedback::fingerPositionPerformance(Fingerposition positionOfFin
 
 
 
-location CompressionFeedback::locationOfFingers(Fingerposition positionOfFingers)
+location CompressionFeedback::locationOfFingers(FingerPosition positionOfFingers)
 {
     Coordinates bottomLeft;
     bottomLeft.x = -1 * positionOfFingers.bottomleft;
@@ -233,7 +233,7 @@ location CompressionFeedback::calculateLocation(Coordinates thorax)
     return retval;
 }
 
-int CompressionFeedback::pressurePoints(Fingerposition positionOfFingers)
+int CompressionFeedback::pressurePoints(FingerPosition positionOfFingers)
 {
     int pressurePoints = 0;
 
