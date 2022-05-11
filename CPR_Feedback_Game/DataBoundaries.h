@@ -24,4 +24,10 @@ public:
     virtual void fingerPositionPerformance(FingerPosition posistionOfFingers) = 0;
 };
 
+class DataToHeadPositionFeedback
+{
+public:
+    virtual void handleHeadPosition(HeadPosition headPosition) = 0;
+};
+
 #endif // DATABOUNDARIES_H

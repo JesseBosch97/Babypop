@@ -28,9 +28,6 @@ public:
     void handleBpmPerformance(int bpm) override;
 
 
-
-
-
 private:
     int bpmSamples[BPM_SAMPLE_AMOUNT] = {DESIRED_BPM}; //should be dynamic array
 
