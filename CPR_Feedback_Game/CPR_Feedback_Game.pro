@@ -15,7 +15,6 @@ SOURCES += \
         ViewModel.cpp \
         VolumeDataHandler.cpp \
         audioplayer.cpp \
-        interactionprocessor.cpp \
         main.cpp \
         requestmodel.cpp
 
@@ -49,5 +48,4 @@ HEADERS += \
     ViewModel.h \
     VolumeDataHandler.h \
     audioplayer.h \
-    interactionprocessor.h \
     requestmodel.h

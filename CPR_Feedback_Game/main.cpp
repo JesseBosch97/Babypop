@@ -6,7 +6,6 @@
 #include "requestmodel.h"
 #include "CompressionFeedback.h"
 #include "audioplayer.h"
-#include "interactionprocessor.h"
 #include "ViewModel.h"
 #include "SerialPort.h"
 #include "DataHandler.h"
@@ -26,7 +25,6 @@ int main(int argc, char *argv[])
     CompressionFeedback compressionFeedback;
     VentilationFeedback ventilationFeedback;
     RequestModel requestModel;
-    InteractionProcessor interactionProcessor;
     ViewModel viewModel;
     SerialPort serialPort;
     DataHandler dataHandler;
@@ -34,12 +32,10 @@ int main(int argc, char *argv[])
 
 
     //connect objects
-    requestModel.processor = &interactionProcessor;
     requestModel.serialPort = &serialPort;
     requestModel.audioPlayer = &audioplayer;
     requestModel.compressionFeedback = &compressionFeedback;
     requestModel.ventilationFeedback = &ventilationFeedback;
-    interactionProcessor.output = &compressionFeedback;
     compressionFeedback.audioPlayer = &audioplayer;
     compressionFeedback.viewModel = &viewModel;
     ventilationFeedback.audioPlayer = &audioplayer;

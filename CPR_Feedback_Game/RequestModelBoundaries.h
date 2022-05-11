@@ -3,11 +3,6 @@
 
 #include <QString>
 
-class RequestModelToInteractionProcessor
-{
-public:
-    virtual void compressionPerformed() = 0;
-};
 
 class RequestModelToSerialPort
 {
@@ -27,6 +22,7 @@ class RequestModelToCompressionFeedback
 public:
    virtual void setCompressionFeedbackAmountSelection(float amount) = 0;
    virtual void setCompressionFeedbackSelected(bool state) = 0;
+   virtual void handleBpmPerformance(int bpm) = 0;
 };
 
 class RequestModelToVentilationFeedback

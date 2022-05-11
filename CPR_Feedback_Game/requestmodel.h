@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include "RequestModelBoundaries.h"
-#include "interactionprocessor.h"
+#include <QElapsedTimer>
 
 class RequestModel : public QObject
 {
@@ -12,14 +12,17 @@ class RequestModel : public QObject
 
 public:
     RequestModel(QObject* parent = nullptr);
-    RequestModelToInteractionProcessor * processor;
     RequestModelToSerialPort * serialPort;
     RequestModelToAudioPlayer * audioPlayer;
     RequestModelToCompressionFeedback * compressionFeedback;
     RequestModelToVentilationFeedback * ventilationFeedback;
 
-    InteractionProcessor interactionProcessor;
 
+private:
+    QElapsedTimer timer;
+    int compressionCount = 0;
+    int lastTimeInterval = 0;
+    int calculateBPM(int intervalInMs);
 
 
 public slots:
@@ -33,8 +36,9 @@ public slots:
     void compressionSliderMoved(float value);
     void ventilationAmountChanged(int value);
     void ventilationFeedbackFrequencyChanged(int value);
-
     void airwaySliderMoved(float value);
+
+
 };
 
 #endif // REQUESTMODEL_H
