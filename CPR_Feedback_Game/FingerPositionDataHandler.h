@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <cstring>
-#include "PerformanceTypes.h"
+#include "CprTypes.h"
 
 class FingerPositionDataHandler
 {

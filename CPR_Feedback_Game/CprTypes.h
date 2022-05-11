@@ -1,5 +1,5 @@
-#ifndef PERFORMANCETYPES_H
-#define PERFORMANCETYPES_H
+#ifndef CPRTYPES_H
+#define CPRTYPES_H
 
 struct FingerPosition
 {
@@ -28,4 +28,4 @@ struct HeadPosition
 };
 
 
-#endif // PERFORMANCETYPES_H
+#endif // CPRTYPES_H

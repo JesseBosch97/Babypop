@@ -33,11 +33,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     CompressionFeedback.h \
+    CprTypes.h \
     DataBoundaries.h \
     DataHandler.h \
     FeedbackBoundaries.h \
     FingerPositionDataHandler.h \
-    PerformanceTypes.h \
     RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
