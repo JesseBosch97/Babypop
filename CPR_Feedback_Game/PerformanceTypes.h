@@ -13,15 +13,7 @@ struct Fingerposition
     int bottomright;
 };
 
-struct FlowPerformance
-{
-    int ventilationTime = 0;
-    int pauseTime = 0;
-    int averageFlowStrength = 0;
-    int maxFlowStrength = 0;
-};
-
-struct VolumePerformance
+struct VentilationPerformance
 {
     float volume = 0;
     int time = 0;

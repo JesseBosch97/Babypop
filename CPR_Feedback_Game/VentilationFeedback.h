@@ -32,9 +32,8 @@ public:
     void setVentilationFeedbackSelected(bool state) override;
     void setVentilationAmount(int amount) override;
     void setVentilationFeedbackFrequency(int amount) override;
-    void handleVolumeInPerformance(VolumePerformance performance) override;
-    void handleVolumeOutPerformance(VolumePerformance performance) override;
-    void handleFlowPerformance(FlowPerformance flowPerformance) override;
+    void handleVolumeInPerformance(VentilationPerformance performance) override;
+    void handleVolumeOutPerformance(VentilationPerformance performance) override;
 
 
 
