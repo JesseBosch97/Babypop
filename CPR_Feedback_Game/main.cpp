@@ -4,6 +4,7 @@
 #include <QStringListModel>
 
 #include "requestmodel.h"
+#include "FingerPositionFeedback.h"
 #include "CompressionFeedback.h"
 #include "audioplayer.h"
 #include "ViewModel.h"
@@ -24,11 +25,11 @@ int main(int argc, char *argv[])
     Audioplayer audioplayer;
     CompressionFeedback compressionFeedback;
     VentilationFeedback ventilationFeedback;
+    FingerPositionFeedback fingerPositionFeedback;
     RequestModel requestModel;
     ViewModel viewModel;
     SerialPort serialPort;
     DataHandler dataHandler;
-
 
 
     //connect objects
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
     serialPort.datahandler = &dataHandler;
     dataHandler.compressionFeedback = &compressionFeedback;
     dataHandler.ventilationFeedback = &ventilationFeedback;
+    dataHandler.fingerPositionFeedback = &fingerPositionFeedback;
 
     //create application
     QQmlApplicationEngine engine;

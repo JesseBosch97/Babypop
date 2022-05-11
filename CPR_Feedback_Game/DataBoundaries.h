@@ -9,7 +9,6 @@ class DataToCompressionFeedback
 {
 public:
     virtual void handleBpmPerformance(int bpm) = 0;
-    virtual void fingerPositionPerformance(FingerPosition posistionOfFingers) = 0;
 };
 
 class DataToVentilationFeedback
@@ -17,6 +16,12 @@ class DataToVentilationFeedback
 public:
     virtual void handleVolumeIn(Ventilation ventilation) = 0;
     virtual void handleVolumeOut(Ventilation ventilation) = 0;
+};
+
+class DataToFingerPositionFeedback
+{
+public:
+    virtual void fingerPositionPerformance(FingerPosition posistionOfFingers) = 0;
 };
 
 #endif // DATABOUNDARIES_H

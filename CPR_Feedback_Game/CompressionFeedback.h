@@ -14,13 +14,6 @@
 
 
 
-struct Coordinates
-{
-    float x;
-    float y;
-};
-
-enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
 
 class CompressionFeedback : public DataToCompressionFeedback, public RequestModelToCompressionFeedback
 {
@@ -33,7 +26,6 @@ public:
     void setCompressionFeedbackAmountSelection(float amount) override;  
     void setCompressionFeedbackSelected(bool state) override;
     void handleBpmPerformance(int bpm) override;
-    void fingerPositionPerformance(FingerPosition positionOfFingers) override;
 
 
 
@@ -49,10 +41,6 @@ private:
     bool compressionFeedbackSelected = false;
     int compressionCount = 0;
     int bpmPerformanceState = 0;
-
-    location locationOfFingers(FingerPosition positionOfFingers);
-    location calculateLocation(Coordinates);
-    int pressurePoints(FingerPosition positionOfFingers);
 
     int checkBPM();
     int handleBpmPerformanceState();

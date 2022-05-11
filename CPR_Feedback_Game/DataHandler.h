@@ -17,6 +17,7 @@ public:
 
     DataToCompressionFeedback * compressionFeedback;
     DataToVentilationFeedback * ventilationFeedback;
+    DataToFingerPositionFeedback * fingerPositionFeedback;
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;

@@ -8,6 +8,7 @@ SOURCES += \
         CompressionFeedback.cpp \
         DataHandler.cpp \
         FingerPositionDataHandler.cpp \
+        FingerPositionFeedback.cpp \
         SerialPort.cpp \
         StringFunctions.cpp \
         VentilationFeedback.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     DataHandler.h \
     FeedbackBoundaries.h \
     FingerPositionDataHandler.h \
+    FingerPositionFeedback.h \
     RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
