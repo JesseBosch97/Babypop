@@ -1,4 +1,4 @@
-#include "FingerPositionFeedback.h".h"
+#include "FingerPositionFeedback.h"
 
 FingerPositionFeedback::FingerPositionFeedback()
 {

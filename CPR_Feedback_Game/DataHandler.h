@@ -18,12 +18,11 @@ public:
     DataToCompressionFeedback * compressionFeedback;
     DataToVentilationFeedback * ventilationFeedback;
     DataToFingerPositionFeedback * fingerPositionFeedback;
+    DataToHeadPositionFeedback * headPositionFeedback;
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
     VolumeDataHandler volumeDataHandler;
-
-
 
 };
 

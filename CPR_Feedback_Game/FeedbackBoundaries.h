@@ -11,7 +11,6 @@ class FeedbackToAudio
 {
 public:
     virtual void giveFeedback(int feedbackType) = 0;
-    //virtual void giveBpmFeedback(int feedbackType) = 0;
     virtual void giveFingerPositionFeedback(int fingerFeedback) = 0;
 };
 
