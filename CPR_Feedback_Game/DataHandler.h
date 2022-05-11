@@ -1,9 +1,9 @@
 #ifndef DATAHANDLER_H
 #define DATAHANDLER_H
 
+#include <iostream>
 #include "SerialPortBoundary.h"
 #include "FingerPositionDataHandler.h"
-#include "FlowDataHandler.h"
 #include "VolumeDataHandler.h"
 #include "DataBoundaries.h"
 
@@ -20,7 +20,6 @@ public:
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
-    FlowDataHandler flowDataHandler;
     VolumeDataHandler volumeDataHandler;
 
 
