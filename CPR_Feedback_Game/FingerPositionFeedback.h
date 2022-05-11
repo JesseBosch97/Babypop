@@ -29,7 +29,7 @@ public:
 
     FeedbackToAudio * audioPlayer;
 
-    void fingerPositionPerformance(FingerPosition positionOfFingers) override;
+    void handleFingerPosition(FingerPosition positionOfFingers) override;
 
 private:
     location locationOfFingers(FingerPosition positionOfFingers);

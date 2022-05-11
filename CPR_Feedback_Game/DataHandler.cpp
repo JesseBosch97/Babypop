@@ -21,7 +21,7 @@ void DataHandler::handleData(std::string validdata)
    if (detectString(validdata, "["))
    {
       //std::cout << "DataHandler: finger position detected!" << std::endl;
-      fingerPositionFeedback->fingerPositionPerformance(fingerPositionDataHandler.handleData(validdata));
+      fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))

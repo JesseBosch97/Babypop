@@ -7,7 +7,7 @@ FingerPositionFeedback::FingerPositionFeedback()
 
 
 
-void FingerPositionFeedback::fingerPositionPerformance(FingerPosition positionOfFingers)
+void FingerPositionFeedback::handleFingerPosition(FingerPosition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
 

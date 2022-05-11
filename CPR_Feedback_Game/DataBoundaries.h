@@ -21,7 +21,7 @@ public:
 class DataToFingerPositionFeedback
 {
 public:
-    virtual void fingerPositionPerformance(FingerPosition posistionOfFingers) = 0;
+    virtual void handleFingerPosition(FingerPosition fingerPosition) = 0;
 };
 
 class DataToHeadPositionFeedback
