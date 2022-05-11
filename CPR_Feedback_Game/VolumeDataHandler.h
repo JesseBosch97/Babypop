@@ -12,7 +12,7 @@ class VolumeDataHandler
 public:
     VolumeDataHandler();
 
-    VentilationPerformance volumePerformance;
+    Ventilation ventilation;
 
     void handleVolume(std::string & volumeData, std::string header);
 

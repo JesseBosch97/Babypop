@@ -15,8 +15,8 @@ public:
 class DataToVentilationFeedback
 {
 public:
-    virtual void handleVolumeInPerformance(VentilationPerformance performance) = 0;
-    virtual void handleVolumeOutPerformance(VentilationPerformance performance) = 0;
+    virtual void handleVolumeIn(Ventilation ventilation) = 0;
+    virtual void handleVolumeOut(Ventilation ventilation) = 0;
 };
 
 #endif // DATABOUNDARIES_H

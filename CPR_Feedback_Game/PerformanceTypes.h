@@ -13,10 +13,11 @@ struct Fingerposition
     int bottomright;
 };
 
-struct VentilationPerformance
+struct Ventilation
 {
     float volume = 0;
     int time = 0;
 };
+
 
 #endif // PERFORMANCETYPES_H

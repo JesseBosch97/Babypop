@@ -15,7 +15,7 @@ VentilationFeedback::~VentilationFeedback()
 
 
 
-void VentilationFeedback::handleVolumeInPerformance(VentilationPerformance performance)
+void VentilationFeedback::handleVolumeIn(Ventilation performance)
 {
     if (ventilationFeedbackSelected)
     {
@@ -89,7 +89,7 @@ float VentilationFeedback::calculateAverageTime()
 }
 
 
-void VentilationFeedback::handleVolumeOutPerformance(VentilationPerformance performance)
+void VentilationFeedback::handleVolumeOut(Ventilation performance)
 {
     if (ventilationFeedbackSelected)
     {

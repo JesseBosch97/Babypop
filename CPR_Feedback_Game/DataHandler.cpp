@@ -28,14 +28,14 @@ void DataHandler::handleData(std::string validdata)
    {
       //std::cout << "DataHandler: volume in detected!" << std::endl;
       volumeDataHandler.handleVolume(validdata, VOLUME_IN_HEADER);
-      ventilationFeedback->handleVolumeInPerformance(volumeDataHandler.volumePerformance);
+      ventilationFeedback->handleVolumeIn(volumeDataHandler.ventilation);
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
       //std::cout << "DataHandler: volume out detected!" << std::endl;
       volumeDataHandler.handleVolume(validdata, VOLUME_OUT_HEADER);
-      ventilationFeedback->handleVolumeOutPerformance(volumeDataHandler.volumePerformance);
+      ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
    }
 
    else std::cout << "DataHandler: data not detected!" << std::endl;

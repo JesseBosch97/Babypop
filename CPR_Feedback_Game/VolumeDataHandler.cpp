@@ -15,8 +15,8 @@ void VolumeDataHandler::handleVolume(std::string & volumeData, std::string heade
     std::string volume = copyAndRemoveNextValue(volumeData);
     std::string ventilationTime = volumeData;
 
-    volumePerformance.volume = stof(volume);
-    volumePerformance.time = stoi(ventilationTime);
+    ventilation.volume = stof(volume);
+    ventilation.time = stoi(ventilationTime);
 }
 
 
