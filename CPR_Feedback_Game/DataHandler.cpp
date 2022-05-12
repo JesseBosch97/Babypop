@@ -1,5 +1,9 @@
 #include "DataHandler.h"
 
+#include <algorithm>
+
+
+
 
 
 
@@ -23,14 +27,14 @@ void DataHandler::handleData(std::string validdata)
 
    if (detectString(validdata, FINGER_POSITION_HEADER))
    {
-      fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
+       fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
-      removeFrom(validdata, VOLUME_IN_HEADER);
-      dataCollection = collectData(validdata);
-      ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
+       removeFrom(validdata, VOLUME_IN_HEADER);
+       dataCollection = collectData(validdata);
+       ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
@@ -44,15 +48,14 @@ void DataHandler::handleData(std::string validdata)
    {
        removeFrom(validdata, HEAD_POSITION_HEADER);
        dataCollection = collectData(validdata);
-
-      headPositionFeedback->handleHeadPosition(handleHeadPosition(dataCollection));
+       headPositionFeedback->handleHeadPosition(handleHeadPosition(dataCollection));
    }
 
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
-      removeFrom(validdata, COMPRESSION_HEADER);
-      dataCollection = collectData(validdata);
-      compressionFeedback->handleCompression(handleCompression(dataCollection));
+       removeFrom(validdata, COMPRESSION_HEADER);
+       dataCollection = collectData(validdata);
+       compressionFeedback->handleCompression(handleCompression(dataCollection));
    }
 
 
@@ -73,8 +76,14 @@ std::vector<std::string> DataHandler::collectData(std::string & data)
 
     std::vector<std::string> dataCollection;
 
-    dataCollection.push_back(copyAndRemoveNextValue(data));
-    dataCollection.push_back(data);
+    size_t numberOfDataPoints = std::count(data.begin(), data.end(), ',');
+
+    for (auto i = 0; i < static_cast<int>(numberOfDataPoints); i++)
+    {
+        dataCollection.push_back(copyAndRemoveNextValue(data));
+    }
+
+    dataCollection.push_back(data); // last remaining value
 
     return dataCollection;
 }
@@ -84,6 +93,8 @@ Compression DataHandler::handleCompression(std::vector<std::string> compressionD
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
     compression.depth = stoi(compressionData.at(1));
+    std::cout << "DataHandler: compression bpm is: " << compression.bpm << std::endl;
+    std::cout << "DataHandler: compression depth is: " << compression.depth << std::endl;
     return compression;
 }
 
