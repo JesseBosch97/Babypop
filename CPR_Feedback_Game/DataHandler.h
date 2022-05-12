@@ -36,6 +36,8 @@ private:
     VentilationDataHandler volumeDataHandler;
     CompressionDataHandler compressionDataHandler;
     HeadPositionDataHandler headPositionDataHandler;
+
+    std::vector<std::string> handleData(std::string &data, std::string header);
 };
 
 #endif // DATAHANDLER_H

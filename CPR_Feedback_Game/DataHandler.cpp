@@ -19,6 +19,7 @@ DataHandler::~DataHandler()
 
 void DataHandler::handleData(std::string validdata)
 {
+   std::vector<std::string> dataCollection;
 
    if (detectString(validdata, FINGER_POSITION_HEADER))
    {
@@ -46,8 +47,8 @@ void DataHandler::handleData(std::string validdata)
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
       std::cout << "DataHandler: received compression: " << validdata << std::endl;
-      compressionDataHandler.handleCompression(validdata, COMPRESSION_HEADER);
-      compressionFeedback->handleCompression(compressionDataHandler.compression);
+      dataCollection = handleData(validdata, COMPRESSION_HEADER);
+      compressionFeedback->handleCompression(compressionDataHandler.handleCompression(dataCollection));
    }
 
 
@@ -62,6 +63,25 @@ void DataHandler::handleSimulatedData(std::string simulatedData)
 {
     handleData(simulatedData);
 }
+
+
+std::vector<std::string> DataHandler::handleData(std::string & data, std::string header)
+{
+    std::cout << "CompressionDataHandler: received compression: " << data << std::endl;
+
+    std::vector<std::string> dataCollection;
+
+    removeFrom(data, header);
+
+    std::string bpm = copyAndRemoveNextValue(data);
+    std::string depth = data;
+
+    dataCollection.push_back(bpm);
+    dataCollection.push_back(depth);
+
+    return dataCollection;
+}
+
 
 
 

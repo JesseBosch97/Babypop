@@ -2,16 +2,15 @@
 #define COMPRESSIONDATAHANDLER_H
 
 #include "CprTypes.h"
-#include "StringFunctions.h"
 #include <iostream>
+#include <vector>
 
 class CompressionDataHandler
 {
 public:
     CompressionDataHandler();
 
-    Compression compression;
-    void handleCompression(std::string & compressionData, std::string header);
+    Compression handleCompression(std::vector<std::string> compressionData);
 
 };
 
