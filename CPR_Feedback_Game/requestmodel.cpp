@@ -34,7 +34,7 @@ void RequestModel::compressionButtonPressed()
    qDebug() << "RequestModel: Time interval is " << lastTimeInterval;
    qDebug() << "RequestModel: BPM is " << bpm;
 
-   std::string compression = COMPRESSION_HEADER;
+   std::string compression = "Compression: ";
    compression.append(std::to_string(bpm));
    compression.append(", ");
    compression.append(std::to_string(depth));

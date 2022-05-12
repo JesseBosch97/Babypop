@@ -10,6 +10,12 @@
 #include "StringFunctions.h"
 
 
+const std::string VOLUME_IN_HEADER = "Volume In: ";
+const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+const std::string COMPRESSION_HEADER = "Compression: ";
+const std::string FINGER_POSITION_HEADER = "[";
+const std::string HEAD_POSITION_HEADER = "Head Position: ";
+
 class DataHandler : public SerialPortToDataHandler, public RequestModelToDataHandler
 {
 public:
