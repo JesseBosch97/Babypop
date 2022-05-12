@@ -1,6 +1,8 @@
 #include "DataHandler.h"
 
 
+
+
 DataHandler::DataHandler()
 {
 
@@ -29,6 +31,13 @@ void DataHandler::handleData(std::string validdata)
       //std::cout << "DataHandler: volume in detected!" << std::endl;
       volumeDataHandler.handleVolume(validdata, VOLUME_IN_HEADER);
       ventilationFeedback->handleVolumeIn(volumeDataHandler.ventilation);
+   }
+
+   else if (detectString(validdata, VOLUME_OUT_HEADER))
+   {
+      //std::cout << "DataHandler: volume out detected!" << std::endl;
+      volumeDataHandler.handleVolume(validdata, VOLUME_OUT_HEADER);
+      ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))

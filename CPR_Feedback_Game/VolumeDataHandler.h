@@ -4,8 +4,7 @@
 #include "StringFunctions.h"
 #include "CprTypes.h"
 
-const std::string VOLUME_IN_HEADER = "Volume In: ";
-const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+
 
 class VolumeDataHandler
 {

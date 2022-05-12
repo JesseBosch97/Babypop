@@ -7,6 +7,9 @@
 #include "VolumeDataHandler.h"
 #include "DataBoundaries.h"
 
+const std::string VOLUME_IN_HEADER = "Volume In: ";
+const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+
 class DataHandler : public SerialPortToDataHandler
 {
 public:
