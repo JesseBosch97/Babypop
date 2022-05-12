@@ -28,30 +28,32 @@ void DataHandler::handleData(std::string validdata)
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
-      volumeDataHandler.handleVolume(validdata, VOLUME_IN_HEADER);
-      ventilationFeedback->handleVolumeIn(volumeDataHandler.ventilation);
+      removeFrom(validdata, VOLUME_IN_HEADER);
+      dataCollection = collectData(validdata);
+      ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
-      volumeDataHandler.handleVolume(validdata, VOLUME_OUT_HEADER);
-      ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
+       removeFrom(validdata, VOLUME_OUT_HEADER);
+       dataCollection = collectData(validdata);
+       ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, HEAD_POSITION_HEADER))
    {
-      headPositionDataHandler.handleHeadPosition();
-      headPositionFeedback->handleHeadPosition(headPositionDataHandler.headPosition);
+       removeFrom(validdata, HEAD_POSITION_HEADER);
+       dataCollection = collectData(validdata);
+
+      headPositionFeedback->handleHeadPosition(handleHeadPosition(dataCollection));
    }
 
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
-      std::cout << "DataHandler: received compression: " << validdata << std::endl;
-      dataCollection = collectData(validdata, COMPRESSION_HEADER);
-      compressionFeedback->handleCompression(compressionDataHandler.handleCompression(dataCollection));
+      removeFrom(validdata, COMPRESSION_HEADER);
+      dataCollection = collectData(validdata);
+      compressionFeedback->handleCompression(handleCompression(dataCollection));
    }
-
-
 
 
    else std::cout << "DataHandler: data not detected!" << std::endl;
@@ -65,17 +67,38 @@ void DataHandler::handleSimulatedData(std::string simulatedData)
 }
 
 
-std::vector<std::string> DataHandler::collectData(std::string & data, std::string header)
+std::vector<std::string> DataHandler::collectData(std::string & data)
 {
     std::cout << "DataHandler: received data: " << data << std::endl;
 
     std::vector<std::string> dataCollection;
 
-    removeFrom(data, header);
     dataCollection.push_back(copyAndRemoveNextValue(data));
     dataCollection.push_back(data);
 
     return dataCollection;
+}
+
+Compression DataHandler::handleCompression(std::vector<std::string> compressionData)
+{
+    Compression compression;
+    compression.bpm = stoi(compressionData.at(0));
+    compression.depth = stoi(compressionData.at(1));
+    return compression;
+}
+
+Ventilation DataHandler::handleVentilation(std::vector<std::string> ventilationData)
+{
+    Ventilation ventilation;
+    ventilation.volume = stof(ventilationData.at(0));
+    ventilation.time = stoi(ventilationData.at(1));
+    return ventilation;
+}
+
+HeadPosition DataHandler::handleHeadPosition(std::vector<std::string> headPositionData)
+{
+    HeadPosition headPosition;
+    return headPosition;
 }
 
 

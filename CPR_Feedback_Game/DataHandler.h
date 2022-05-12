@@ -4,17 +4,10 @@
 #include <iostream>
 #include "SerialPortBoundary.h"
 #include "FingerPositionDataHandler.h"
-#include "VentilationDataHandler.h"
-#include "HeadPositionDataHandler.h"
-#include "CompressionDataHandler.h"
+
 #include "DataBoundaries.h"
 #include "RequestModelBoundaries.h"
-
-//const static std::string VOLUME_IN_HEADER = "Volume In: ";
-//const static std::string VOLUME_OUT_HEADER = "Volume Out: ";
-//const static std::string COMPRESSION_HEADER = "Compression: ";
-//const static std::string FINGER_POSITION_HEADER = "[";
-//const static std::string HEAD_POSITION_HEADER = "Head Position: ";
+#include "StringFunctions.h"
 
 
 class DataHandler : public SerialPortToDataHandler, public RequestModelToDataHandler
@@ -33,11 +26,12 @@ public:
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
-    VentilationDataHandler volumeDataHandler;
-    CompressionDataHandler compressionDataHandler;
-    HeadPositionDataHandler headPositionDataHandler;
 
-    std::vector<std::string> collectData(std::string &data, std::string header);
+    std::vector<std::string> collectData(std::string &data);
+
+    Compression handleCompression(std::vector<std::string> compressionData);
+    Ventilation handleVentilation(std::vector<std::string> ventilationData);
+    HeadPosition handleHeadPosition(std::vector<std::string> headPositionData);
 };
 
 #endif // DATAHANDLER_H

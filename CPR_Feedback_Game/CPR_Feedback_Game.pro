@@ -5,16 +5,13 @@ QT += quick multimedia serialport
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        CompressionDataHandler.cpp \
         CompressionFeedback.cpp \
         DataHandler.cpp \
         FingerPositionDataHandler.cpp \
         FingerPositionFeedback.cpp \
-        HeadPositionDataHandler.cpp \
         HeadPositionFeedback.cpp \
         SerialPort.cpp \
         StringFunctions.cpp \
-        VentilationDataHandler.cpp \
         VentilationFeedback.cpp \
         ViewModel.cpp \
         audioplayer.cpp \
@@ -36,7 +33,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    CompressionDataHandler.h \
     CompressionFeedback.h \
     CprTypes.h \
     DataBoundaries.h \
@@ -44,13 +40,11 @@ HEADERS += \
     FeedbackBoundaries.h \
     FingerPositionDataHandler.h \
     FingerPositionFeedback.h \
-    HeadPositionDataHandler.h \
     HeadPositionFeedback.h \
     RequestModelBoundaries.h \
     SerialPort.h \
     SerialPortBoundary.h \
     StringFunctions.h \
-    VentilationDataHandler.h \
     VentilationFeedback.h \
     ViewModel.h \
     audioplayer.h \
