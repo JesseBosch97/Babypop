@@ -11,10 +11,10 @@ void CompressionFeedback::handleCompression(Compression compression)
     if (compressionFeedbackSelected)
     {
         compressionCount++;
-        storeBpmSample(compression.bpm);
+        bpmBuffer.push_back(compression.bpm);
 
-        if (compressionCount % compressionFeedbackAmount == 0){
-            int newBpmPerformanceState = handleBpmPerformanceState();
+        if (compressionCount % compressionFeedbackFrequency == 0){
+            int newBpmPerformanceState = evaluateCompression();
 
             if ((PERFECT == bpmPerformanceState) == newBpmPerformanceState){
                 //do nothing
@@ -48,32 +48,36 @@ void CompressionFeedback::setCompressionFeedbackAmountSelection(float amount)
         this->compressionFeedbackAmountPercentage = int(amount);
         std::cout << "Feedback Handler: compressionFeedBackAmountPercentage changed to: " << this->compressionFeedbackAmountPercentage << std::endl;
 
-        this->compressionFeedbackAmount = COMPRESSION_REPETITIONS - int((COMPRESSION_REPETITIONS * (this->compressionFeedbackAmountPercentage*0.01))) + 1;
-        std::cout << "Feedback Handler: compressionFeedbackAmount changed to: " << this->compressionFeedbackAmount << std::endl;
+        this->compressionFeedbackFrequency = COMPRESSION_REPETITIONS - int((COMPRESSION_REPETITIONS * (this->compressionFeedbackAmountPercentage*0.01))) + 1;
+        std::cout << "Feedback Handler: compressionFeedbackAmount changed to: " << this->compressionFeedbackFrequency << std::endl;
     }
 }
 
 
-int CompressionFeedback::checkBPM()
+int CompressionFeedback::evaluateBpm()
 {
     int bpmPerformance = NEUTRAL;
+    int averageBpm = calculateAverageBpm();
 
-    if (averageBpm() < DESIRED_BPM - ALLOWED_ERROR){
+    if (averageBpm < DESIRED_BPM - ALLOWED_ERROR){
         bpmPerformance = TOO_SLOW;
     }
-    else if (averageBpm() > DESIRED_BPM + ALLOWED_ERROR) {
+    else if (averageBpm > DESIRED_BPM + ALLOWED_ERROR) {
         bpmPerformance = TOO_FAST;
     }
     else {
         bpmPerformance = PERFECT;
     }
+
+    bpmBuffer.clear();
+
     return bpmPerformance;
 }
 
-int CompressionFeedback::handleBpmPerformanceState()
+int CompressionFeedback::evaluateCompression()
 {
     if (compressionCount < COMPRESSION_REPETITIONS){
-        return checkBPM();
+        return evaluateBpm();
     }
     else {
         compressionCount = 0;
@@ -81,26 +85,16 @@ int CompressionFeedback::handleBpmPerformanceState()
     }
 }
 
-void CompressionFeedback::storeBpmSample(int bpm)
-{
-    for (int i=BPM_SAMPLE_AMOUNT-1; i>0; i--) {  //should be dynamic array
-        bpmSamples[i] = bpmSamples[i-1];
-    }
-    bpmSamples[0] = bpm;
-}
 
-int CompressionFeedback::averageBpm()
+int CompressionFeedback::calculateAverageBpm()
 {
     int total = 0;
-    int count = 0;
-    for (int bpm: bpmSamples){
-        total += bpm;
-        count++;
+    for (auto & el : bpmBuffer)
+    {
+        total += el;
     }
 
-    int average = total/count;
-    std::cout << "Feedback Handler: Average bpm is: " << average << std::endl;
-    return total/count;
+    return total/bpmBuffer.size();
 }
 
 

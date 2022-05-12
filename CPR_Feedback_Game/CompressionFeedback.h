@@ -29,23 +29,18 @@ public:
 
 
 private:
-    int bpmSamples[BPM_SAMPLE_AMOUNT] = {DESIRED_BPM}; //should be dynamic array
+    std::vector<int> bpmBuffer;
+    std::vector<int> depthBuffer;
+    int compressionCount = 0;
+    int evaluateCompression();
+    bool compressionFeedbackSelected = false;
+    int compressionFeedbackFrequency = 0;
 
-    //std::vector<int> bpmSamples;
 
     int compressionFeedbackAmountPercentage = 0;
-    int compressionFeedbackAmount = 0;
-    bool compressionFeedbackSelected = false;
-    int compressionCount = 0;
     int bpmPerformanceState = 0;
-
-    int checkBPM();
-    int handleBpmPerformanceState();
-
-    void storeBpmSample(int bpm);
-    int averageBpm();
-
-
+    int evaluateBpm();
+    int calculateAverageBpm();
 };
 
 #endif // COMPRESSIONFEEDBACK_H

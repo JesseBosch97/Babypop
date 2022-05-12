@@ -32,9 +32,7 @@ public:
 
 private:
     FingerPositionDataHandler fingerPositionDataHandler;
-
     std::vector<std::string> collectData(std::string &data);
-
     Compression handleCompression(std::vector<std::string> compressionData);
     Ventilation handleVentilation(std::vector<std::string> ventilationData);
     HeadPosition handleHeadPosition(std::vector<std::string> headPositionData);

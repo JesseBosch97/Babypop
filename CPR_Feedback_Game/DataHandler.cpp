@@ -93,8 +93,6 @@ Compression DataHandler::handleCompression(std::vector<std::string> compressionD
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
     compression.depth = stoi(compressionData.at(1));
-    std::cout << "DataHandler: compression bpm is: " << compression.bpm << std::endl;
-    std::cout << "DataHandler: compression depth is: " << compression.depth << std::endl;
     return compression;
 }
 

@@ -13,18 +13,18 @@ class Audioplayer : public FeedbackToAudio, public RequestModelToAudioPlayer
 public:
     Audioplayer();
 
-   void giveFeedback(int feedbackType) override;
-   void voiceSelected(QString voice) override;
-   void giveFingerPositionFeedback(int fingerFeedback) override;
+    void giveFeedback(int feedbackType) override;
+    void voiceSelected(QString voice) override;
+    void giveFingerPositionFeedback(int fingerFeedback) override;
 
-   QString createURL(QString word);
+
 private:
+    QString createURL(QString word);
     QMediaPlayer player;
     QString selectedVoice = "maleTTS";
     void playSound();
 
-    std::unordered_map<int, QString> feedbackWordMap
-    {
+    std::unordered_map<int, QString> feedbackWordMap{
         {START_COMPRESSION, "chest_compression"},
         {PERFECT, "perfect"},
         {TOO_FAST, "slower"},
@@ -43,8 +43,7 @@ private:
         {VENTILATION_TOO_LITTLE, "more"},
         {VENTILATION_TOO_MUCH, "less"},
         {PAUSE_TOO_SHORT, "faster"},
-        {PAUSE_TOO_LONG, "pause_shorter"}
-    };
+        {PAUSE_TOO_LONG, "pause_shorter"}};
 
 };
 
