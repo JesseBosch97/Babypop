@@ -20,7 +20,7 @@ DataHandler::~DataHandler()
 void DataHandler::handleData(std::string validdata)
 {
 
-   if (detectString(validdata, "["))
+   if (detectString(validdata, FINGER_POSITION_HEADER))
    {
       //std::cout << "DataHandler: finger position detected!" << std::endl;
       fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
@@ -40,12 +40,6 @@ void DataHandler::handleData(std::string validdata)
       ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
    }
 
-   else if (detectString(validdata, VOLUME_OUT_HEADER))
-   {
-      //std::cout << "DataHandler: volume out detected!" << std::endl;
-      volumeDataHandler.handleVolume(validdata, VOLUME_OUT_HEADER);
-      ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
-   }
 
    else std::cout << "DataHandler: data not detected!" << std::endl;
 

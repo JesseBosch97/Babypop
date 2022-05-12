@@ -7,8 +7,11 @@
 #include "VolumeDataHandler.h"
 #include "DataBoundaries.h"
 
-const std::string VOLUME_IN_HEADER = "Volume In: ";
-const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+const static std::string VOLUME_IN_HEADER = "Volume In: ";
+const static std::string VOLUME_OUT_HEADER = "Volume Out: ";
+const static std::string COMPRESSION_HEADER = "Compression: ";
+const static std::string FINGER_POSITION_HEADER = "[";
+const static std::string HEAD_POSITION_HEADER = "Head Position: ";
 
 class DataHandler : public SerialPortToDataHandler
 {
