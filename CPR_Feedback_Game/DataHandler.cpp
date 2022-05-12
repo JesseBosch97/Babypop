@@ -67,17 +67,13 @@ void DataHandler::handleSimulatedData(std::string simulatedData)
 
 std::vector<std::string> DataHandler::handleData(std::string & data, std::string header)
 {
-    std::cout << "CompressionDataHandler: received compression: " << data << std::endl;
+    std::cout << "DataHandler: received data: " << data << std::endl;
 
     std::vector<std::string> dataCollection;
 
     removeFrom(data, header);
-
-    std::string bpm = copyAndRemoveNextValue(data);
-    std::string depth = data;
-
-    dataCollection.push_back(bpm);
-    dataCollection.push_back(depth);
+    dataCollection.push_back(copyAndRemoveNextValue(data));
+    dataCollection.push_back(data);
 
     return dataCollection;
 }
