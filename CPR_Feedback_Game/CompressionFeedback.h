@@ -41,6 +41,8 @@ private:
     int bpmPerformanceState = 0;
     int evaluateBpm();
     int calculateAverageBpm();
+    int calculateAverageDepth();
+    int evaluateDepth();
 };
 
 #endif // COMPRESSIONFEEDBACK_H

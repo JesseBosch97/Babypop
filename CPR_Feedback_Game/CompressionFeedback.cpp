@@ -12,6 +12,7 @@ void CompressionFeedback::handleCompression(Compression compression)
     {
         compressionCount++;
         bpmBuffer.push_back(compression.bpm);
+        depthBuffer.push_back(compression.depth);
 
         if (compressionCount % compressionFeedbackFrequency == 0){
             int newBpmPerformanceState = evaluateCompression();
@@ -74,6 +75,26 @@ int CompressionFeedback::evaluateBpm()
     return bpmPerformance;
 }
 
+int CompressionFeedback::evaluateDepth()
+{
+    int depthPerformance = NEUTRAL;
+    int averageDepth = calculateAverageDepth();
+
+//    if (averageBpm < DESIRED_BPM - ALLOWED_ERROR){
+//        depthPerformance = TOO_SLOW;
+//    }
+//    else if (averageBpm > DESIRED_BPM + ALLOWED_ERROR) {
+//        depthPerformance = TOO_FAST;
+//    }
+//    else {
+//        depthPerformance = PERFECT;
+//    }
+
+    bpmBuffer.clear();
+
+    return depthPerformance;
+}
+
 int CompressionFeedback::evaluateCompression()
 {
     if (compressionCount < COMPRESSION_REPETITIONS){
@@ -95,6 +116,17 @@ int CompressionFeedback::calculateAverageBpm()
     }
 
     return total/bpmBuffer.size();
+}
+
+int CompressionFeedback::calculateAverageDepth()
+{
+    int total = 0;
+    for (auto & el : depthBuffer)
+    {
+        total += el;
+    }
+
+    return total/depthBuffer.size();
 }
 
 
