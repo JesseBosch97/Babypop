@@ -37,7 +37,7 @@ private:
     CompressionDataHandler compressionDataHandler;
     HeadPositionDataHandler headPositionDataHandler;
 
-    std::vector<std::string> handleData(std::string &data, std::string header);
+    std::vector<std::string> collectData(std::string &data, std::string header);
 };
 
 #endif // DATAHANDLER_H

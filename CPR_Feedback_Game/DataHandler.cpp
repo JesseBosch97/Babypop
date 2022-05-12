@@ -47,7 +47,7 @@ void DataHandler::handleData(std::string validdata)
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
       std::cout << "DataHandler: received compression: " << validdata << std::endl;
-      dataCollection = handleData(validdata, COMPRESSION_HEADER);
+      dataCollection = collectData(validdata, COMPRESSION_HEADER);
       compressionFeedback->handleCompression(compressionDataHandler.handleCompression(dataCollection));
    }
 
@@ -65,7 +65,7 @@ void DataHandler::handleSimulatedData(std::string simulatedData)
 }
 
 
-std::vector<std::string> DataHandler::handleData(std::string & data, std::string header)
+std::vector<std::string> DataHandler::collectData(std::string & data, std::string header)
 {
     std::cout << "DataHandler: received data: " << data << std::endl;
 
