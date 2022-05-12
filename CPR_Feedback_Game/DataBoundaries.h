@@ -8,7 +8,7 @@
 class DataToCompressionFeedback
 {
 public:
-    virtual void handleBpmPerformance(int bpm) = 0;
+    virtual void handleCompression(Compression compression) = 0;
 };
 
 class DataToVentilationFeedback

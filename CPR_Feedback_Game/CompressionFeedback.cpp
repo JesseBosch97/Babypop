@@ -6,12 +6,12 @@ CompressionFeedback::CompressionFeedback()
 }
 
 
-void CompressionFeedback::handleBpmPerformance(int bpm)
+void CompressionFeedback::handleCompression(Compression compression)
 {
     if (compressionFeedbackSelected)
     {
         compressionCount++;
-        storeBpmSample(bpm);
+        storeBpmSample(compression.bpm);
 
         if (compressionCount % compressionFeedbackAmount == 0){
             int newBpmPerformanceState = handleBpmPerformanceState();

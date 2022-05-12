@@ -25,7 +25,7 @@ public:
 
     void setCompressionFeedbackAmountSelection(float amount) override;  
     void setCompressionFeedbackSelected(bool state) override;
-    void handleBpmPerformance(int bpm) override;
+    void handleCompression(Compression compression) override;
 
 
 private:

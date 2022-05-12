@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     requestModel.audioPlayer = &audioplayer;
     requestModel.compressionFeedback = &compressionFeedback;
     requestModel.ventilationFeedback = &ventilationFeedback;
+    requestModel.dataHandler = &dataHandler;
     compressionFeedback.audioPlayer = &audioplayer;
     compressionFeedback.viewModel = &viewModel;
     ventilationFeedback.audioPlayer = &audioplayer;

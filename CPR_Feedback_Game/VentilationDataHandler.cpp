@@ -1,14 +1,14 @@
-#include "VolumeDataHandler.h"
+#include "VentilationDataHandler.h"
 
 
 
-VolumeDataHandler::VolumeDataHandler()
+VentilationDataHandler::VentilationDataHandler()
 {
 
 }
 
 
-void VolumeDataHandler::handleVolume(std::string & volumeData, std::string header)
+void VentilationDataHandler::handleVolume(std::string & volumeData, std::string header)
 {
     removeFrom(volumeData, header);
 
@@ -20,14 +20,5 @@ void VolumeDataHandler::handleVolume(std::string & volumeData, std::string heade
 }
 
 
-std::string VolumeDataHandler::copyAndRemoveNextValue(std::string & volumeData)
-{
-    std::string string = copyUntil(volumeData, ',');
-
-    removeFrom(volumeData, string);
-    removeFrom(volumeData, ", ");
-
-    return string;
-}
 
 

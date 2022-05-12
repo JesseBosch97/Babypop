@@ -26,10 +26,19 @@ void RequestModel::airwayCheckboxSelected(bool state)
 
 void RequestModel::compressionButtonPressed()
 {
-   qDebug() << "RequestModel: Compression button pressed";
    lastTimeInterval = timer.restart();
-   qDebug() << "InteractionProcessor: Time interval is " << lastTimeInterval;
-   compressionFeedback->handleBpmPerformance(calculateBPM(lastTimeInterval));
+   int bpm = calculateBPM(lastTimeInterval);
+   int depth = 0; //not yet implemented
+
+   qDebug() << "RequestModel: Compression button pressed";
+   qDebug() << "RequestModel: Time interval is " << lastTimeInterval;
+   qDebug() << "RequestModel: BPM is " << bpm;
+
+   std::string compression = COMPRESSION_HEADER;
+   compression.append(std::to_string(bpm));
+   compression.append(", ");
+   compression.append(std::to_string(depth));
+   dataHandler->handleSimulatedData(compression);
 }
 
 void RequestModel::serialPortSelected(QString portName)
@@ -77,7 +86,6 @@ void RequestModel::airwaySliderMoved(float value)
 
 int RequestModel::calculateBPM(int intervalInMs){
     int beatsPerMinute = 60000/intervalInMs;
-    qDebug()<< "InteractionProcessor: BPM is " << beatsPerMinute;
     return beatsPerMinute;
 }
 

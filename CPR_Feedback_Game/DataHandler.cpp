@@ -22,28 +22,45 @@ void DataHandler::handleData(std::string validdata)
 
    if (detectString(validdata, FINGER_POSITION_HEADER))
    {
-      //std::cout << "DataHandler: finger position detected!" << std::endl;
       fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
-      //std::cout << "DataHandler: volume in detected!" << std::endl;
       volumeDataHandler.handleVolume(validdata, VOLUME_IN_HEADER);
       ventilationFeedback->handleVolumeIn(volumeDataHandler.ventilation);
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
-      //std::cout << "DataHandler: volume out detected!" << std::endl;
       volumeDataHandler.handleVolume(validdata, VOLUME_OUT_HEADER);
       ventilationFeedback->handleVolumeOut(volumeDataHandler.ventilation);
    }
+
+   else if (detectString(validdata, HEAD_POSITION_HEADER))
+   {
+      headPositionDataHandler.handleHeadPosition();
+      headPositionFeedback->handleHeadPosition(headPositionDataHandler.headPosition);
+   }
+
+   else if (detectString(validdata, COMPRESSION_HEADER))
+   {
+      std::cout << "DataHandler: received compression: " << validdata << std::endl;
+      compressionDataHandler.handleCompression(validdata, COMPRESSION_HEADER);
+      compressionFeedback->handleCompression(compressionDataHandler.compression);
+   }
+
+
 
 
    else std::cout << "DataHandler: data not detected!" << std::endl;
 
 
+}
+
+void DataHandler::handleSimulatedData(std::string simulatedData)
+{
+    handleData(simulatedData);
 }
 
 

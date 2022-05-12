@@ -34,3 +34,13 @@ std::string copyUntil(std::string completeString, char endChar)
     return newString;
 }
 
+std::string copyAndRemoveNextValue(std::string & data)
+{
+    std::string string = copyUntil(data, ',');
+
+    removeFrom(data, string);
+    removeFrom(data, ", ");
+
+    return string;
+}
+

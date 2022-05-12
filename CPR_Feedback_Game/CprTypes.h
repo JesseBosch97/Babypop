@@ -21,6 +21,8 @@ struct Ventilation
 
 struct Compression
 {
+    int bpm = 0;
+    int depth = 0;
 };
 
 struct HeadPosition

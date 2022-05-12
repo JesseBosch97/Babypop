@@ -16,6 +16,7 @@ public:
     RequestModelToAudioPlayer * audioPlayer;
     RequestModelToCompressionFeedback * compressionFeedback;
     RequestModelToVentilationFeedback * ventilationFeedback;
+    RequestModelToDataHandler * dataHandler;
 
 
 private:
