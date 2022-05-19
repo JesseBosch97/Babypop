@@ -1,39 +1,12 @@
 #ifndef FINGERPOSITIONFEEDBACK_H
 #define FINGERPOSITIONFEEDBACK_H
 
-#include "FeedbackBoundaries.h"
-#include "DataBoundaries.h"
-#include <iostream>
-#include <vector>
+#include "CprTypes.h"
 
-#define DESIRED_BPM 100
-#define ALLOWED_ERROR 10
-#define COMPRESSION_REPETITIONS 30
-#define BPM_SAMPLE_AMOUNT 5 //should be const
-
-
-
-struct Coordinates
-{
-    float x;
-    float y;
-};
-
-enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
-
-class FingerPositionFeedback : public DataToFingerPositionFeedback
+class FingerPositionFeedback
 {
 public:
-    FingerPositionFeedback();
-
-    FeedbackToAudio * audioPlayer;
-
-    void handleFingerPosition(FingerPosition positionOfFingers) override;
-
-private:
-    location locationOfFingers(FingerPosition positionOfFingers);
-    location calculateLocation(Coordinates);
-    int pressurePoints(FingerPosition positionOfFingers);
+    virtual void handleFingerPosition(FingerPosition fingerPosition) = 0;
 };
 
 #endif // FINGERPOSITIONFEEDBACK_H

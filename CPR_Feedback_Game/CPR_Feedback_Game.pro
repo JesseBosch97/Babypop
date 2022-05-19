@@ -8,7 +8,7 @@ SOURCES += \
         CompressionFeedbackImpl.cpp \
         DataHandler.cpp \
         FingerPositionDataHandler.cpp \
-        FingerPositionFeedback.cpp \
+        FingerPositionFeedbackImpl.cpp \
         HeadPositionFeedback.cpp \
         SerialPort.cpp \
         StringFunctions.cpp \
@@ -41,6 +41,7 @@ HEADERS += \
     FeedbackBoundaries.h \
     FingerPositionDataHandler.h \
     FingerPositionFeedback.h \
+    FingerPositionFeedbackImpl.h \
     HeadPositionFeedback.h \
     RequestModelBoundaries.h \
     SerialPort.h \

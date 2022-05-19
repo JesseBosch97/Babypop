@@ -4,7 +4,7 @@
 #include <QStringListModel>
 
 #include "requestmodel.h"
-#include "FingerPositionFeedback.h"
+#include "FingerPositionFeedbackImpl.h"
 #include "CompressionFeedbackImpl.h"
 #include "audioplayer.h"
 #include "ViewModel.h"
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     Audioplayer audioplayer;
     CompressionFeedbackImpl compressionFeedback;
     VentilationFeedback ventilationFeedback;
-    FingerPositionFeedback fingerPositionFeedback;
+    FingerPositionFeedbackImpl fingerPositionFeedback;
     RequestModel requestModel;
     ViewModel viewModel;
     SerialPort serialPort;

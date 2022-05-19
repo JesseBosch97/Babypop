@@ -14,11 +14,7 @@ public:
     virtual void handleVolumeOut(Ventilation ventilation) = 0;
 };
 
-class DataToFingerPositionFeedback
-{
-public:
-    virtual void handleFingerPosition(FingerPosition fingerPosition) = 0;
-};
+
 
 class DataToHeadPositionFeedback
 {

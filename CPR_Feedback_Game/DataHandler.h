@@ -8,6 +8,7 @@
 #include "DataBoundaries.h"
 #include "RequestModelBoundaries.h"
 #include "CompressionFeedback.h"
+#include "FingerPositionFeedback.h"
 #include "StringFunctions.h"
 
 
@@ -28,7 +29,7 @@ public:
 
     CompressionFeedback * compressionFeedback;
     DataToVentilationFeedback * ventilationFeedback;
-    DataToFingerPositionFeedback * fingerPositionFeedback;
+    FingerPositionFeedback * fingerPositionFeedback;
     DataToHeadPositionFeedback * headPositionFeedback;
 
 private:

@@ -1,13 +1,13 @@
-#include "FingerPositionFeedback.h"
+#include "FingerPositionFeedbackImpl.h"
 
-FingerPositionFeedback::FingerPositionFeedback()
+FingerPositionFeedbackImpl::FingerPositionFeedbackImpl()
 {
 
 }
 
 
 
-void FingerPositionFeedback::handleFingerPosition(FingerPosition positionOfFingers)
+void FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
 
@@ -56,7 +56,7 @@ void FingerPositionFeedback::handleFingerPosition(FingerPosition positionOfFinge
 
 
 
-location FingerPositionFeedback::locationOfFingers(FingerPosition positionOfFingers)
+location FingerPositionFeedbackImpl::locationOfFingers(FingerPosition positionOfFingers)
 {
     Coordinates bottomLeft;
     bottomLeft.x = -1 * positionOfFingers.bottomleft;
@@ -99,7 +99,7 @@ location FingerPositionFeedback::locationOfFingers(FingerPosition positionOfFing
     return calculateLocation(thorax);
 }
 
-location FingerPositionFeedback::calculateLocation(Coordinates thorax)
+location FingerPositionFeedbackImpl::calculateLocation(Coordinates thorax)
 {
     location retval;
     bool up = 0;
@@ -175,7 +175,7 @@ location FingerPositionFeedback::calculateLocation(Coordinates thorax)
     return retval;
 }
 
-int FingerPositionFeedback::pressurePoints(FingerPosition positionOfFingers)
+int FingerPositionFeedbackImpl::pressurePoints(FingerPosition positionOfFingers)
 {
     int pressurePoints = 0;
 
