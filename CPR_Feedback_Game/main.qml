@@ -6,7 +6,7 @@ import StringListModel 1.0
 
 Window {
     width: 1280
-    height: 480
+    height: 720
     visible: true
     title: qsTr("CPR Feedback Game")
     color: "azure"
@@ -113,34 +113,60 @@ Window {
                 visible: false
 
                 Label {
-                    text: "Feedback Amount: " + compressionFeedbackAmountSlider.value
-                }
-
-                Slider {
-                    id: compressionFeedbackAmountSlider
-                    snapMode: "SnapOnRelease"
-                    stepSize: 10
-                    from: 0
-                    value: 90
-                    to: 100
-                    onMoved: RequestModel.compressionSliderMoved(value)
-                    Component.onCompleted: RequestModel.compressionSliderMoved(value)
-                }
-
-                Label {
                     text: "Compression Amount: "
                 }
 
                 SpinBox {
+                    id: compressionAmountBox
+                    from: 0
                     value: 30
+                    onValueChanged: RequestModel.compressionAmountChanged(value)
+                    Component.onCompleted: RequestModel.compressionAmountChanged(value)
                 }
 
                 Label {
-                    text: "Error Margin: "
+                    text: "Feedback every " + compressionFeedbackFrequencyBox.value + " compressions"
                 }
 
                 SpinBox {
+                    id: compressionFeedbackFrequencyBox
                     value: 5
+                    from: 0
+                    to: compressionAmountBox.value
+                    onValueChanged: RequestModel.compressionFeedbackFrequencyChanged(value)
+                    Component.onCompleted: RequestModel.compressionFeedbackFrequencyChanged(value)
+                }
+
+
+                Label {
+                    text: "Allowed BPM error: " + bpmErrorSlider.value + "%"
+                }
+
+                Slider {
+                    id: bpmErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.bpmErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.bpmErrorSliderMoved(value)
+                }
+
+
+                Label {
+                    text: "Allowed depth error: " + depthErrorSlider.value + "%"
+                }
+
+                Slider {
+                    id: depthErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.depthErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.depthErrorSliderMoved(value)
                 }
             }
         }
@@ -199,37 +225,53 @@ Window {
         }
 
         Column {
-            id: airwayColumn
+            id: fingerColumn
 
             CheckBox {
-                id: airwayCheckbox
-                text: "Airway Management"
+                id: fingerCheckbox
+                text: "Finger Position"
                 onCheckStateChanged:
                 {
-                    RequestModel.airwayCheckboxSelected(checkState)
-                    airwaySubColumn.visible = checkState
+                    RequestModel.fingerCheckboxSelected(checkState)
+                    fingerSubColumn.visible = checkState
+                }
+            }
+
+            Column {
+                id: fingerSubColumn
+                visible: false
+
+                Label {
+                    text: "Error Margin: "
+                }
+
+                SpinBox {
+                    value: 5
+                }
+            }
+        }
+
+
+
+
+        Column {
+            id: headPositionColumn
+
+            CheckBox {
+                id: headPositionCheckbox
+                text: "Head Position"
+                onCheckStateChanged:
+                {
+                    RequestModel.headPositionCheckboxSelected(checkState)
+                    headPositionSubColumn.visible = checkState
                 }
 
             }
 
             Column {
-                id: airwaySubColumn
+                id: headPositionSubColumn
                 visible: false
 
-                Label {
-                    text: "Feedback Amount: " + airwayFeedbackAmountSlider.value
-                }
-
-                Slider {
-                    id: airwayFeedbackAmountSlider
-                    snapMode: "SnapOnRelease"
-                    stepSize: 10
-                    from: 0
-                    value: 50
-                    to: 100
-                    onMoved: RequestModel.airwaySliderMoved(value)
-                    Component.onCompleted: RequestModel.airwaySliderMoved(value)
-                }
 
                 Label {
                     text: "Error Margin: "

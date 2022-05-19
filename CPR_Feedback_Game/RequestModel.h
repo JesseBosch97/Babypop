@@ -23,6 +23,7 @@ public:
     DataHandler * dataHandler;
 
 
+
 private:
     QElapsedTimer timer;
     int compressionCount = 0;
@@ -33,17 +34,21 @@ private:
 public slots:
     void compressionCheckboxSelected(bool state);
     void ventilationCheckboxSelected(bool state);
-    void airwayCheckboxSelected(bool state);
+    void headPositionCheckboxSelected(bool state);
+    void fingerCheckboxSelected(bool state);
+
     void compressionButtonPressed();
     void serialPortSelected(QString portName);
     void voiceSelected(QString voice);
     void serialConnectButtonPressed();
-    void compressionSliderMoved(float value);
+
     void ventilationAmountChanged(int value);
     void ventilationFeedbackFrequencyChanged(int value);
-    void airwaySliderMoved(float value);
 
-
+    void compressionAmountChanged(int value);
+    void compressionFeedbackFrequencyChanged(int value);
+    void bpmErrorSliderMoved(float value);
+    void depthErrorSliderMoved(float value);
 };
 
 #endif // REQUESTMODEL_H

@@ -13,10 +13,10 @@ void VentilationFeedbackImpl::handleVolumeIn(Ventilation performance)
     if (ventilationFeedbackSelected)
     {
         std::cout << "FeedbackHandler: volume in is " << performance.volume << std::endl;
-        std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
+        std::cout << "FeedbackHandler: ventilation time is " << performance.timeInMs << std::endl;
 
         volumeInBuffer.push_back(performance.volume);
-        timeVolumeInBuffer.push_back(performance.time);
+        timeVolumeInBuffer.push_back(performance.timeInMs);
         ventilationCount++;
         uint8_t feedBackType = 0;
 

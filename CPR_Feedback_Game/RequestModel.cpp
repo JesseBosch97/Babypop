@@ -6,11 +6,32 @@ RequestModel::RequestModel(QObject *parent)
    Q_UNUSED(parent)
 }
 
-void RequestModel::compressionCheckboxSelected(bool state)
+
+
+void RequestModel::serialPortSelected(QString portName)
 {
-   qDebug() << "RequestModel: compression checkbox is" << state;
-   compressionFeedback->setCompressionFeedbackSelected(state);
+   serialPort->serialPortSelected(portName);
 }
+
+void RequestModel::serialConnectButtonPressed()
+{
+   qDebug() << "RequestModel: Serial connect button pressed";
+   serialPort->serialConnectButtonPressed();
+}
+
+
+void RequestModel::voiceSelected(QString voice)
+{
+   audioPlayer->voiceSelected(voice);
+   qDebug() << "RequestModel: selected voice is: " << voice;
+
+}
+
+
+
+
+
+
 
 void RequestModel::ventilationCheckboxSelected(bool state)
 {
@@ -18,11 +39,72 @@ void RequestModel::ventilationCheckboxSelected(bool state)
    ventilationFeedback->setVentilationFeedbackSelected(state);
 }
 
-void RequestModel::airwayCheckboxSelected(bool state)
+
+void RequestModel::ventilationAmountChanged(int value)
 {
-   qDebug() << "RequestModel: airway checkbox is" << state;
+    qDebug() << "RequestModel: Ventilation amount changed to " << value;
+    ventilationFeedback->setVentilationAmount(value);
+}
+
+void RequestModel::ventilationFeedbackFrequencyChanged(int value)
+{
+    qDebug() << "RequestModel: Ventilation feedback frequency changed to " << value;
+    ventilationFeedback->setVentilationFeedbackFrequency(value);
+}
+
+
+
+
+
+void RequestModel::headPositionCheckboxSelected(bool state)
+{
+   qDebug() << "RequestModel: head position checkbox is" << state;
    //TODO
 }
+
+void RequestModel::fingerCheckboxSelected(bool state)
+{
+    qDebug() << "RequestModel: finger position checkbox is" << state;
+
+}
+
+
+
+
+
+void RequestModel::compressionCheckboxSelected(bool state)
+{
+   qDebug() << "RequestModel: Compression checkbox is" << state;
+   compressionFeedback->setCompressionFeedbackSelected(state);
+}
+
+void RequestModel::compressionAmountChanged(int value)
+{
+    qDebug() << "RequestModel: Compression amount changed to " << value;
+    compressionFeedback->setCompressionAmount(value);
+}
+
+void RequestModel::compressionFeedbackFrequencyChanged(int value)
+{
+    qDebug() << "RequestModel: Compression feedback frequency changed to " << value;
+    compressionFeedback->setCompressionFeedbackFrequency(value);
+}
+
+void RequestModel::bpmErrorSliderMoved(float value)
+{
+    qDebug() << "RequestModel: Bpm error slider moved to " << value;
+    compressionFeedback->setBpmError(value);
+}
+
+void RequestModel::depthErrorSliderMoved(float value)
+{
+    qDebug() << "RequestModel: Depth error slider moved to " << value;
+    compressionFeedback->setDepthError(value);
+}
+
+
+
+
 
 void RequestModel::compressionButtonPressed()
 {
@@ -40,48 +122,6 @@ void RequestModel::compressionButtonPressed()
    compression.append(std::to_string(depth));
    dataHandler->handleData(compression);
 }
-
-void RequestModel::serialPortSelected(QString portName)
-{
-   serialPort->serialPortSelected(portName);
-}
-
-void RequestModel::voiceSelected(QString voice)
-{
-   audioPlayer->voiceSelected(voice);
-   qDebug() << "RequestModel: selected voice is: " << voice;
-
-}
-
-void RequestModel::serialConnectButtonPressed()
-{
-   qDebug() << "RequestModel: Serial connect button pressed";
-   serialPort->serialConnectButtonPressed();
-}
-
-void RequestModel::compressionSliderMoved(float value)
-{
-   compressionFeedback->setCompressionFeedbackAmountSelection(value);
-}
-
-void RequestModel::ventilationAmountChanged(int value)
-{
-    qDebug() << "RequestModel: Ventilation amount changed to " << value;
-    ventilationFeedback->setVentilationAmount(value);
-}
-
-void RequestModel::ventilationFeedbackFrequencyChanged(int value)
-{
-    qDebug() << "RequestModel: Ventilation feedback frequency changed to " << value;
-    ventilationFeedback->setVentilationFeedbackFrequency(value);
-}
-
-void RequestModel::airwaySliderMoved(float value)
-{
-   qDebug() << "RequestModel: Airway slider is: " << value;
-   //TODO
-}
-
 
 
 int RequestModel::calculateBPM(int intervalInMs){

@@ -88,7 +88,7 @@ Compression DataHandlerImpl::handleCompression(std::vector<std::string> compress
 {
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
-    compression.depth = stoi(compressionData.at(1));
+    compression.depthInCm = stoi(compressionData.at(1));
     return compression;
 }
 
@@ -96,7 +96,7 @@ Ventilation DataHandlerImpl::handleVentilation(std::vector<std::string> ventilat
 {
     Ventilation ventilation;
     ventilation.volume = stof(ventilationData.at(0));
-    ventilation.time = stoi(ventilationData.at(1));
+    ventilation.timeInMs = stoi(ventilationData.at(1));
     return ventilation;
 }
 

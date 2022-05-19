@@ -9,10 +9,9 @@
 #include <vector>
 #include "AudioPlayer.h"
 
-#define DESIRED_BPM 100
-#define ALLOWED_ERROR 10
-#define COMPRESSION_REPETITIONS 30
-#define BPM_SAMPLE_AMOUNT 5 //should be const
+
+
+
 
 
 
@@ -25,8 +24,13 @@ public:
     AudioPlayer * audioPlayer;
     ViewModel * viewModel;
 
-    void setCompressionFeedbackAmountSelection(float amount) override;  
+    void setCompressionFeedbackFrequency(int amount) override;
+    void setCompressionAmount(int amount) override;
     void setCompressionFeedbackSelected(bool state) override;
+    void setBpmError(float percentage) override;
+    void setDepthError(float percentage) override;
+
+
     void handleCompression(Compression compression) override;
 
 
@@ -34,17 +38,20 @@ private:
     std::vector<int> bpmBuffer;
     std::vector<int> depthBuffer;
     int compressionCount = 0;
-    int evaluateCompression();
+    float allowedBpmError = 0;
+    float allowedDepthError = 0;
+
     bool compressionFeedbackSelected = false;
     int compressionFeedbackFrequency = 0;
+    int compressionFeedbackAmount = 0;
 
-
-    int compressionFeedbackAmountPercentage = 0;
-    int bpmPerformanceState = 0;
-    int evaluateBpm();
+    int evaluateCompression();
     int calculateAverageBpm();
     int calculateAverageDepth();
-    int evaluateDepth();
+
+    const float DESIRED_DEPTH = 3;
+    const float DESIRED_BPM = 120;
+
 };
 
 #endif // COMPRESSIONFEEDBACKIMPL_H

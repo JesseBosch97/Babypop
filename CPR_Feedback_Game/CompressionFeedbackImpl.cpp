@@ -5,6 +5,34 @@ CompressionFeedbackImpl::CompressionFeedbackImpl()
 
 }
 
+void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool state)
+{
+    this->compressionFeedbackSelected = state;
+    if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
+}
+
+void CompressionFeedbackImpl::setBpmError(float percentage)
+{
+    this->allowedBpmError = DESIRED_BPM * percentage/100;
+    std::cout << "CompressionFeedback: allowed bpm error is :" << this->allowedBpmError << std::endl;
+}
+
+void CompressionFeedbackImpl::setDepthError(float percentage)
+{
+    this->allowedDepthError = DESIRED_DEPTH * percentage/100;
+    std::cout << "CompressionFeedback: allowed depth error is :" << this->allowedDepthError << std::endl;
+}
+
+void CompressionFeedbackImpl::setCompressionFeedbackFrequency(int amount)
+{
+    this->compressionFeedbackFrequency = amount;
+}
+
+void CompressionFeedbackImpl::setCompressionAmount(int amount)
+{
+    this->compressionFeedbackAmount = amount;
+}
+
 
 void CompressionFeedbackImpl::handleCompression(Compression compression)
 {
@@ -12,99 +40,50 @@ void CompressionFeedbackImpl::handleCompression(Compression compression)
     {
         compressionCount++;
         bpmBuffer.push_back(compression.bpm);
-        depthBuffer.push_back(compression.depth);
+        depthBuffer.push_back(compression.depthInCm);
 
-        if (compressionCount % compressionFeedbackFrequency == 0){
-            int newBpmPerformanceState = evaluateCompression();
+        uint8_t feedbackType = 0;
 
-            if ((PERFECT == bpmPerformanceState) == newBpmPerformanceState){
-                //do nothing
-            }
-
-            else if (PERFECT == newBpmPerformanceState){
-                bpmPerformanceState = newBpmPerformanceState;
-                audioPlayer->giveFeedback(bpmPerformanceState);
-            }
-
-            else {
-                bpmPerformanceState = newBpmPerformanceState;
-                audioPlayer->giveFeedback(bpmPerformanceState);
-            }
+        if (compressionCount > compressionFeedbackAmount)
+        {
+            feedbackType = TOO_MANY;
         }
+
+        else if (compressionCount % compressionFeedbackFrequency == 0){
+
+            int averageBpm = calculateAverageBpm();
+            int averageDepth = calculateAverageDepth();
+
+            if (averageDepth > DESIRED_DEPTH  + allowedDepthError )
+            {
+                feedbackType = TOO_DEEP;
+            }
+
+            else if (averageDepth < DESIRED_DEPTH  - allowedDepthError )
+            {
+                feedbackType = TOO_SHALLOW;
+            }
+
+            else if (averageBpm < DESIRED_BPM - allowedBpmError){
+                feedbackType = TOO_SLOW;
+            }
+
+            else if (averageBpm > DESIRED_BPM + allowedBpmError) {
+                feedbackType = TOO_FAST;
+            }
+
+            bpmBuffer.clear();
+            depthBuffer.clear();
+        }
+
+        if (feedbackType > 0) audioPlayer->giveFeedback(feedbackType);
     }
 }
 
 
-void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool state)
-{
-    this->compressionFeedbackSelected = state;
-   if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
-}
 
 
-void CompressionFeedbackImpl::setCompressionFeedbackAmountSelection(float amount)
-{
-    if (this->compressionFeedbackAmountPercentage != int(amount))
-    {
-        this->compressionFeedbackAmountPercentage = int(amount);
-        std::cout << "Feedback Handler: compressionFeedBackAmountPercentage changed to: " << this->compressionFeedbackAmountPercentage << std::endl;
 
-        this->compressionFeedbackFrequency = COMPRESSION_REPETITIONS - int((COMPRESSION_REPETITIONS * (this->compressionFeedbackAmountPercentage*0.01))) + 1;
-        std::cout << "Feedback Handler: compressionFeedbackAmount changed to: " << this->compressionFeedbackFrequency << std::endl;
-    }
-}
-
-
-int CompressionFeedbackImpl::evaluateBpm()
-{
-    int bpmPerformance = NEUTRAL;
-    int averageBpm = calculateAverageBpm();
-
-    if (averageBpm < DESIRED_BPM - ALLOWED_ERROR){
-        bpmPerformance = TOO_SLOW;
-    }
-    else if (averageBpm > DESIRED_BPM + ALLOWED_ERROR) {
-        bpmPerformance = TOO_FAST;
-    }
-    else {
-        bpmPerformance = PERFECT;
-    }
-
-    bpmBuffer.clear();
-
-    return bpmPerformance;
-}
-
-int CompressionFeedbackImpl::evaluateDepth()
-{
-    int depthPerformance = NEUTRAL;
-    int averageDepth = calculateAverageDepth();
-
-//    if (averageBpm < DESIRED_BPM - ALLOWED_ERROR){
-//        depthPerformance = TOO_SLOW;
-//    }
-//    else if (averageBpm > DESIRED_BPM + ALLOWED_ERROR) {
-//        depthPerformance = TOO_FAST;
-//    }
-//    else {
-//        depthPerformance = PERFECT;
-//    }
-
-    bpmBuffer.clear();
-
-    return depthPerformance;
-}
-
-int CompressionFeedbackImpl::evaluateCompression()
-{
-    if (compressionCount < COMPRESSION_REPETITIONS){
-        return evaluateBpm();
-    }
-    else {
-        compressionCount = 0;
-        return TOO_MANY;
-    }
-}
 
 
 int CompressionFeedbackImpl::calculateAverageBpm()

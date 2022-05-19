@@ -8,11 +8,6 @@
 #include <iostream>
 #include <vector>
 
-#define DESIRED_BPM 100
-#define ALLOWED_ERROR 10
-#define COMPRESSION_REPETITIONS 30
-#define BPM_SAMPLE_AMOUNT 5 //should be const
-
 
 
 struct Coordinates
