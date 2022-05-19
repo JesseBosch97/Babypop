@@ -1,9 +1,10 @@
 #ifndef FINGERPOSITIONFEEDBACKIMPL_H
 #define FINGERPOSITIONFEEDBACKIMPL_H
 
-#include "FeedbackBoundaries.h"
-#include "DataBoundaries.h"
+#include "ViewModel.h"
+#include "HeadPositionFeedback.h"
 #include "FingerPositionFeedback.h"
+#include "AudioPlayer.h"
 #include <iostream>
 #include <vector>
 
@@ -27,7 +28,7 @@ class FingerPositionFeedbackImpl : public FingerPositionFeedback
 public:
     FingerPositionFeedbackImpl();
 
-    FeedbackToAudio * audioPlayer;
+    AudioPlayer * audioPlayer;
 
     void handleFingerPosition(FingerPosition positionOfFingers) override;
 

@@ -1,12 +1,12 @@
-#include "VentilationFeedback.h"
+#include "VentilationFeedbackImpl.h"
 
-VentilationFeedback::VentilationFeedback()
+VentilationFeedbackImpl::VentilationFeedbackImpl()
 {
 
 
 }
 
-VentilationFeedback::~VentilationFeedback()
+VentilationFeedbackImpl::~VentilationFeedbackImpl()
 {
 
 }
@@ -15,7 +15,7 @@ VentilationFeedback::~VentilationFeedback()
 
 
 
-void VentilationFeedback::handleVolumeIn(Ventilation performance)
+void VentilationFeedbackImpl::handleVolumeIn(Ventilation performance)
 {
     if (ventilationFeedbackSelected)
     {
@@ -66,7 +66,7 @@ void VentilationFeedback::handleVolumeIn(Ventilation performance)
 }
 
 
-float VentilationFeedback::calculateAverageVolume()
+float VentilationFeedbackImpl::calculateAverageVolume()
 {
     float total = 0;
     for (auto & el : volumeInBuffer)
@@ -77,7 +77,7 @@ float VentilationFeedback::calculateAverageVolume()
     return total/volumeInBuffer.size();
 }
 
-float VentilationFeedback::calculateAverageTime()
+float VentilationFeedbackImpl::calculateAverageTime()
 {
     float total = 0;
     for (auto & el : timeVolumeInBuffer)
@@ -89,7 +89,7 @@ float VentilationFeedback::calculateAverageTime()
 }
 
 
-void VentilationFeedback::handleVolumeOut(Ventilation performance)
+void VentilationFeedbackImpl::handleVolumeOut(Ventilation performance)
 {
     if (ventilationFeedbackSelected)
     {
@@ -99,19 +99,19 @@ void VentilationFeedback::handleVolumeOut(Ventilation performance)
 }
 
 
-void VentilationFeedback::setVentilationFeedbackSelected(bool state)
+void VentilationFeedbackImpl::setVentilationFeedbackSelected(bool state)
 {
     this->ventilationFeedbackSelected = state;
     if (state == true) audioPlayer->giveFeedback(START_VENTILATION);
 }
 
-void VentilationFeedback::setVentilationFeedbackFrequency(int amount)
+void VentilationFeedbackImpl::setVentilationFeedbackFrequency(int amount)
 {
     this->ventilationFeedbackFrequency = amount;
     ventilationCount = 0;
 }
 
-void VentilationFeedback::setVentilationAmount(int amount)
+void VentilationFeedbackImpl::setVentilationAmount(int amount)
 {
     this->ventilationAmount = amount;
     ventilationCount = 0;

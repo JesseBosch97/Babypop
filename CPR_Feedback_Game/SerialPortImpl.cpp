@@ -1,29 +1,29 @@
-#include "SerialPort.h"
+#include "SerialPortImpl.h"
 
 
-SerialPort::SerialPort(QObject *parent)
+SerialPortImpl::SerialPortImpl(QObject *parent)
 {
     Q_UNUSED(parent)
     getSerialPortInformation();
-    connect(&serialPort, &QSerialPort::errorOccurred, this, &SerialPort::handleError);
-    connect(&serialPort, &QSerialPort::readyRead, this, &SerialPort::readData);
+    connect(&serialPort, &QSerialPort::errorOccurred, this, &SerialPortImpl::handleError);
+    connect(&serialPort, &QSerialPort::readyRead, this, &SerialPortImpl::readData);
 }
 
-SerialPort::~SerialPort()
+SerialPortImpl::~SerialPortImpl()
 {
 }
 
-void SerialPort::serialPortSelected(QString portName)
+void SerialPortImpl::serialPortSelected(QString portName)
 {
     this->selectedPortName = portName;
 }
 
-void SerialPort::serialConnectButtonPressed()
+void SerialPortImpl::serialConnectButtonPressed()
 {
     openSerialPort();
 }
 
-void SerialPort::openSerialPort()
+void SerialPortImpl::openSerialPort()
 {
    serialPort.setPortName(selectedPortName);
    serialPort.setBaudRate(9600);
@@ -34,7 +34,7 @@ void SerialPort::openSerialPort()
    serialPort.open(QIODevice::ReadWrite);
 }
 
-void SerialPort::getSerialPortInformation()
+void SerialPortImpl::getSerialPortInformation()
 {
    const auto infos = QSerialPortInfo::availablePorts();
 
@@ -45,7 +45,7 @@ void SerialPort::getSerialPortInformation()
    portListModel.setStringList(portList);
 }
 
-void SerialPort::readData()
+void SerialPortImpl::readData()
 {
     validData.append(serialPort.readAll());
 
@@ -58,7 +58,7 @@ void SerialPort::readData()
     }
 }
 
-void SerialPort::handleError()
+void SerialPortImpl::handleError()
 {
     std::cout << "error occured" << std::endl;
 }

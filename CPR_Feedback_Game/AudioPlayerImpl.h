@@ -1,17 +1,19 @@
-#ifndef AUDIOPLAYER_H
-#define AUDIOPLAYER_H
+#ifndef AUDIOPLAYERIMPL_H
+#define AUDIOPLAYERIMPL_H
 
 #include <QMediaPlayer>
-#include "FeedbackBoundaries.h"
-#include "RequestModelBoundaries.h"
+#include "ViewModel.h"
+#include "DataHandler.h"
+#include "AudioPlayer.h"
 #include "unordered_map"
+#include "CprTypes.h"
 
 
 
-class Audioplayer : public FeedbackToAudio, public RequestModelToAudioPlayer
+class AudioPlayerImpl : public AudioPlayer
 {
 public:
-    Audioplayer();
+    AudioPlayerImpl();
 
     void giveFeedback(int feedbackType) override;
     void voiceSelected(QString voice) override;
@@ -19,7 +21,7 @@ public:
 
 
 private:
-    QString createURL(QString word);
+    QString createSoundURL(QString word);
     QMediaPlayer player;
     QString selectedVoice = "maleTTS";
     void playSound();
@@ -47,4 +49,4 @@ private:
 
 };
 
-#endif // AUDIOPLAYER_H
+#endif // AUDIOPLAYERIMPL_H

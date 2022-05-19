@@ -1,32 +1,15 @@
 #ifndef VIEWMODEL_H
 #define VIEWMODEL_H
 
-#include <QObject>
-#include <QDebug>
-#include "FeedbackBoundaries.h"
 
-class ViewModel : public QObject, public FeedbackToViewModel
+
+
+
+class ViewModel
 {
-   Q_OBJECT
-   Q_PROPERTY(QString feedbackAmount READ feedbackAmount NOTIFY feedbackAmountChanged)
-
 public:
-   explicit ViewModel(QObject *parent = nullptr);
-
-   void feedbackAmountSelected(int feedbackAmount) override;
-
-   void setFeedbackAmount(const QString &v);
-
-   QString feedbackAmount() const;
-
-
-private:
-   QString m_feedbackAmount = "";
-
-
-signals:
-   void feedbackAmountChanged();
-
+    virtual void feedbackAmountSelected(int feedbackAmount) = 0;
 };
+
 
 #endif // VIEWMODEL_H

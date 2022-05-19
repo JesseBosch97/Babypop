@@ -1,12 +1,13 @@
 #ifndef COMPRESSIONFEEDBACKIMPL_H
 #define COMPRESSIONFEEDBACKIMPL_H
 
-#include "FeedbackBoundaries.h"
-#include "DataBoundaries.h"
-#include "RequestModelBoundaries.h"
+#include "ViewModel.h"
+#include "HeadPositionFeedback.h"
+#include "DataHandler.h"
 #include "CompressionFeedback.h"
 #include <iostream>
 #include <vector>
+#include "AudioPlayer.h"
 
 #define DESIRED_BPM 100
 #define ALLOWED_ERROR 10
@@ -21,8 +22,8 @@ class CompressionFeedbackImpl : public CompressionFeedback
 public:
     CompressionFeedbackImpl();
 
-    FeedbackToAudio * audioPlayer;
-    FeedbackToViewModel * viewModel;
+    AudioPlayer * audioPlayer;
+    ViewModel * viewModel;
 
     void setCompressionFeedbackAmountSelection(float amount) override;  
     void setCompressionFeedbackSelected(bool state) override;

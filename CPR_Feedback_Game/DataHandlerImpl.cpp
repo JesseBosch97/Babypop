@@ -1,4 +1,4 @@
-#include "DataHandler.h"
+#include "DataHandlerImpl.h"
 
 #include <algorithm>
 
@@ -7,12 +7,12 @@
 
 
 
-DataHandler::DataHandler()
+DataHandlerImpl::DataHandlerImpl()
 {
 
 }
 
-DataHandler::~DataHandler()
+DataHandlerImpl::~DataHandlerImpl()
 {
 
 }
@@ -21,7 +21,7 @@ DataHandler::~DataHandler()
 //[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n
 
 
-void DataHandler::handleData(std::string validdata)
+void DataHandlerImpl::handleData(std::string validdata)
 {
    std::vector<std::string> dataCollection;
 
@@ -64,13 +64,13 @@ void DataHandler::handleData(std::string validdata)
 
 }
 
-void DataHandler::handleSimulatedData(std::string simulatedData)
+void DataHandlerImpl::handleSimulatedData(std::string simulatedData)
 {
     handleData(simulatedData);
 }
 
 
-std::vector<std::string> DataHandler::collectData(std::string & data)
+std::vector<std::string> DataHandlerImpl::collectData(std::string & data)
 {
     std::cout << "DataHandler: received data: " << data << std::endl;
 
@@ -90,7 +90,7 @@ std::vector<std::string> DataHandler::collectData(std::string & data)
     return dataCollection;
 }
 
-Compression DataHandler::handleCompression(std::vector<std::string> compressionData)
+Compression DataHandlerImpl::handleCompression(std::vector<std::string> compressionData)
 {
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
@@ -98,7 +98,7 @@ Compression DataHandler::handleCompression(std::vector<std::string> compressionD
     return compression;
 }
 
-Ventilation DataHandler::handleVentilation(std::vector<std::string> ventilationData)
+Ventilation DataHandlerImpl::handleVentilation(std::vector<std::string> ventilationData)
 {
     Ventilation ventilation;
     ventilation.volume = stof(ventilationData.at(0));
@@ -106,7 +106,7 @@ Ventilation DataHandler::handleVentilation(std::vector<std::string> ventilationD
     return ventilation;
 }
 
-HeadPosition DataHandler::handleHeadPosition(std::vector<std::string> headPositionData)
+HeadPosition DataHandlerImpl::handleHeadPosition(std::vector<std::string> headPositionData)
 {
     HeadPosition headPosition;
     return headPosition;

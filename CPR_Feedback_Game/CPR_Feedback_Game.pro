@@ -5,18 +5,18 @@ QT += quick multimedia serialport
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        AudioPlayerImpl.cpp \
         CompressionFeedbackImpl.cpp \
-        DataHandler.cpp \
+        DataHandlerImpl.cpp \
         FingerPositionDataHandler.cpp \
         FingerPositionFeedbackImpl.cpp \
-        HeadPositionFeedback.cpp \
-        SerialPort.cpp \
+        HeadPositionFeedbackImpl.cpp \
+        RequestModel.cpp \
+        SerialPortImpl.cpp \
         StringFunctions.cpp \
-        VentilationFeedback.cpp \
-        ViewModel.cpp \
-        audioplayer.cpp \
-        main.cpp \
-        requestmodel.cpp
+        VentilationFeedbackImpl.cpp \
+        ViewModelImpl.cpp \
+        main.cpp
 
 RESOURCES += qml.qrc \
    sounds.qrc
@@ -33,21 +33,23 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    AudioPlayer.h \
+    AudioPlayerImpl.h \
     CompressionFeedback.h \
     CompressionFeedbackImpl.h \
     CprTypes.h \
-    DataBoundaries.h \
     DataHandler.h \
-    FeedbackBoundaries.h \
+    DataHandlerImpl.h \
     FingerPositionDataHandler.h \
     FingerPositionFeedback.h \
     FingerPositionFeedbackImpl.h \
     HeadPositionFeedback.h \
-    RequestModelBoundaries.h \
+    HeadPositionFeedbackImpl.h \
+    RequestModel.h \
     SerialPort.h \
-    SerialPortBoundary.h \
+    SerialPortImpl.h \
     StringFunctions.h \
     VentilationFeedback.h \
+    VentilationFeedbackImpl.h \
     ViewModel.h \
-    audioplayer.h \
-    requestmodel.h
+    ViewModelImpl.h

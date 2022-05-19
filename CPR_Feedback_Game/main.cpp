@@ -3,14 +3,14 @@
 #include <QQmlContext>
 #include <QStringListModel>
 
-#include "requestmodel.h"
+#include "RequestModel.h"
 #include "FingerPositionFeedbackImpl.h"
 #include "CompressionFeedbackImpl.h"
-#include "audioplayer.h"
-#include "ViewModel.h"
-#include "SerialPort.h"
-#include "DataHandler.h"
-#include "VentilationFeedback.h"
+#include "AudioPlayerImpl.h"
+#include "ViewModelImpl.h"
+#include "SerialPortImpl.h"
+#include "DataHandlerImpl.h"
+#include "VentilationFeedbackImpl.h"
 
 
 
@@ -22,14 +22,14 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     //create objects
-    Audioplayer audioplayer;
+    AudioPlayerImpl audioplayer;
     CompressionFeedbackImpl compressionFeedback;
-    VentilationFeedback ventilationFeedback;
+    VentilationFeedbackImpl ventilationFeedback;
     FingerPositionFeedbackImpl fingerPositionFeedback;
     RequestModel requestModel;
-    ViewModel viewModel;
-    SerialPort serialPort;
-    DataHandler dataHandler;
+    ViewModelImpl viewModel;
+    SerialPortImpl serialPort;
+    DataHandlerImpl dataHandler;
 
 
     //connect objects
