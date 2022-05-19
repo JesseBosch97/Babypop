@@ -15,6 +15,7 @@ class AudioPlayerImpl : public AudioPlayer
 public:
     AudioPlayerImpl();
 
+
     void giveFeedback(int feedbackType) override;
     void voiceSelected(QString voice) override;
     void giveFingerPositionFeedback(int fingerFeedback) override;

@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "FingerPositionDataHandler.h"
-
 #include "HeadPositionFeedback.h"
 #include "DataHandler.h"
 #include "CompressionFeedback.h"

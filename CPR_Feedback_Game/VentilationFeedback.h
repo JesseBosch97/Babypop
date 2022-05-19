@@ -6,6 +6,7 @@
 class VentilationFeedback
 {
 public:
+   virtual ~VentilationFeedback() = default;
    virtual void handleVolumeIn(Ventilation ventilation) = 0;
    virtual void handleVolumeOut(Ventilation ventilation) = 0;
    virtual void setVentilationFeedbackFrequency(int amount) = 0;

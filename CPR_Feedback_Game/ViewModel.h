@@ -8,6 +8,7 @@
 class ViewModel
 {
 public:
+   virtual ~ViewModel() = default;
     virtual void feedbackAmountSelected(int feedbackAmount) = 0;
 };
 

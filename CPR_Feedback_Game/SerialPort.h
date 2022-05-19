@@ -6,6 +6,7 @@
 class SerialPort
 {
 public:
+   virtual ~SerialPort() = default;
     virtual void serialPortSelected(QString portName) = 0;
     virtual void serialConnectButtonPressed() = 0;
 };

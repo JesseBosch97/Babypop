@@ -9,6 +9,7 @@
 class DataHandler
 {
 public:
+   virtual ~DataHandler() = default;
    virtual void handleData(std::string validdata) = 0;
 };
 

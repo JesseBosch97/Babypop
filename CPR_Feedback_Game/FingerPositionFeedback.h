@@ -6,6 +6,7 @@
 class FingerPositionFeedback
 {
 public:
+   virtual ~FingerPositionFeedback() = default;
     virtual void handleFingerPosition(FingerPosition fingerPosition) = 0;
 };
 
