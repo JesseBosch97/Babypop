@@ -64,10 +64,7 @@ void DataHandlerImpl::handleData(std::string validdata)
 
 }
 
-void DataHandlerImpl::handleSimulatedData(std::string simulatedData)
-{
-    handleData(simulatedData);
-}
+
 
 
 std::vector<std::string> DataHandlerImpl::collectData(std::string & data)

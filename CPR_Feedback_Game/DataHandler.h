@@ -9,7 +9,6 @@
 class DataHandler
 {
 public:
-    virtual void handleSimulatedData(std::string simulatedData) = 0;
    virtual void handleData(std::string validdata) = 0;
 };
 

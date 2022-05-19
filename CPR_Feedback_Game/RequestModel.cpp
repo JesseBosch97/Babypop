@@ -38,7 +38,7 @@ void RequestModel::compressionButtonPressed()
    compression.append(std::to_string(bpm));
    compression.append(", ");
    compression.append(std::to_string(depth));
-   dataHandler->handleSimulatedData(compression);
+   dataHandler->handleData(compression);
 }
 
 void RequestModel::serialPortSelected(QString portName)

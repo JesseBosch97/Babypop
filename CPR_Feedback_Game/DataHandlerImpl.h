@@ -2,7 +2,7 @@
 #define DATAHANDLERIMPL_H
 
 #include <iostream>
-#include "SerialPortBoundary.h"
+
 #include "FingerPositionDataHandler.h"
 
 #include "HeadPositionFeedback.h"
@@ -26,8 +26,7 @@ public:
     explicit DataHandlerImpl();
     ~DataHandlerImpl();
 
-    void handleData(std::string validdata) override; // from serial port
-    void handleSimulatedData(std::string simulatedData) override; // from request model
+    void handleData(std::string validdata) override;
 
     CompressionFeedback * compressionFeedback;
     VentilationFeedback * ventilationFeedback;

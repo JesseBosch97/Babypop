@@ -7,7 +7,6 @@
 #include <QDebug>
 #include <QStringListModel>
 #include "DataHandler.h"
-#include "SerialPortBoundary.h"
 #include "SerialPort.h"
 
 
