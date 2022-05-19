@@ -26,11 +26,7 @@ void removeFrom(std::string & completeString, std::string unwantedString)
 std::string copyUntil(std::string completeString, char endChar)
 {
     std::size_t found = completeString.find_first_of(endChar);
-    char buffer[found];
-
-    completeString.copy(buffer, found, 0);
-    std::string newString(buffer);
-
+    std::string newString = completeString.substr(0, found);
     return newString;
 }
 

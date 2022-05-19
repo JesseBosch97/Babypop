@@ -78,7 +78,9 @@ std::vector<std::string> DataHandler::collectData(std::string & data)
 
     size_t numberOfDataPoints = std::count(data.begin(), data.end(), ',');
 
-    for (auto i = 0; i < static_cast<int>(numberOfDataPoints); i++)
+    std::cout << "DataHandler: number of data is: " << numberOfDataPoints << std::endl;
+
+    for (int i = 0; i < static_cast<int>(numberOfDataPoints); i++)
     {
         dataCollection.push_back(copyAndRemoveNextValue(data));
     }
