@@ -1,6 +1,7 @@
 #ifndef REQUESTMODELBOUNDARIES_H
 #define REQUESTMODELBOUNDARIES_H
 
+#include "CprTypes.h"
 #include <QString>
 
 
@@ -17,12 +18,7 @@ public:
    virtual void voiceSelected(QString voice) = 0;
 };
 
-class RequestModelToCompressionFeedback
-{
-public:
-   virtual void setCompressionFeedbackAmountSelection(float amount) = 0;
-   virtual void setCompressionFeedbackSelected(bool state) = 0;
-};
+
 
 class RequestModelToVentilationFeedback
 {

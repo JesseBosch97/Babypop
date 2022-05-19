@@ -5,7 +5,7 @@
 
 #include "requestmodel.h"
 #include "FingerPositionFeedback.h"
-#include "CompressionFeedback.h"
+#include "CompressionFeedbackImpl.h"
 #include "audioplayer.h"
 #include "ViewModel.h"
 #include "SerialPort.h"
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
     //create objects
     Audioplayer audioplayer;
-    CompressionFeedback compressionFeedback;
+    CompressionFeedbackImpl compressionFeedback;
     VentilationFeedback ventilationFeedback;
     FingerPositionFeedback fingerPositionFeedback;
     RequestModel requestModel;

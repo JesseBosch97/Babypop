@@ -5,7 +5,7 @@ QT += quick multimedia serialport
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        CompressionFeedback.cpp \
+        CompressionFeedbackImpl.cpp \
         DataHandler.cpp \
         FingerPositionDataHandler.cpp \
         FingerPositionFeedback.cpp \
@@ -34,6 +34,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     CompressionFeedback.h \
+    CompressionFeedbackImpl.h \
     CprTypes.h \
     DataBoundaries.h \
     DataHandler.h \

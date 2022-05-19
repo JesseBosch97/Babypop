@@ -5,11 +5,7 @@
 
 
 
-class DataToCompressionFeedback
-{
-public:
-    virtual void handleCompression(Compression compression) = 0;
-};
+
 
 class DataToVentilationFeedback
 {

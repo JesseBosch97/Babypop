@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QElapsedTimer>
 #include "RequestModelBoundaries.h"
+#include "CompressionFeedback.h"
 
 class RequestModel : public QObject
 {
@@ -14,7 +15,7 @@ public:
     RequestModel(QObject* parent = nullptr);
     RequestModelToSerialPort * serialPort;
     RequestModelToAudioPlayer * audioPlayer;
-    RequestModelToCompressionFeedback * compressionFeedback;
+    CompressionFeedback * compressionFeedback;
     RequestModelToVentilationFeedback * ventilationFeedback;
     RequestModelToDataHandler * dataHandler;
 

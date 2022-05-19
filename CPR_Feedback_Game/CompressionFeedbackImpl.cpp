@@ -1,12 +1,12 @@
-#include "CompressionFeedback.h"
+#include "CompressionFeedbackImpl.h"
 
-CompressionFeedback::CompressionFeedback()
+CompressionFeedbackImpl::CompressionFeedbackImpl()
 {
 
 }
 
 
-void CompressionFeedback::handleCompression(Compression compression)
+void CompressionFeedbackImpl::handleCompression(Compression compression)
 {
     if (compressionFeedbackSelected)
     {
@@ -35,14 +35,14 @@ void CompressionFeedback::handleCompression(Compression compression)
 }
 
 
-void CompressionFeedback::setCompressionFeedbackSelected(bool state)
+void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool state)
 {
     this->compressionFeedbackSelected = state;
    if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
 }
 
 
-void CompressionFeedback::setCompressionFeedbackAmountSelection(float amount)
+void CompressionFeedbackImpl::setCompressionFeedbackAmountSelection(float amount)
 {
     if (this->compressionFeedbackAmountPercentage != int(amount))
     {
@@ -55,7 +55,7 @@ void CompressionFeedback::setCompressionFeedbackAmountSelection(float amount)
 }
 
 
-int CompressionFeedback::evaluateBpm()
+int CompressionFeedbackImpl::evaluateBpm()
 {
     int bpmPerformance = NEUTRAL;
     int averageBpm = calculateAverageBpm();
@@ -75,7 +75,7 @@ int CompressionFeedback::evaluateBpm()
     return bpmPerformance;
 }
 
-int CompressionFeedback::evaluateDepth()
+int CompressionFeedbackImpl::evaluateDepth()
 {
     int depthPerformance = NEUTRAL;
     int averageDepth = calculateAverageDepth();
@@ -95,7 +95,7 @@ int CompressionFeedback::evaluateDepth()
     return depthPerformance;
 }
 
-int CompressionFeedback::evaluateCompression()
+int CompressionFeedbackImpl::evaluateCompression()
 {
     if (compressionCount < COMPRESSION_REPETITIONS){
         return evaluateBpm();
@@ -107,7 +107,7 @@ int CompressionFeedback::evaluateCompression()
 }
 
 
-int CompressionFeedback::calculateAverageBpm()
+int CompressionFeedbackImpl::calculateAverageBpm()
 {
     int total = 0;
     for (auto & el : bpmBuffer)
@@ -118,7 +118,7 @@ int CompressionFeedback::calculateAverageBpm()
     return total/bpmBuffer.size();
 }
 
-int CompressionFeedback::calculateAverageDepth()
+int CompressionFeedbackImpl::calculateAverageDepth()
 {
     int total = 0;
     for (auto & el : depthBuffer)

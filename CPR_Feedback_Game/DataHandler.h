@@ -7,6 +7,7 @@
 
 #include "DataBoundaries.h"
 #include "RequestModelBoundaries.h"
+#include "CompressionFeedback.h"
 #include "StringFunctions.h"
 
 
@@ -25,7 +26,7 @@ public:
     void handleData(std::string validdata) override; // from serial port
     void handleSimulatedData(std::string simulatedData) override; // from request model
 
-    DataToCompressionFeedback * compressionFeedback;
+    CompressionFeedback * compressionFeedback;
     DataToVentilationFeedback * ventilationFeedback;
     DataToFingerPositionFeedback * fingerPositionFeedback;
     DataToHeadPositionFeedback * headPositionFeedback;
