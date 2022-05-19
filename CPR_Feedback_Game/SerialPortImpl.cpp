@@ -9,9 +9,6 @@ SerialPortImpl::SerialPortImpl(QObject *parent)
     connect(&serialPort, &QSerialPort::readyRead, this, &SerialPortImpl::readData);
 }
 
-SerialPortImpl::~SerialPortImpl()
-{
-}
 
 void SerialPortImpl::serialPortSelected(QString portName)
 {

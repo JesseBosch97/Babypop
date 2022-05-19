@@ -27,7 +27,6 @@ class VentilationFeedbackImpl : public VentilationFeedback
 {
 public:
     VentilationFeedbackImpl();
-    ~VentilationFeedbackImpl();
 
     AudioPlayer * audioPlayer;
 

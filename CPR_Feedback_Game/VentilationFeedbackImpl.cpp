@@ -6,13 +6,6 @@ VentilationFeedbackImpl::VentilationFeedbackImpl()
 
 }
 
-VentilationFeedbackImpl::~VentilationFeedbackImpl()
-{
-
-}
-
-
-
 
 
 void VentilationFeedbackImpl::handleVolumeIn(Ventilation performance)

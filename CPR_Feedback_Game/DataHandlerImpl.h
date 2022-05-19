@@ -23,7 +23,6 @@ class DataHandlerImpl : public DataHandler
 {
 public:
     explicit DataHandlerImpl();
-    ~DataHandlerImpl();
 
     void handleData(std::string validdata) override;
 

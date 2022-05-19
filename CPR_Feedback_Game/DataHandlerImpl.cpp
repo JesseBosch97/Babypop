@@ -12,10 +12,7 @@ DataHandlerImpl::DataHandlerImpl()
 
 }
 
-DataHandlerImpl::~DataHandlerImpl()
-{
 
-}
 
 //Volume: 36.55, 40.47, 563
 //[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n

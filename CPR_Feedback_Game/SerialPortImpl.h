@@ -17,7 +17,6 @@ class SerialPortImpl : public QObject, public SerialPort
 
 public:
    explicit SerialPortImpl(QObject *parent = nullptr);
-   ~SerialPortImpl();
 
    void serialPortSelected(QString portName) override;
    void serialConnectButtonPressed() override;
