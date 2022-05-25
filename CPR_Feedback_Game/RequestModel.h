@@ -24,6 +24,7 @@ public:
 
 
 
+
 private:
     QElapsedTimer timer;
     int compressionCount = 0;
@@ -44,11 +45,15 @@ public slots:
 
     void ventilationAmountChanged(int value);
     void ventilationFeedbackFrequencyChanged(int value);
+    void volumeErrorSliderMoved(float value);
+    void ventilationTimeErrorSliderMoved(float value);
 
     void compressionAmountChanged(int value);
     void compressionFeedbackFrequencyChanged(int value);
     void bpmErrorSliderMoved(float value);
     void depthErrorSliderMoved(float value);
+
+
 };
 
 #endif // REQUESTMODEL_H

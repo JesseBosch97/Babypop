@@ -52,6 +52,18 @@ void RequestModel::ventilationFeedbackFrequencyChanged(int value)
     ventilationFeedback->setVentilationFeedbackFrequency(value);
 }
 
+void RequestModel::volumeErrorSliderMoved(float value)
+{
+   qDebug() << "RequestModel: Volume error slider moved to " << value;
+   ventilationFeedback->setVolumeError(value);
+}
+
+void RequestModel::ventilationTimeErrorSliderMoved(float value)
+{
+   qDebug() << "RequestModel: Ventilation time error slider moved to " << value;
+   ventilationFeedback->setVentilationTimeError(value);
+
+}
 
 
 

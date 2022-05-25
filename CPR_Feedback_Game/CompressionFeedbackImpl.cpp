@@ -9,6 +9,7 @@ void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool state)
 {
     this->compressionFeedbackSelected = state;
     if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
+    compressionCount = 0;
 }
 
 void CompressionFeedbackImpl::setBpmError(float percentage)
@@ -26,11 +27,13 @@ void CompressionFeedbackImpl::setDepthError(float percentage)
 void CompressionFeedbackImpl::setCompressionFeedbackFrequency(int amount)
 {
     this->compressionFeedbackFrequency = amount;
+   compressionCount = 0;
 }
 
 void CompressionFeedbackImpl::setCompressionAmount(int amount)
 {
     this->compressionFeedbackAmount = amount;
+   compressionCount = 0;
 }
 
 

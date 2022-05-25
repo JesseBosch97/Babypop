@@ -215,12 +215,37 @@ Window {
                 }
 
                 Label {
-                    text: "Error Margin: "
+                    text: "Allowed volume error: " + volumeErrorSlider.value + "%"
                 }
 
-                SpinBox {
-                    value: 5
+                Slider {
+                    id: volumeErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.volumeErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.volumeErrorSliderMoved(value)
                 }
+
+                Label {
+                    text: "Allowed time error: " + timeErrorSlider.value + "%"
+                }
+
+                Slider {
+                    id: timeErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.ventilationTimeErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.ventilationTimeErrorSliderMoved(value)
+                }
+
+
+
             }
         }
 
@@ -282,8 +307,47 @@ Window {
                 }
             }
         }
+
+
+
+
     }
 
+    Column {
+        anchors.right: parent.right
+        anchors.rightMargin: 100
+        anchors.top: parent.verticalCenter
+
+        Label {
+            text: "Session: "
+            font.pointSize: 20
+        }
+
+        Label {
+            text: compressionAmountBox.value + " compressions"
+            font.pointSize: 20
+        }
+
+        Label {
+            text: ventilationAmountBox.value + " ventilations"
+            font.pointSize: 20
+        }
+
+        Label {
+            text: "Session repetitions"
+            font.pointSize: 20
+        }
+
+        Button {
+            text: "GO"
+            font.pointSize: 20
+        }
+
+        Button {
+            text: "STOP"
+            font.pointSize: 20
+        }
+    }
 
 
 }

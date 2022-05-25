@@ -38,7 +38,7 @@ void DataHandlerImpl::handleData(std::string validdata)
    {
        removeFrom(validdata, VOLUME_OUT_HEADER);
        dataCollection = collectData(validdata);
-       ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
+       ventilationFeedback->handleVolumeOut(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, HEAD_POSITION_HEADER))

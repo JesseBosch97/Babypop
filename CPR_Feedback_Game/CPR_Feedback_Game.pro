@@ -13,6 +13,7 @@ SOURCES += \
         HeadPositionFeedbackImpl.cpp \
         RequestModel.cpp \
         SerialPortImpl.cpp \
+        Session.cpp \
         StringFunctions.cpp \
         VentilationFeedbackImpl.cpp \
         ViewModelImpl.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     RequestModel.h \
     SerialPort.h \
     SerialPortImpl.h \
+    Session.h \
     StringFunctions.h \
     VentilationFeedback.h \
     VentilationFeedbackImpl.h \
