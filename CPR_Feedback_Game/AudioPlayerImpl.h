@@ -25,13 +25,14 @@ private:
     QString createSoundURL(QString word);
     QMediaPlayer player;
     QString selectedVoice = "maleTTS";
-    void playSound();
 
     std::unordered_map<int, QString> feedbackWordMap{
         {START_COMPRESSION, "chest_compression"},
         {PERFECT, "perfect"},
         {TOO_FAST, "slower"},
         {TOO_SLOW, "faster"},
+        {TOO_DEEP, "less"},
+        {TOO_SHALLOW, "more"},
         {TOO_MANY, "too_many"},
 
         {TOO_FAR_LEFT, "little_to_the_right"},

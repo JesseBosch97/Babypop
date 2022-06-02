@@ -88,7 +88,7 @@ Compression DataHandlerImpl::handleCompression(std::vector<std::string> compress
 {
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
-    compression.depthInCm = stoi(compressionData.at(1));
+    compression.depthInMm = stoi(compressionData.at(1));
     return compression;
 }
 

@@ -49,11 +49,12 @@ public slots:
     void ventilationTimeErrorSliderMoved(float value);
 
     void compressionAmountChanged(int value);
-    void compressionFeedbackFrequencyChanged(int value);
-    void bpmErrorSliderMoved(float value);
-    void depthErrorSliderMoved(float value);
 
+    void bpmErrorHighSliderMoved(float value);
+    void bpmErrorLowSliderMoved(float value);
 
+    void depthErrorHighSliderMoved(float value);
+    void depthErrorLowSliderMoved(float value);
 };
 
 #endif // REQUESTMODEL_H

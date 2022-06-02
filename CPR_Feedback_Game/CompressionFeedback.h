@@ -10,11 +10,13 @@ public:
    virtual void handleCompression(Compression compression) = 0;
 
    virtual void setCompressionFeedbackSelected(bool state) = 0;
-    virtual void setCompressionFeedbackFrequency(int amount) = 0;
     virtual void setCompressionAmount(int amount) = 0;
 
-    virtual void setBpmError(float percentage) = 0;
-    virtual void setDepthError(float percentage) = 0;
+    virtual void setBpmErrorHigh(float percentage) = 0;
+   virtual void setBpmErrorLow(float percentage) = 0;
+
+    virtual void setDepthErrorHigh(float percentage) = 0;
+   virtual void setDepthErrorLow(float percentage) = 0;
 };
 
 #endif // COMPRESSIONFEEDBACK_H

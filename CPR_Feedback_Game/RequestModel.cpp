@@ -96,22 +96,29 @@ void RequestModel::compressionAmountChanged(int value)
     compressionFeedback->setCompressionAmount(value);
 }
 
-void RequestModel::compressionFeedbackFrequencyChanged(int value)
+
+void RequestModel::bpmErrorHighSliderMoved(float value)
 {
-    qDebug() << "RequestModel: Compression feedback frequency changed to " << value;
-    compressionFeedback->setCompressionFeedbackFrequency(value);
+    qDebug() << "RequestModel: Bpm error high slider moved to " << value;
+    compressionFeedback->setBpmErrorHigh(value);
 }
 
-void RequestModel::bpmErrorSliderMoved(float value)
+void RequestModel::bpmErrorLowSliderMoved(float value)
 {
-    qDebug() << "RequestModel: Bpm error slider moved to " << value;
-    compressionFeedback->setBpmError(value);
+    qDebug() << "RequestModel: Bpm error low slider moved to " << value;
+    compressionFeedback->setBpmErrorLow(value);
 }
 
-void RequestModel::depthErrorSliderMoved(float value)
+void RequestModel::depthErrorHighSliderMoved(float value)
 {
-    qDebug() << "RequestModel: Depth error slider moved to " << value;
-    compressionFeedback->setDepthError(value);
+    qDebug() << "RequestModel: Depth error high slider moved to " << value;
+    compressionFeedback->setDepthErrorHigh(value);
+}
+
+void RequestModel::depthErrorLowSliderMoved(float value)
+{
+    qDebug() << "RequestModel: Depth error low slider moved to " << value;
+    compressionFeedback->setDepthErrorLow(value);
 }
 
 
@@ -122,7 +129,7 @@ void RequestModel::compressionButtonPressed()
 {
    lastTimeInterval = timer.restart();
    int bpm = calculateBPM(lastTimeInterval);
-   int depth = 3; //not yet implemented
+   int depth = 30; //not yet implemented
 
    qDebug() << "RequestModel: Compression button pressed";
    qDebug() << "RequestModel: Time interval is " << lastTimeInterval;

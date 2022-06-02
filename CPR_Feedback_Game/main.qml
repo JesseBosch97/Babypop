@@ -124,50 +124,82 @@ Window {
                     Component.onCompleted: RequestModel.compressionAmountChanged(value)
                 }
 
+//                Label {
+//                    text: "Feedback every " + compressionFeedbackFrequencyBox.value + " compressions"
+//                }
+
+//                SpinBox {
+//                    id: compressionFeedbackFrequencyBox
+//                    value: 5
+//                    from: 0
+//                    to: compressionAmountBox.value
+//                    onValueChanged: RequestModel.compressionFeedbackFrequencyChanged(value)
+//                    Component.onCompleted: RequestModel.compressionFeedbackFrequencyChanged(value)
+//                }
+
+
                 Label {
-                    text: "Feedback every " + compressionFeedbackFrequencyBox.value + " compressions"
-                }
-
-                SpinBox {
-                    id: compressionFeedbackFrequencyBox
-                    value: 5
-                    from: 0
-                    to: compressionAmountBox.value
-                    onValueChanged: RequestModel.compressionFeedbackFrequencyChanged(value)
-                    Component.onCompleted: RequestModel.compressionFeedbackFrequencyChanged(value)
-                }
-
-
-                Label {
-                    text: "Allowed BPM error: " + bpmErrorSlider.value + "%"
+                    text: "Allowed BPM high error: " + bpmErrorHighSlider.value + "%"
                 }
 
                 Slider {
-                    id: bpmErrorSlider
+                    id: bpmErrorHighSlider
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
                     value: 10
                     to: 100
-                    onMoved: RequestModel.bpmErrorSliderMoved(value)
-                    Component.onCompleted: RequestModel.bpmErrorSliderMoved(value)
+                    onMoved: RequestModel.bpmErrorHighSliderMoved(value)
+                    Component.onCompleted: RequestModel.bpmErrorHighSliderMoved(value)
                 }
 
-
                 Label {
-                    text: "Allowed depth error: " + depthErrorSlider.value + "%"
+                    text: "Allowed BPM low error: " + bpmErrorLowSlider.value + "%"
                 }
 
                 Slider {
-                    id: depthErrorSlider
+                    id: bpmErrorLowSlider
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
                     value: 10
                     to: 100
-                    onMoved: RequestModel.depthErrorSliderMoved(value)
-                    Component.onCompleted: RequestModel.depthErrorSliderMoved(value)
+                    onMoved: RequestModel.bpmErrorLowSliderMoved(value)
+                    Component.onCompleted: RequestModel.bpmErrorLowSliderMoved(value)
                 }
+
+                Label {
+                    text: "Allowed depth high error: " + depthHighErrorSlider.value + "%"
+                }
+
+                Slider {
+                    id: depthHighErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.depthErrorHighSliderMoved(value)
+                    Component.onCompleted: RequestModel.depthErrorHighSliderMoved(value)
+                }
+
+
+                Label {
+                    text: "Allowed depth low error: " + depthLowErrorSlider.value + "%"
+                }
+
+                Slider {
+                    id: depthLowErrorSlider
+                    snapMode: "SnapOnRelease"
+                    stepSize: 10
+                    from: 0
+                    value: 10
+                    to: 100
+                    onMoved: RequestModel.depthErrorLowSliderMoved(value)
+                    Component.onCompleted: RequestModel.depthErrorLowSliderMoved(value)
+                }
+
+
             }
         }
 
@@ -313,41 +345,7 @@ Window {
 
     }
 
-    Column {
-        anchors.right: parent.right
-        anchors.rightMargin: 100
-        anchors.top: parent.verticalCenter
 
-        Label {
-            text: "Session: "
-            font.pointSize: 20
-        }
-
-        Label {
-            text: compressionAmountBox.value + " compressions"
-            font.pointSize: 20
-        }
-
-        Label {
-            text: ventilationAmountBox.value + " ventilations"
-            font.pointSize: 20
-        }
-
-        Label {
-            text: "Session repetitions"
-            font.pointSize: 20
-        }
-
-        Button {
-            text: "GO"
-            font.pointSize: 20
-        }
-
-        Button {
-            text: "STOP"
-            font.pointSize: 20
-        }
-    }
 
 
 }

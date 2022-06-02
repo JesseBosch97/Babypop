@@ -9,8 +9,14 @@ AudioPlayerImpl::AudioPlayerImpl()
 
 void AudioPlayerImpl::giveFeedback(int feedbackType)
 {
-   player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(feedbackType))));
-   playSound();
+   if (feedbackType)
+   {
+      if (player.state() == QMediaPlayer::StoppedState)
+      {
+         player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(feedbackType))));
+         player.play();
+      }
+   }
 }
 
 void AudioPlayerImpl::voiceSelected(QString voice)
@@ -21,7 +27,7 @@ void AudioPlayerImpl::voiceSelected(QString voice)
 void AudioPlayerImpl::giveFingerPositionFeedback(int fingerFeedback)
 {
     player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(fingerFeedback))));
-    playSound();
+    player.play();
 }
 
 QString AudioPlayerImpl::createSoundURL(QString word)
@@ -29,6 +35,4 @@ QString AudioPlayerImpl::createSoundURL(QString word)
    return QString("qrc:/sounds/%1/audiofiles/%2_%3.mp3").arg(selectedVoice, selectedVoice, word);
 }
 
-void AudioPlayerImpl::playSound(){
-    player.play();
-}
+

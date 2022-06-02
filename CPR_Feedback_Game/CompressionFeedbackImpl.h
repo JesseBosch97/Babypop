@@ -12,10 +12,6 @@
 
 
 
-
-
-
-
 class CompressionFeedbackImpl : public CompressionFeedback
 {
 public:
@@ -24,33 +20,39 @@ public:
     AudioPlayer * audioPlayer;
     ViewModel * viewModel;
 
-    void setCompressionFeedbackFrequency(int amount) override;
+
     void setCompressionAmount(int amount) override;
     void setCompressionFeedbackSelected(bool state) override;
-    void setBpmError(float percentage) override;
-    void setDepthError(float percentage) override;
-
+    void setBpmErrorHigh(float percentage) override;
+    void setBpmErrorLow(float percentage) override;
+    void setDepthErrorHigh(float percentage) override;
+    void setDepthErrorLow(float percentage) override;
 
     void handleCompression(Compression compression) override;
 
 
+
 private:
-    std::vector<int> bpmBuffer;
-    std::vector<int> depthBuffer;
     int compressionCount = 0;
-    float allowedBpmError = 0;
-    float allowedDepthError = 0;
+
+    int bpmErrorThresholdHigh = 0;
+    int bpmErrorThresholdLow = 0;
+    int depthErrorThresholdHigh = 0; // unimplemented
+    int depthErrorThresholdLow = 0;  // unimplemented
+
+    int bpmAccumulatedError = 0;
+    int depthAccumulatedError = 0;
 
     bool compressionFeedbackSelected = false;
-    int compressionFeedbackFrequency = 0;
     int compressionFeedbackAmount = 0;
 
-    int evaluateCompression();
-    int calculateAverageBpm();
-    int calculateAverageDepth();
+    void storeCompression(Compression compression);
+    uint8_t evaluateCompression();
 
-    const float DESIRED_DEPTH = 3;
-    const float DESIRED_BPM = 120;
+    const int DESIRED_DEPTH = 30;
+    const int DESIRED_BPM = 120;
+
+
 
 };
 
