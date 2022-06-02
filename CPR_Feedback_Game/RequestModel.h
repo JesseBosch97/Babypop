@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QElapsedTimer>
-#include "DataHandler.h"
+#include "SerialData.h"
 #include "CompressionFeedback.h"
 #include "VentilationFeedback.h"
 #include "AudioPlayer.h"
@@ -20,7 +20,7 @@ public:
     AudioPlayer * audioPlayer;
     CompressionFeedback * compressionFeedback;
     VentilationFeedback * ventilationFeedback;
-    DataHandler * dataHandler;
+    SerialData * dataHandler;
 
 
 
@@ -44,17 +44,16 @@ public slots:
     void serialConnectButtonPressed();
 
     void ventilationAmountChanged(int value);
-    void ventilationFeedbackFrequencyChanged(int value);
     void volumeErrorSliderMoved(float value);
-    void ventilationTimeErrorSliderMoved(float value);
+    void timeErrorSliderMoved(float value);
+    void babyWeightChanged(int weight);
 
     void compressionAmountChanged(int value);
 
-    void bpmErrorHighSliderMoved(float value);
-    void bpmErrorLowSliderMoved(float value);
+    void bpmErrorSliderMoved(float value);
+    void depthErrorSliderMoved(float value);
 
-    void depthErrorHighSliderMoved(float value);
-    void depthErrorLowSliderMoved(float value);
+
 };
 
 #endif // REQUESTMODEL_H

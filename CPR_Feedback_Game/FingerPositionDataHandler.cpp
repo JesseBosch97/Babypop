@@ -1,15 +1,15 @@
 #include "FingerPositionDataHandler.h"
 #include <iostream>
 
-FingerPositionDataHandler::FingerPositionDataHandler()
+FingerPositionSerialData::FingerPositionSerialData()
 {
 
 }
-FingerPositionDataHandler::~FingerPositionDataHandler()
+FingerPositionSerialData::~FingerPositionSerialData()
 {
 
 }
-void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::string> value)
+void FingerPositionSerialData::putFingerPositionsInStruct(std::vector<std::string> value)
 {
 
     positionOfFingers.bottomleft    = std::stoi(value[0]);
@@ -22,7 +22,7 @@ void FingerPositionDataHandler::putFingerPositionsInStruct(std::vector<std::stri
     positionOfFingers.lowmid        = std::stoi(value[7]);
 
 }
-FingerPosition FingerPositionDataHandler::handleData(std::string validdata)
+FingerPosition FingerPositionSerialData::handleData(std::string validdata)
 {
     putFingerPositionsInStruct(parseData(validdata));
 
@@ -30,7 +30,7 @@ FingerPosition FingerPositionDataHandler::handleData(std::string validdata)
 
 }
 
-std::vector<char> FingerPositionDataHandler::DisectStringtoChar(std::string data)
+std::vector<char> FingerPositionSerialData::DisectStringtoChar(std::string data)
 {
     std::vector<char> desected;
     char stringDesectedtoChars_array[data.length() + 1];
@@ -45,7 +45,7 @@ std::vector<char> FingerPositionDataHandler::DisectStringtoChar(std::string data
 
 }
 
-std::vector<std::string> FingerPositionDataHandler::BuildNewStringFromDisected(std::vector<char> Disectedstring)
+std::vector<std::string> FingerPositionSerialData::BuildNewStringFromDisected(std::vector<char> Disectedstring)
 {
     std::vector<std::string> rebuildstring;
     std::vector<std::string> fault = {""};
@@ -73,7 +73,7 @@ std::vector<std::string> FingerPositionDataHandler::BuildNewStringFromDisected(s
     return fault;
 }
 
-std::vector<std::string> FingerPositionDataHandler::parseData(std::string data)
+std::vector<std::string> FingerPositionSerialData::parseData(std::string data)
 {
     std::vector<std::string> rebuildstring;
     std::vector<std::string> fault = {""};

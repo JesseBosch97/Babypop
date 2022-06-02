@@ -9,7 +9,7 @@
 #include "AudioPlayerImpl.h"
 #include "ViewModelImpl.h"
 #include "SerialPortImpl.h"
-#include "DataHandlerImpl.h"
+#include "SerialDataImpl.h"
 #include "VentilationFeedbackImpl.h"
 
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     RequestModel requestModel;
     ViewModelImpl viewModel;
     SerialPortImpl serialPort;
-    DataHandlerImpl dataHandler;
+    SerialDataImpl serialData;
 
 
     //connect objects
@@ -37,14 +37,13 @@ int main(int argc, char *argv[])
     requestModel.audioPlayer = &audioplayer;
     requestModel.compressionFeedback = &compressionFeedback;
     requestModel.ventilationFeedback = &ventilationFeedback;
-    requestModel.dataHandler = &dataHandler;
+    requestModel.dataHandler = &serialData;
     compressionFeedback.audioPlayer = &audioplayer;
-    compressionFeedback.viewModel = &viewModel;
     ventilationFeedback.audioPlayer = &audioplayer;
-    serialPort.datahandler = &dataHandler;
-    dataHandler.compressionFeedback = &compressionFeedback;
-    dataHandler.ventilationFeedback = &ventilationFeedback;
-    dataHandler.fingerPositionFeedback = &fingerPositionFeedback;
+    serialPort.serialData = &serialData;
+    serialData.compressionFeedback = &compressionFeedback;
+    serialData.ventilationFeedback = &ventilationFeedback;
+    serialData.fingerPositionFeedback = &fingerPositionFeedback;
 
     //create application
     QQmlApplicationEngine engine;

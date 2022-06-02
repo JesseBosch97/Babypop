@@ -6,11 +6,11 @@
 #include <cstring>
 #include "CprTypes.h"
 
-class FingerPositionDataHandler
+class FingerPositionSerialData
 {
 public:
-    explicit FingerPositionDataHandler();
-    ~FingerPositionDataHandler();
+    explicit FingerPositionSerialData();
+    ~FingerPositionSerialData();
     void putFingerPositionsInStruct(std::vector<std::string> value);
     FingerPosition handleData(std::string validdata);
 

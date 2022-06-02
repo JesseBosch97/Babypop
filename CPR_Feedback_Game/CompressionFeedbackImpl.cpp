@@ -5,45 +5,34 @@ CompressionFeedbackImpl::CompressionFeedbackImpl()
 
 }
 
-void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool state)
+void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool feedbackSelected)
 {
-    this->compressionFeedbackSelected = state;
-    if (state == true) audioPlayer->giveFeedback(START_COMPRESSION);
+    this->compressionFeedbackSelected = feedbackSelected;
+    if (feedbackSelected == true) audioPlayer->giveFeedback(START_COMPRESSION);
     compressionCount = 0;
 }
 
-void CompressionFeedbackImpl::setBpmErrorHigh(float percentage)
+void CompressionFeedbackImpl::setBpmErrorThreshold(float percentage)
 {
-    this->bpmErrorThresholdHigh = DESIRED_BPM * percentage/100;
-    std::cout << "CompressionFeedback: allowed bpm error high is :" << this->bpmErrorThresholdHigh << std::endl;
+    this->bpmErrorThreshold = DESIRED_BPM * percentage/100;
+    std::cout << "CompressionFeedback: allowed bpm error high is :" << this->bpmErrorThreshold << std::endl;
 }
 
-void CompressionFeedbackImpl::setBpmErrorLow(float percentage)
-{
-    this->bpmErrorThresholdLow = -(DESIRED_BPM * percentage/100);
-    std::cout << "CompressionFeedback: allowed bpm error low is :" << this->bpmErrorThresholdLow << std::endl;
-}
 
-void CompressionFeedbackImpl::setDepthErrorHigh(float percentage)
+void CompressionFeedbackImpl::setDepthErrorThreshold(float percentage)
 {
-    this->depthErrorThresholdHigh = DESIRED_DEPTH * percentage/100;
-    std::cout << "CompressionFeedback: allowed depth error high is :" << this->depthErrorThresholdHigh << std::endl;
-}
-
-void CompressionFeedbackImpl::setDepthErrorLow(float percentage)
-{
-    this->depthErrorThresholdLow = -DESIRED_DEPTH * percentage/100;
-    std::cout << "CompressionFeedback: allowed depth error low is :" << this->depthErrorThresholdLow << std::endl;
+    this->depthErrorThreshold = DESIRED_DEPTH * percentage/100;
+    std::cout << "CompressionFeedback: allowed depth error high is :" << this->depthErrorThreshold << std::endl;
 }
 
 
 void CompressionFeedbackImpl::setCompressionAmount(int amount)
 {
-    this->compressionFeedbackAmount = amount;
+    this->compressionAmount = amount;
    compressionCount = 0;
 }
 
-//6 to 8 ml per kg
+
 
 void CompressionFeedbackImpl::handleCompression(Compression compression)
 {
@@ -73,30 +62,30 @@ uint8_t CompressionFeedbackImpl::evaluateCompression()
 {
    uint8_t feedbackType = 0;
 
-   if (compressionCount > compressionFeedbackAmount)
+   if (compressionCount > compressionAmount)
    {
       feedbackType = TOO_MANY;
    }
 
-//   else if (depthAccumulatedError > depthErrorThresholdHigh)
+//   else if (depthAccumulatedError > depthErrorThreshold)
 //   {
 //      feedbackType = TOO_DEEP;
 //      depthAccumulatedError = 0;
 //   }
 
-//   else if (depthAccumulatedError < depthErrorThresholdLow)
+//   else if (depthAccumulatedError < -depthErrorThreshold)
 //   {
 //      feedbackType = TOO_SHALLOW;
 //      depthAccumulatedError = 0;
 //   }
 
-   else if (bpmAccumulatedError > bpmErrorThresholdHigh)
+   else if (bpmAccumulatedError > bpmErrorThreshold)
    {
       feedbackType = TOO_FAST;
       bpmAccumulatedError = 0;
    }
 
-   else if (bpmAccumulatedError < bpmErrorThresholdLow)
+   else if (bpmAccumulatedError < -bpmErrorThreshold)
    {
       feedbackType = TOO_SLOW;
       bpmAccumulatedError = 0;

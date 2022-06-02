@@ -3,7 +3,7 @@
 
 #include <QMediaPlayer>
 #include "ViewModel.h"
-#include "DataHandler.h"
+#include "SerialData.h"
 #include "AudioPlayer.h"
 #include "unordered_map"
 #include "CprTypes.h"

@@ -50,7 +50,7 @@ void SerialPortImpl::readData()
     {
         //qDebug() << "SerialPort: " + validData;
 
-        datahandler->handleData(validData.toStdString());
+        serialData->handleData(validData.toStdString());
         validData.clear();
     }
 }

@@ -46,23 +46,25 @@ void RequestModel::ventilationAmountChanged(int value)
     ventilationFeedback->setVentilationAmount(value);
 }
 
-void RequestModel::ventilationFeedbackFrequencyChanged(int value)
-{
-    qDebug() << "RequestModel: Ventilation feedback frequency changed to " << value;
-    ventilationFeedback->setVentilationFeedbackFrequency(value);
-}
 
 void RequestModel::volumeErrorSliderMoved(float value)
 {
    qDebug() << "RequestModel: Volume error slider moved to " << value;
-   ventilationFeedback->setVolumeError(value);
+   ventilationFeedback->setVolumeErrorThreshold(value);
 }
 
-void RequestModel::ventilationTimeErrorSliderMoved(float value)
+void RequestModel::timeErrorSliderMoved(float value)
 {
    qDebug() << "RequestModel: Ventilation time error slider moved to " << value;
-   ventilationFeedback->setVentilationTimeError(value);
+   ventilationFeedback->setTimeErrorThreshold(value);
 
+}
+
+void RequestModel::babyWeightChanged(int weight)
+{
+    qDebug() << "RequestModel: BabyWeight changed to to " << weight;
+    float weightInKg = static_cast<float>(weight) / 100;
+   ventilationFeedback->setBabyWeight(weightInKg);
 }
 
 
@@ -97,29 +99,20 @@ void RequestModel::compressionAmountChanged(int value)
 }
 
 
-void RequestModel::bpmErrorHighSliderMoved(float value)
+void RequestModel::bpmErrorSliderMoved(float value)
 {
     qDebug() << "RequestModel: Bpm error high slider moved to " << value;
-    compressionFeedback->setBpmErrorHigh(value);
+    compressionFeedback->setBpmErrorThreshold(value);
 }
 
-void RequestModel::bpmErrorLowSliderMoved(float value)
-{
-    qDebug() << "RequestModel: Bpm error low slider moved to " << value;
-    compressionFeedback->setBpmErrorLow(value);
-}
 
-void RequestModel::depthErrorHighSliderMoved(float value)
+void RequestModel::depthErrorSliderMoved(float value)
 {
     qDebug() << "RequestModel: Depth error high slider moved to " << value;
-    compressionFeedback->setDepthErrorHigh(value);
+    compressionFeedback->setDepthErrorThreshold(value);
 }
 
-void RequestModel::depthErrorLowSliderMoved(float value)
-{
-    qDebug() << "RequestModel: Depth error low slider moved to " << value;
-    compressionFeedback->setDepthErrorLow(value);
-}
+
 
 
 

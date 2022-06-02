@@ -19,7 +19,7 @@ struct FingerPosition
 
 struct Ventilation
 {
-    float volume = 0;
+    float volumeInMl = 0;
     int timeInMs = 0;
 };
 

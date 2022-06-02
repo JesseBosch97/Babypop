@@ -139,64 +139,35 @@ Window {
 
 
                 Label {
-                    text: "Allowed BPM high error: " + bpmErrorHighSlider.value + "%"
+                    text: "BPM allowed error: " + bpmErrorSlider.value + "%"
                 }
 
                 Slider {
-                    id: bpmErrorHighSlider
+                    id: bpmErrorSlider
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 10
+                    value: 20
                     to: 100
-                    onMoved: RequestModel.bpmErrorHighSliderMoved(value)
-                    Component.onCompleted: RequestModel.bpmErrorHighSliderMoved(value)
+                    onMoved: RequestModel.bpmErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.bpmErrorSliderMoved(value)
                 }
 
-                Label {
-                    text: "Allowed BPM low error: " + bpmErrorLowSlider.value + "%"
-                }
-
-                Slider {
-                    id: bpmErrorLowSlider
-                    snapMode: "SnapOnRelease"
-                    stepSize: 10
-                    from: 0
-                    value: 10
-                    to: 100
-                    onMoved: RequestModel.bpmErrorLowSliderMoved(value)
-                    Component.onCompleted: RequestModel.bpmErrorLowSliderMoved(value)
-                }
-
-                Label {
-                    text: "Allowed depth high error: " + depthHighErrorSlider.value + "%"
-                }
-
-                Slider {
-                    id: depthHighErrorSlider
-                    snapMode: "SnapOnRelease"
-                    stepSize: 10
-                    from: 0
-                    value: 10
-                    to: 100
-                    onMoved: RequestModel.depthErrorHighSliderMoved(value)
-                    Component.onCompleted: RequestModel.depthErrorHighSliderMoved(value)
-                }
 
 
                 Label {
-                    text: "Allowed depth low error: " + depthLowErrorSlider.value + "%"
+                    text: "Depth allowed error: " + depthErrorSlider.value + "%"
                 }
 
                 Slider {
-                    id: depthLowErrorSlider
+                    id: depthErrorSlider
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 10
+                    value: 20
                     to: 100
-                    onMoved: RequestModel.depthErrorLowSliderMoved(value)
-                    Component.onCompleted: RequestModel.depthErrorLowSliderMoved(value)
+                    onMoved: RequestModel.depthErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.depthErrorSliderMoved(value)
                 }
 
 
@@ -234,17 +205,38 @@ Window {
                 }
 
                 Label {
-                    text: "Feedback every " + feedbackFrequencyBox.value + " ventilations"
+                    text: "Baby Weight: (kg)"
                 }
 
+                //this is adapted from the function at https://doc.qt.io/qt-5/qml-qtquick-controls2-spinbox.html
                 SpinBox {
-                    id: feedbackFrequencyBox
-                    value: 1
+                    id: babyWeightBox
                     from: 0
-                    to: ventilationAmountBox.value
-                    onValueChanged: RequestModel.ventilationFeedbackFrequencyChanged(value)
-                    Component.onCompleted: RequestModel.ventilationFeedbackFrequencyChanged(value)
+                    value: 300
+                    to: 100 * 100
+                    stepSize: 10
+
+                    property int decimals: 1
+                    property real realValue: value / 100
+
+                    validator: DoubleValidator {
+                        bottom: Math.min(babyWeightBox.from, babyWeightBox.to)
+                        top:  Math.max(babyWeightBox.from, babyWeightBox.to)
+                    }
+
+                    textFromValue: function(value, locale) {
+                        return Number(value / 100).toLocaleString(locale, 'f', babyWeightBox.decimals)
+                    }
+
+                    valueFromText: function(text, locale) {
+                        return Number.fromLocaleString(locale, text) * 100
+                    }
+
+                    onValueChanged: RequestModel.babyWeightChanged(value)
+                    Component.onCompleted: RequestModel.babyWeightChanged(value)
                 }
+
+
 
                 Label {
                     text: "Allowed volume error: " + volumeErrorSlider.value + "%"
@@ -255,7 +247,7 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 10
+                    value: 20
                     to: 100
                     onMoved: RequestModel.volumeErrorSliderMoved(value)
                     Component.onCompleted: RequestModel.volumeErrorSliderMoved(value)
@@ -270,10 +262,10 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 10
+                    value: 20
                     to: 100
-                    onMoved: RequestModel.ventilationTimeErrorSliderMoved(value)
-                    Component.onCompleted: RequestModel.ventilationTimeErrorSliderMoved(value)
+                    onMoved: RequestModel.timeErrorSliderMoved(value)
+                    Component.onCompleted: RequestModel.timeErrorSliderMoved(value)
                 }
 
 

@@ -1,4 +1,4 @@
-#include "DataHandlerImpl.h"
+#include "SerialDataImpl.h"
 
 #include <algorithm>
 
@@ -7,7 +7,7 @@
 
 
 
-DataHandlerImpl::DataHandlerImpl()
+SerialDataImpl::SerialDataImpl()
 {
 
 }
@@ -18,13 +18,13 @@ DataHandlerImpl::DataHandlerImpl()
 //[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n
 
 
-void DataHandlerImpl::handleData(std::string validdata)
+void SerialDataImpl::handleData(std::string validdata)
 {
    std::vector<std::string> dataCollection;
 
    if (detectString(validdata, FINGER_POSITION_HEADER))
    {
-       fingerPositionFeedback->handleFingerPosition(fingerPositionDataHandler.handleData(validdata));
+       fingerPositionFeedback->handleFingerPosition(fingerPositionSerialData.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
@@ -64,7 +64,7 @@ void DataHandlerImpl::handleData(std::string validdata)
 
 
 
-std::vector<std::string> DataHandlerImpl::collectData(std::string & data)
+std::vector<std::string> SerialDataImpl::collectData(std::string & data)
 {
     std::cout << "DataHandler: received data: " << data << std::endl;
 
@@ -84,7 +84,7 @@ std::vector<std::string> DataHandlerImpl::collectData(std::string & data)
     return dataCollection;
 }
 
-Compression DataHandlerImpl::handleCompression(std::vector<std::string> compressionData)
+Compression SerialDataImpl::handleCompression(std::vector<std::string> compressionData)
 {
     Compression compression;
     compression.bpm = stoi(compressionData.at(0));
@@ -92,15 +92,15 @@ Compression DataHandlerImpl::handleCompression(std::vector<std::string> compress
     return compression;
 }
 
-Ventilation DataHandlerImpl::handleVentilation(std::vector<std::string> ventilationData)
+Ventilation SerialDataImpl::handleVentilation(std::vector<std::string> ventilationData)
 {
     Ventilation ventilation;
-    ventilation.volume = stof(ventilationData.at(0));
+    ventilation.volumeInMl = stof(ventilationData.at(0));
     ventilation.timeInMs = stoi(ventilationData.at(1));
     return ventilation;
 }
 
-HeadPosition DataHandlerImpl::handleHeadPosition(std::vector<std::string> headPositionData)
+HeadPosition SerialDataImpl::handleHeadPosition(std::vector<std::string> headPositionData)
 {
     HeadPosition headPosition;
     return headPosition;

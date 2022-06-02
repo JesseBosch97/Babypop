@@ -1,28 +1,24 @@
-#ifndef DATAHANDLERIMPL_H
-#define DATAHANDLERIMPL_H
+#ifndef SERIALDATAIMPL_H
+#define SERIALDATAIMPL_H
 
 #include <iostream>
 
 #include "FingerPositionDataHandler.h"
 #include "HeadPositionFeedback.h"
-#include "DataHandler.h"
+#include "SerialData.h"
 #include "CompressionFeedback.h"
 #include "FingerPositionFeedback.h"
 #include "VentilationFeedback.h"
-#include "DataHandler.h"
+#include "SerialData.h"
 #include "StringFunctions.h"
 
 
-const std::string VOLUME_IN_HEADER = "Volume In: ";
-const std::string VOLUME_OUT_HEADER = "Volume Out: ";
-const std::string COMPRESSION_HEADER = "Compression: ";
-const std::string FINGER_POSITION_HEADER = "[";
-const std::string HEAD_POSITION_HEADER = "Head Position: ";
 
-class DataHandlerImpl : public DataHandler
+
+class SerialDataImpl : public SerialData
 {
 public:
-    explicit DataHandlerImpl();
+    explicit SerialDataImpl();
 
     void handleData(std::string validdata) override;
 
@@ -32,11 +28,17 @@ public:
     HeadPositionFeedback * headPositionFeedback;
 
 private:
-    FingerPositionDataHandler fingerPositionDataHandler;
+    FingerPositionSerialData fingerPositionSerialData;
     std::vector<std::string> collectData(std::string &data);
     Compression handleCompression(std::vector<std::string> compressionData);
     Ventilation handleVentilation(std::vector<std::string> ventilationData);
     HeadPosition handleHeadPosition(std::vector<std::string> headPositionData);
+
+    const std::string VOLUME_IN_HEADER = "Volume In: ";
+    const std::string VOLUME_OUT_HEADER = "Volume Out: ";
+    const std::string COMPRESSION_HEADER = "Compression: ";
+    const std::string FINGER_POSITION_HEADER = "[";
+    const std::string HEAD_POSITION_HEADER = "Head Position: ";
 };
 
-#endif // DATAHANDLERIMPL_H
+#endif // SERIALDATAIMPL_H

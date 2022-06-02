@@ -6,7 +6,7 @@
 #include <iostream>
 #include <QDebug>
 #include <QStringListModel>
-#include "DataHandler.h"
+#include "SerialData.h"
 #include "SerialPort.h"
 
 
@@ -25,7 +25,7 @@ public:
 
 
    QStringListModel portListModel;
-   DataHandler *datahandler;
+   SerialData *serialData;
 
 private:
    QString selectedPortName;
