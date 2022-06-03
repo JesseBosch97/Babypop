@@ -5,10 +5,9 @@
 #include <QDebug>
 #include <QElapsedTimer>
 #include "SerialData.h"
-#include "CompressionFeedback.h"
-#include "VentilationFeedback.h"
 #include "AudioPlayer.h"
 #include "SerialPort.h"
+#include "FeedbackInteractor.h"
 
 class RequestModel : public QObject
 {
@@ -18,8 +17,7 @@ public:
     RequestModel(QObject* parent = nullptr);
     SerialPort * serialPort;
     AudioPlayer * audioPlayer;
-    CompressionFeedback * compressionFeedback;
-    VentilationFeedback * ventilationFeedback;
+    FeedbackInteractor * feedbackInteractor;
     SerialData * dataHandler;
 
 

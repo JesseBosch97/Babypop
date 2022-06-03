@@ -1,4 +1,4 @@
-#include "VentilationFeedbackImpl.h"
+#include "VentilationFeedback.h"
 
 VentilationFeedbackImpl::VentilationFeedbackImpl()
 {
@@ -60,31 +60,19 @@ uint8_t VentilationFeedbackImpl::evaluateVentilation()
 }
 
 
-void VentilationFeedbackImpl::handleVolumeIn(Ventilation ventilation)
+uint8_t VentilationFeedbackImpl::handleVolumeIn(Ventilation ventilation)
 {
-    if (ventilationFeedbackSelected)
-    {
-       storeVentilation(ventilation);
-       audioPlayer->giveFeedback(evaluateVentilation());
-    }
+    uint8_t feedbackType = 0;
+    storeVentilation(ventilation);
+    feedbackType = evaluateVentilation();
+    return feedbackType;
 }
 
 
-void VentilationFeedbackImpl::handleVolumeOut(Ventilation performance)
+uint8_t VentilationFeedbackImpl::handleVolumeOut(Ventilation performance)
 {
-    if (ventilationFeedbackSelected)
-    {
-        //std::cout << "FeedbackHandler: volume out is " << performance.volume << std::endl;
-        //std::cout << "FeedbackHandler: ventilation time is " << performance.time << std::endl;
-    }
-}
-
-
-void VentilationFeedbackImpl::setVentilationFeedbackSelected(bool state)
-{
-    this->ventilationFeedbackSelected = state;
-    if (state == true) audioPlayer->giveFeedback(START_VENTILATION);
-    ventilationCount = 0;
+    uint8_t feedbackType = 0;
+    return feedbackType;
 }
 
 

@@ -1,4 +1,4 @@
-#include "FingerPositionFeedbackImpl.h"
+#include "FingerPositionFeedback.h"
 
 FingerPositionFeedbackImpl::FingerPositionFeedbackImpl()
 {
@@ -7,7 +7,7 @@ FingerPositionFeedbackImpl::FingerPositionFeedbackImpl()
 
 
 
-void FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfFingers)
+uint8_t FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
 
@@ -51,7 +51,7 @@ void FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfF
         fingerPositionPerformance = TOO_MANY_PRESSURE_POINTS;
     }
 
-    audioPlayer->giveFingerPositionFeedback(fingerPositionPerformance);
+    return fingerPositionPerformance;
 }
 
 

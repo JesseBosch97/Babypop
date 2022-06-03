@@ -2,11 +2,9 @@
 #define AUDIOPLAYERIMPL_H
 
 #include <QMediaPlayer>
-#include "ViewModel.h"
-#include "SerialData.h"
+#include <unordered_map>
 #include "AudioPlayer.h"
-#include "unordered_map"
-#include "CprTypes.h"
+
 
 
 
@@ -18,7 +16,6 @@ public:
 
     void giveFeedback(int feedbackType) override;
     void voiceSelected(QString voice) override;
-    void giveFingerPositionFeedback(int fingerFeedback) override;
 
 
 private:

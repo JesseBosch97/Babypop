@@ -36,27 +36,27 @@ void RequestModel::voiceSelected(QString voice)
 void RequestModel::ventilationCheckboxSelected(bool state)
 {
    qDebug() << "RequestModel: ventilation checkbox is" << state;
-   ventilationFeedback->setVentilationFeedbackSelected(state);
+   feedbackInteractor->setVentilationFeedbackSelected(state);
 }
 
 
 void RequestModel::ventilationAmountChanged(int value)
 {
     qDebug() << "RequestModel: Ventilation amount changed to " << value;
-    ventilationFeedback->setVentilationAmount(value);
+    feedbackInteractor->setVentilationAmount(value);
 }
 
 
 void RequestModel::volumeErrorSliderMoved(float value)
 {
    qDebug() << "RequestModel: Volume error slider moved to " << value;
-   ventilationFeedback->setVolumeErrorThreshold(value);
+   feedbackInteractor->setVolumeErrorThreshold(value);
 }
 
 void RequestModel::timeErrorSliderMoved(float value)
 {
    qDebug() << "RequestModel: Ventilation time error slider moved to " << value;
-   ventilationFeedback->setTimeErrorThreshold(value);
+   feedbackInteractor->setTimeErrorThreshold(value);
 
 }
 
@@ -64,7 +64,7 @@ void RequestModel::babyWeightChanged(int weight)
 {
     qDebug() << "RequestModel: BabyWeight changed to to " << weight;
     float weightInKg = static_cast<float>(weight) / 100;
-   ventilationFeedback->setBabyWeight(weightInKg);
+   feedbackInteractor->setBabyWeight(weightInKg);
 }
 
 
@@ -89,27 +89,27 @@ void RequestModel::fingerCheckboxSelected(bool state)
 void RequestModel::compressionCheckboxSelected(bool state)
 {
    qDebug() << "RequestModel: Compression checkbox is" << state;
-   compressionFeedback->setCompressionFeedbackSelected(state);
+   feedbackInteractor->setCompressionFeedbackSelected(state);
 }
 
 void RequestModel::compressionAmountChanged(int value)
 {
     qDebug() << "RequestModel: Compression amount changed to " << value;
-    compressionFeedback->setCompressionAmount(value);
+    feedbackInteractor->setCompressionAmount(value);
 }
 
 
 void RequestModel::bpmErrorSliderMoved(float value)
 {
     qDebug() << "RequestModel: Bpm error high slider moved to " << value;
-    compressionFeedback->setBpmErrorThreshold(value);
+    feedbackInteractor->setBpmErrorThreshold(value);
 }
 
 
 void RequestModel::depthErrorSliderMoved(float value)
 {
     qDebug() << "RequestModel: Depth error high slider moved to " << value;
-    compressionFeedback->setDepthErrorThreshold(value);
+    feedbackInteractor->setDepthErrorThreshold(value);
 }
 
 

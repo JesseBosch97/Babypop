@@ -1,16 +1,11 @@
-#include "CompressionFeedbackImpl.h"
+#include "CompressionFeedback.h"
 
 CompressionFeedbackImpl::CompressionFeedbackImpl()
 {
 
 }
 
-void CompressionFeedbackImpl::setCompressionFeedbackSelected(bool feedbackSelected)
-{
-    this->compressionFeedbackSelected = feedbackSelected;
-    if (feedbackSelected == true) audioPlayer->giveFeedback(START_COMPRESSION);
-    compressionCount = 0;
-}
+
 
 void CompressionFeedbackImpl::setBpmErrorThreshold(float percentage)
 {
@@ -34,14 +29,12 @@ void CompressionFeedbackImpl::setCompressionAmount(int amount)
 
 
 
-void CompressionFeedbackImpl::handleCompression(Compression compression)
+uint8_t CompressionFeedbackImpl::handleCompression(Compression compression)
 {
-   if (compressionFeedbackSelected)
-   {
-      storeCompression(compression);
-      audioPlayer->giveFeedback(evaluateCompression());
-   }
-
+    uint8_t feedbackType = 0;
+    storeCompression(compression);
+    feedbackType = evaluateCompression();
+    return feedbackType;
 }
 
 

@@ -24,12 +24,6 @@ void AudioPlayerImpl::voiceSelected(QString voice)
     this->selectedVoice = voice;
 }
 
-void AudioPlayerImpl::giveFingerPositionFeedback(int fingerFeedback)
-{
-    player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(fingerFeedback))));
-    player.play();
-}
-
 QString AudioPlayerImpl::createSoundURL(QString word)
 {
    return QString("qrc:/sounds/%1/audiofiles/%2_%3.mp3").arg(selectedVoice, selectedVoice, word);

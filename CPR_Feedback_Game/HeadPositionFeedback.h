@@ -2,13 +2,15 @@
 #define HEADPOSITIONFEEDBACK_H
 
 #include "CprTypes.h"
+#include <cstdint>
 
-
-class HeadPositionFeedback
+class HeadPositionFeedbackImpl
 {
 public:
-   virtual ~HeadPositionFeedback() = default;
-    virtual void handleHeadPosition(HeadPosition headPosition) = 0;
+    HeadPositionFeedbackImpl();
+
+
+    uint8_t handleHeadPosition(HeadPosition headPosition);
 };
 
 #endif // HEADPOSITIONFEEDBACK_H

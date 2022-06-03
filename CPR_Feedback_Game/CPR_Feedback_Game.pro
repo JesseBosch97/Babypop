@@ -6,15 +6,16 @@ QT += quick multimedia serialport
 
 SOURCES += \
         AudioPlayerImpl.cpp \
-        CompressionFeedbackImpl.cpp \
+        CompressionFeedback.cpp \
+        FeedbackInteractorImpl.cpp \
         FingerPositionDataHandler.cpp \
-        FingerPositionFeedbackImpl.cpp \
-        HeadPositionFeedbackImpl.cpp \
+        FingerPositionFeedback.cpp \
+        HeadPositionFeedback.cpp \
         RequestModel.cpp \
         SerialDataImpl.cpp \
         SerialPortImpl.cpp \
         StringFunctions.cpp \
-        VentilationFeedbackImpl.cpp \
+        VentilationFeedback.cpp \
         ViewModelImpl.cpp \
         main.cpp
 
@@ -36,13 +37,12 @@ HEADERS += \
     AudioPlayer.h \
     AudioPlayerImpl.h \
     CompressionFeedback.h \
-    CompressionFeedbackImpl.h \
     CprTypes.h \
+    FeedbackInteractor.h \
+    FeedbackInteractorImpl.h \
     FingerPositionDataHandler.h \
     FingerPositionFeedback.h \
-    FingerPositionFeedbackImpl.h \
     HeadPositionFeedback.h \
-    HeadPositionFeedbackImpl.h \
     RequestModel.h \
     SerialData.h \
     SerialDataImpl.h \
@@ -50,6 +50,5 @@ HEADERS += \
     SerialPortImpl.h \
     StringFunctions.h \
     VentilationFeedback.h \
-    VentilationFeedbackImpl.h \
     ViewModel.h \
     ViewModelImpl.h

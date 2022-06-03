@@ -4,13 +4,11 @@
 #include <QStringListModel>
 
 #include "RequestModel.h"
-#include "FingerPositionFeedbackImpl.h"
-#include "CompressionFeedbackImpl.h"
 #include "AudioPlayerImpl.h"
-#include "ViewModelImpl.h"
 #include "SerialPortImpl.h"
 #include "SerialDataImpl.h"
-#include "VentilationFeedbackImpl.h"
+#include "FeedbackInteractorImpl.h"
+#include "ViewModelImpl.h"
 
 
 
@@ -23,9 +21,7 @@ int main(int argc, char *argv[])
 
     //create objects
     AudioPlayerImpl audioplayer;
-    CompressionFeedbackImpl compressionFeedback;
-    VentilationFeedbackImpl ventilationFeedback;
-    FingerPositionFeedbackImpl fingerPositionFeedback;
+    FeedbackInteractorImpl feedbackInteractor;
     RequestModel requestModel;
     ViewModelImpl viewModel;
     SerialPortImpl serialPort;
@@ -35,15 +31,11 @@ int main(int argc, char *argv[])
     //connect objects
     requestModel.serialPort = &serialPort;
     requestModel.audioPlayer = &audioplayer;
-    requestModel.compressionFeedback = &compressionFeedback;
-    requestModel.ventilationFeedback = &ventilationFeedback;
+    requestModel.feedbackInteractor = &feedbackInteractor;
     requestModel.dataHandler = &serialData;
-    compressionFeedback.audioPlayer = &audioplayer;
-    ventilationFeedback.audioPlayer = &audioplayer;
+    feedbackInteractor.audioPlayer = &audioplayer;
     serialPort.serialData = &serialData;
-    serialData.compressionFeedback = &compressionFeedback;
-    serialData.ventilationFeedback = &ventilationFeedback;
-    serialData.fingerPositionFeedback = &fingerPositionFeedback;
+    serialData.feedbackInteractor = &feedbackInteractor;
 
     //create application
     QQmlApplicationEngine engine;

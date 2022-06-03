@@ -24,35 +24,35 @@ void SerialDataImpl::handleData(std::string validdata)
 
    if (detectString(validdata, FINGER_POSITION_HEADER))
    {
-       fingerPositionFeedback->handleFingerPosition(fingerPositionSerialData.handleData(validdata));
+       feedbackInteractor->handleFingerPosition(fingerPositionSerialData.handleData(validdata));
    }
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
        removeFrom(validdata, VOLUME_IN_HEADER);
        dataCollection = collectData(validdata);
-       ventilationFeedback->handleVolumeIn(handleVentilation(dataCollection));
+       feedbackInteractor->handleVolumeIn(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
        removeFrom(validdata, VOLUME_OUT_HEADER);
        dataCollection = collectData(validdata);
-       ventilationFeedback->handleVolumeOut(handleVentilation(dataCollection));
+       feedbackInteractor->handleVolumeOut(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, HEAD_POSITION_HEADER))
    {
        removeFrom(validdata, HEAD_POSITION_HEADER);
        dataCollection = collectData(validdata);
-       headPositionFeedback->handleHeadPosition(handleHeadPosition(dataCollection));
+       feedbackInteractor->handleHeadPosition(handleHeadPosition(dataCollection));
    }
 
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
        removeFrom(validdata, COMPRESSION_HEADER);
        dataCollection = collectData(validdata);
-       compressionFeedback->handleCompression(handleCompression(dataCollection));
+       feedbackInteractor->handleCompression(handleCompression(dataCollection));
    }
 
 

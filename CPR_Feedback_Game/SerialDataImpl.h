@@ -3,13 +3,10 @@
 
 #include <iostream>
 
+
+#include "SerialData.h"
+#include "FeedbackInteractor.h"
 #include "FingerPositionDataHandler.h"
-#include "HeadPositionFeedback.h"
-#include "SerialData.h"
-#include "CompressionFeedback.h"
-#include "FingerPositionFeedback.h"
-#include "VentilationFeedback.h"
-#include "SerialData.h"
 #include "StringFunctions.h"
 
 
@@ -22,10 +19,8 @@ public:
 
     void handleData(std::string validdata) override;
 
-    CompressionFeedback * compressionFeedback;
-    VentilationFeedback * ventilationFeedback;
-    FingerPositionFeedback * fingerPositionFeedback;
-    HeadPositionFeedback * headPositionFeedback;
+    FeedbackInteractor * feedbackInteractor;
+
 
 private:
     FingerPositionSerialData fingerPositionSerialData;
