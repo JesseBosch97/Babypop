@@ -1,5 +1,5 @@
 #include <QtTest>
-#include "StringFunctions.h"
+#include "../CPR_Feedback_Game/StringFunctions.h"
 
 // add necessary includes here
 

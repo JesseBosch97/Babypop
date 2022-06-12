@@ -6,8 +6,9 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  tst_volumedatahandlerutest.cpp \
-    StringFunctions.cpp
+SOURCES +=  \
+    ../CPR_Feedback_Game/StringFunctions.cpp \
+    tst_SerialData.cpp
 
 HEADERS += \
-    StringFunctions.h
+    ../CPR_Feedback_Game/StringFunctions.h
