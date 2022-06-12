@@ -6,9 +6,8 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  \
-    ../CPR_Feedback_Game/StringFunctions.cpp \
-    tst_SerialData.cpp
+SOURCES +=  tst_serialdatautest.cpp \
+    ../StringFunctions.cpp
 
 HEADERS += \
-    ../CPR_Feedback_Game/StringFunctions.h
+    ../StringFunctions.h
