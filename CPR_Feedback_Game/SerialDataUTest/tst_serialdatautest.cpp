@@ -39,7 +39,7 @@ private slots:
     //void VolumeOutDataIsStoredInVolumeOutPerformance();
     void VolumeHeaderIsRemovedFromString();
     void ValueUntilCommaIsCopied();
-    void StringIsCleanedFromValueAndCommaAndSpace();
+    //void StringIsCleanedFromValueAndCommaAndSpace();
     void ValueIsConvertedToFloat();
 };
 
@@ -69,13 +69,13 @@ void SerialDataUTest::ValueUntilCommaIsCopied()
 }
 
 
-void SerialDataUTest::StringIsCleanedFromValueAndCommaAndSpace()
-{
-    std::string parsedVolumeData = "51.88, 377";
-    remove(parsedVolumeData, "51.88");
-    remove(parsedVolumeData, ", ");
-    QCOMPARE(parsedVolumeData, "377");
-}
+//void SerialDataUTest::StringIsCleanedFromValueAndCommaAndSpace()
+//{
+//    std::string parsedVolumeData = "51.88, 377";
+//    remove(parsedVolumeData, "51.88");
+//    remove(parsedVolumeData, ", ");
+//    QCOMPARE(parsedVolumeData, "377");
+//}
 
 void SerialDataUTest::ValueIsConvertedToFloat()
 {
