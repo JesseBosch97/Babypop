@@ -27,12 +27,6 @@ void RequestModel::voiceSelected(QString voice)
 
 }
 
-
-
-
-
-
-
 void RequestModel::ventilationCheckboxSelected(bool state)
 {
    qDebug() << "RequestModel: ventilation checkbox is" << state;
@@ -79,7 +73,7 @@ void RequestModel::headPositionCheckboxSelected(bool state)
 void RequestModel::fingerCheckboxSelected(bool state)
 {
     qDebug() << "RequestModel: finger position checkbox is" << state;
-
+    feedbackInteractor->setFingerPositionFeedbackSelected(state);
 }
 
 

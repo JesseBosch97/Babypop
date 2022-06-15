@@ -21,7 +21,7 @@ class FingerPositionFeedbackImpl
 public:
     FingerPositionFeedbackImpl();
 
-    uint8_t handleFingerPosition(FingerPosition positionOfFingers);
+    FeedbackType handleFingerPosition(FingerPosition positionOfFingers);
 
 private:
     location locationOfFingers(FingerPosition positionOfFingers);

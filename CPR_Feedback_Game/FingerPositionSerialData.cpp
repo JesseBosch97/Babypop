@@ -12,14 +12,14 @@ FingerPositionSerialData::~FingerPositionSerialData()
 void FingerPositionSerialData::putFingerPositionsInStruct(std::vector<std::string> value)
 {
 
-    positionOfFingers.bottomleft    = std::stoi(value[0]);
+    positionOfFingers.bottomleft    = std::stoi(value[2]);
     positionOfFingers.topleft       = std::stoi(value[1]);
-    positionOfFingers.topright      = std::stoi(value[2]);
+    positionOfFingers.topright      = std::stoi(value[0]);
     positionOfFingers.mid           = std::stoi(value[3]);
-    positionOfFingers.bottomright   = std::stoi(value[4]);
-    positionOfFingers.top           = std::stoi(value[5]);
-    positionOfFingers.bottom        = std::stoi(value[6]);
-    positionOfFingers.lowmid        = std::stoi(value[7]);
+    positionOfFingers.bottomright   = std::stoi(value[7]);
+    positionOfFingers.top           = std::stoi(value[6]);
+    positionOfFingers.bottom        = std::stoi(value[5]);
+    positionOfFingers.lowmid        = std::stoi(value[4]);
 
 }
 FingerPosition FingerPositionSerialData::handleData(std::string validdata)

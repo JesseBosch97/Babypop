@@ -104,3 +104,12 @@ void FeedbackInteractorImpl::setDesiredVentilationVolumeFromBabyWeight(float bab
     ventilationFeedback.desiredVolume = babyWeightInKg * ML_PER_KG_BABY_WEIGHT;
     std::cout << "FeedbackInteractorImpl: desired volume is :" << ventilationFeedback.desiredVolume << std::endl;
 }
+
+void FeedbackInteractorImpl::setFingerPositionFeedbackSelected(bool state)
+{
+    this->fingerPositionFeedbackSelected = state;
+    if (state == true)
+    {
+
+    }
+}

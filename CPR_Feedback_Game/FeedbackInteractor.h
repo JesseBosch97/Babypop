@@ -24,6 +24,8 @@ public:
     virtual void setTimeErrorThreshold(float percentage) = 0;
     virtual void setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg) = 0;
 
+    virtual void setFingerPositionFeedbackSelected(bool state) = 0;
+
 };
 
 #endif // FEEDBACKINTERACTOR_H

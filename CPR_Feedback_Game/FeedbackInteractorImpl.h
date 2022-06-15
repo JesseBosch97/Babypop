@@ -37,6 +37,8 @@ public:
     void setTimeErrorThreshold(float percentage) override;
     void setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg) override;
 
+    void setFingerPositionFeedbackSelected(bool state) override;
+
 private:
     bool compressionFeedbackSelected = false;
     bool ventilationFeedbackSelected = false;

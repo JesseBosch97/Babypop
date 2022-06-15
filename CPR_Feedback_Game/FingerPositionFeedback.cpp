@@ -7,50 +7,64 @@ FingerPositionFeedbackImpl::FingerPositionFeedbackImpl()
 
 
 
-uint8_t FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfFingers)
+FeedbackType FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition positionOfFingers)
 {
     int fingerPositionPerformance = CORRECT;
-
     //enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
-    if(pressurePoints(positionOfFingers) < 3)
+    if((pressurePoints(positionOfFingers) < 3) && (pressurePoints(positionOfFingers) > 0))
     {
         switch(locationOfFingers(positionOfFingers))
         {
         case UP_LEFT:
             fingerPositionPerformance = TOO_FAR_LEFT;
+            std::cout << "FingerPosition: TOO FAR LEFT" << std::endl;
             break;
         case UP:
             fingerPositionPerformance = TOO_HIGH;
+            std::cout << "FingerPosition: TOO HIGH" << std::endl;
             break;
         case UP_RIGHT:
             fingerPositionPerformance = TOO_FAR_RIGHT;
+            std::cout << "FingerPosition: TOO FAR RIGH" << std::endl;
             break;
         case LEFT:
             fingerPositionPerformance = TOO_FAR_LEFT;
+            std::cout << "FingerPosition: TOO FAR LEFT" << std::endl;
             break;
         case MID:
             fingerPositionPerformance = CORRECT;
+            std::cout << "FingerPosition: CORRECT" << std::endl;
             break;
         case RIGHT:
             fingerPositionPerformance = TOO_FAR_RIGHT;
+            std::cout << "FingerPosition: TOO FAR RIGHT" << std::endl;
             break;
         case BOTTOM_LEFT:
             fingerPositionPerformance = TOO_LOW;
+            std::cout << "FingerPosition: TOO LOW" << std::endl;
             break;
         case LOW:
             fingerPositionPerformance = TOO_LOW;
+            std::cout << "FingerPosition: TOO LOW" << std::endl;
             break;
         case BOTTOM_RIGHT:
             fingerPositionPerformance = TOO_LOW;
+            std::cout << "FingerPosition: TOO LOW" << std::endl;
             break;
 
         }
     }
-    else
+    else if (pressurePoints(positionOfFingers) > 3)
     {
         fingerPositionPerformance = TOO_MANY_PRESSURE_POINTS;
+        std::cout << "FingerPosition: TOO many" << std::endl;
     }
-
+    else if (pressurePoints(positionOfFingers) <= 0)
+    {
+        fingerPositionPerformance = NO_TOUCH;
+        std::cout << "FingerPosition: none" << std::endl;
+    }
+    std::cout << "points: " << pressurePoints(positionOfFingers) << std::endl;
     return fingerPositionPerformance;
 }
 
@@ -101,7 +115,7 @@ location FingerPositionFeedbackImpl::locationOfFingers(FingerPosition positionOf
 
 location FingerPositionFeedbackImpl::calculateLocation(Coordinates thorax)
 {
-    location retval;
+    location retval = MID;
     bool up = 0;
     bool midy = 0;
     bool low = 0;
@@ -138,38 +152,57 @@ location FingerPositionFeedbackImpl::calculateLocation(Coordinates thorax)
     if(up && left)
     {
         retval = UP_LEFT;
+        std::cout << "retval: UP LEFT" << std::endl;
     }
-    if(up && midx)
+    else if(up && midx)
     {
         retval = UP;
+        std::cout << "retval: UP" << std::endl;
     }
-    if(up && right)
+    else if(up && right)
     {
         retval = UP_RIGHT;
+        std::cout << "retval: UP RIGHT" << std::endl;
     }
-    if(midy && left)
+    else if(midy && left)
     {
         retval = LEFT;
+        std::cout << "retval: LEFT" << std::endl;
     }
-    if(midy && midx)
-    {
-        retval = MID;
-    }
-    if(midy && right)
+    else if(midy && right)
     {
         retval = RIGHT;
+        std::cout << "retval: RIGHT" << std::endl;
     }
-    if(low && left)
+    else if(low && left)
     {
         retval = BOTTOM_LEFT;
+        std::cout << "retval: BOTTOM LEFT" << std::endl;
     }
-    if(low && midx)
+    else if(low && midx)
     {
         retval = LOW;
+        std::cout << "retval: LOW" << std::endl;
     }
-    if(low && right)
+    else if(low && right)
     {
         retval = BOTTOM_RIGHT;
+        std::cout << "retval: BOTTOM RIGHT" << std::endl;
+    }
+    else if(left)
+    {
+        retval = LEFT;
+        std::cout << "retval: LEFT" << std::endl;
+    }
+    else if(right)
+    {
+        retval = RIGHT;
+        std::cout << "retval: RIGHT" << std::endl;
+    }
+    else if(midy && midx)
+    {
+        retval = MID;
+        std::cout << "retval: MID" << std::endl;
     }
 
     return retval;
@@ -211,7 +244,6 @@ int FingerPositionFeedbackImpl::pressurePoints(FingerPosition positionOfFingers)
     {
         pressurePoints++;
     }
-
     return pressurePoints;
 }
 
