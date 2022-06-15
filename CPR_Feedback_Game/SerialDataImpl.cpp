@@ -13,11 +13,6 @@ SerialDataImpl::SerialDataImpl()
 }
 
 
-
-//Volume: 36.55, 40.47, 563
-//[1020, 1020, 1020, 1020, 14, 13, 13, 13]\r\n
-
-
 void SerialDataImpl::handleData(std::string validdata)
 {
    std::vector<std::string> dataCollection;
@@ -29,28 +24,28 @@ void SerialDataImpl::handleData(std::string validdata)
 
    else if (detectString(validdata, VOLUME_IN_HEADER))
    {
-       removeFrom(validdata, VOLUME_IN_HEADER);
+       remove(validdata, VOLUME_IN_HEADER);
        dataCollection = collectData(validdata);
        feedbackInteractor->handleVolumeIn(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, VOLUME_OUT_HEADER))
    {
-       removeFrom(validdata, VOLUME_OUT_HEADER);
+       remove(validdata, VOLUME_OUT_HEADER);
        dataCollection = collectData(validdata);
        feedbackInteractor->handleVolumeOut(handleVentilation(dataCollection));
    }
 
    else if (detectString(validdata, HEAD_POSITION_HEADER))
    {
-       removeFrom(validdata, HEAD_POSITION_HEADER);
+       remove(validdata, HEAD_POSITION_HEADER);
        dataCollection = collectData(validdata);
        feedbackInteractor->handleHeadPosition(handleHeadPosition(dataCollection));
    }
 
    else if (detectString(validdata, COMPRESSION_HEADER))
    {
-       removeFrom(validdata, COMPRESSION_HEADER);
+       remove(validdata, COMPRESSION_HEADER);
        dataCollection = collectData(validdata);
        feedbackInteractor->handleCompression(handleCompression(dataCollection));
    }
@@ -70,13 +65,12 @@ std::vector<std::string> SerialDataImpl::collectData(std::string & data)
 
     std::vector<std::string> dataCollection;
 
-    size_t numberOfDataPoints = std::count(data.begin(), data.end(), ',');
+    size_t loopAmount = countCommas(data);
 
-    std::cout << "DataHandler: number of data is: " << numberOfDataPoints << std::endl;
-
-    for (int i = 0; i < static_cast<int>(numberOfDataPoints); i++)
+    for (int i = 0; i < static_cast<int>(loopAmount); i++)
     {
-        dataCollection.push_back(copyAndRemoveNextValue(data));
+        std::string nextData = copyAndRemoveNextValue(data);
+        dataCollection.push_back(nextData);
     }
 
     dataCollection.push_back(data); // last remaining value
@@ -105,6 +99,14 @@ HeadPosition SerialDataImpl::handleHeadPosition(std::vector<std::string> headPos
     HeadPosition headPosition;
     return headPosition;
 }
+
+size_t SerialDataImpl::countCommas(std::string & data)
+{
+    size_t amount = std::count(data.begin(), data.end(), ',');
+    return amount;
+}
+
+
 
 
 

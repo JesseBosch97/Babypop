@@ -7,7 +7,7 @@ AudioPlayerImpl::AudioPlayerImpl()
 }
 
 
-void AudioPlayerImpl::giveFeedback(int feedbackType)
+void AudioPlayerImpl::giveFeedback(FeedbackType feedbackType)
 {
    if (feedbackType)
    {

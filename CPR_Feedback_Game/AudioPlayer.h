@@ -8,7 +8,7 @@ class AudioPlayer
 {
 public:
    virtual ~AudioPlayer() = default;
-   virtual void giveFeedback(int feedbackType) = 0;
+   virtual void giveFeedback(FeedbackType feedbackType) = 0;
    virtual void voiceSelected(QString voice) = 0;
 };
 

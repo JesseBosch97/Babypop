@@ -2,11 +2,7 @@
 #include "../StringFunctions.h"
 // add necessary includes here
 
-struct VolumePerformance
-{
-    float volume = 0;
-    int time = 0;
-};
+
 
 class SerialDataUTest : public QObject
 {
@@ -16,31 +12,80 @@ public:
     SerialDataUTest();
     ~SerialDataUTest();
 
-    VolumePerformance volumePerformance;
+private:
+
+    std::vector<std::string> collectData(std::string & data)
+    {
+        std::vector<std::string> dataCollection;
+
+        size_t loopAmount = countCommas(data);
+
+        for (int i = 0; i < static_cast<int>(loopAmount); i++)
+        {
+            std::string nextData = copyDataValue(data, i);
+            dataCollection.push_back(nextData);
+        }
+
+        return dataCollection;
+    }
+
+    size_t countCommas(std::string & data)
+    {
+        size_t amount = std::count(data.begin(), data.end(), ',');
+        return amount;
+    }
+
+    std::vector<std::size_t> findCommaLocations(std::string & data)
+    {
+        std::size_t amountOfCommas = countCommas(data);
+        std::vector<std::size_t> commaLocations;
+        std::size_t lastCommaLocation = 0;
+
+        for (unsigned long long i = 0; i<amountOfCommas; i++)
+        {
+            lastCommaLocation = data.find(',', lastCommaLocation + 1);
+            commaLocations.push_back(lastCommaLocation);
+        }
+
+        return commaLocations;
+    }
 
 
-//    void handleVolume(std::string & volumeData, std::string header)
-//    {
-//        remove(volumeData, header);
-
-//        std::string volume = copyAndRemoveNextValue(volumeData);
-//        std::string ventilationTime = volumeData;
-
-//        volumePerformance.volume = stof(volume);
-//        volumePerformance.time = stoi(ventilationTime);
-//    }
+    std::string copyDataValue(std::string & data, std::size_t startLocation)
+    {
+        std::string value;
+        char c;
+        std::size_t length = data.length();
 
 
+        for (auto i = startLocation; i<length; i++)
+        {
+
+            c = data.at(i);
+
+            if (c == ',')
+            {
+                break;
+            }
+
+            value+=c;
+        }
+
+        return value;
+    }
 
 
 
 private slots:
-    //void VolumeInDataIsStoredInVolumeInPerformance();
-    //void VolumeOutDataIsStoredInVolumeOutPerformance();
+
     void VolumeHeaderIsRemovedFromString();
+    void CommaLocationIsFound();
     void ValueUntilCommaIsCopied();
-    //void StringIsCleanedFromValueAndCommaAndSpace();
+    void NextCommaLocationIsFound();
+    void LengthOfDataCharactersIsFound();
+    void NextValueUntilCommaIsCopied();
     void ValueIsConvertedToFloat();
+    void NextDataValueIsReturned();
 };
 
 SerialDataUTest::SerialDataUTest()
@@ -62,20 +107,74 @@ void SerialDataUTest::VolumeHeaderIsRemovedFromString()
     QCOMPARE(volumeData, "51.88, 377");
 }
 
-void SerialDataUTest::ValueUntilCommaIsCopied()
+
+
+void SerialDataUTest::NextDataValueIsReturned()
 {
-    std::string parsedVolumeData = "51.88, 377";
-    QCOMPARE(copyUntil(parsedVolumeData, ','), "51.88");
+    std::string data = "51.88, 377, 123";
+
+    std::vector<std::size_t> commaLocations = findCommaLocations(data);
+    std::string nextValue = copyDataValue(data, 0);
+
+    QCOMPARE(nextValue, "51.88");
+
+    nextValue = copyDataValue(data, 5+2);
+    qDebug() << QString::fromStdString(nextValue);
+    QCOMPARE(nextValue, "377");
+
 }
 
 
-//void SerialDataUTest::StringIsCleanedFromValueAndCommaAndSpace()
-//{
-//    std::string parsedVolumeData = "51.88, 377";
-//    remove(parsedVolumeData, "51.88");
-//    remove(parsedVolumeData, ", ");
-//    QCOMPARE(parsedVolumeData, "377");
-//}
+
+void SerialDataUTest::CommaLocationIsFound()
+{
+    std::string data = "51.88, 377, 123";
+    std::vector<std::size_t> commaLocations = findCommaLocations(data);
+    QCOMPARE(commaLocations.at(0), 5);
+    QCOMPARE(commaLocations.at(1), 10);
+}
+
+
+
+void SerialDataUTest::ValueUntilCommaIsCopied()
+{
+    std::string data = "51.88, 377, 123";
+    std::size_t commaLocation = data.find(',');
+    std::string newString = data.substr(0, commaLocation);
+
+    QCOMPARE(newString, "51.88");
+}
+
+void SerialDataUTest::NextCommaLocationIsFound()
+{
+    std::string data = "51.88, 377, 123";
+    std::size_t first = data.find(',');
+    std::size_t next = data.find(',', first + 1);
+    QCOMPARE(next, 10);
+}
+
+void SerialDataUTest::LengthOfDataCharactersIsFound()
+{
+    std::string data = "51.88, 377, 123";
+    std::size_t begin = data.find(',');
+    std::size_t beginOfData = begin+2;
+    std::size_t end = data.find(',', beginOfData);
+    std::size_t length = end - beginOfData;
+    QCOMPARE(length, 3);
+}
+
+
+void SerialDataUTest::NextValueUntilCommaIsCopied()
+{
+    std::string data = "51.88, 377, 123";
+    std::size_t begin = data.find(',');
+    std::size_t beginOfData = begin+2;
+    std::size_t end = data.find(',', beginOfData);
+    std::size_t length = end - beginOfData;
+    std::string newString = data.substr(beginOfData, length);
+    QCOMPARE(newString, "377");
+}
+
 
 void SerialDataUTest::ValueIsConvertedToFloat()
 {

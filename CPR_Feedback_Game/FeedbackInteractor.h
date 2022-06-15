@@ -22,9 +22,7 @@ public:
     virtual void setVentilationFeedbackSelected(bool state) = 0;
     virtual void setVolumeErrorThreshold(float percentage) = 0;
     virtual void setTimeErrorThreshold(float percentage) = 0;
-    virtual void setBabyWeight(float babyWeightInKg) = 0;
-
-
+    virtual void setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg) = 0;
 
 };
 

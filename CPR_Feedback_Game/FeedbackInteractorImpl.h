@@ -13,8 +13,8 @@ class FeedbackInteractorImpl : public FeedbackInteractor
 public:
     FeedbackInteractorImpl();
 
-    CompressionFeedbackImpl compressionFeedback;
-    VentilationFeedbackImpl ventilationFeedback;
+    CompressionFeedback compressionFeedback;
+    VentilationFeedback ventilationFeedback;
     HeadPositionFeedbackImpl headPositionFeedback;
     FingerPositionFeedbackImpl fingerPositionFeedback;
     AudioPlayer * audioPlayer;
@@ -35,13 +35,20 @@ public:
     void setVentilationFeedbackSelected(bool state) override;
     void setVolumeErrorThreshold(float percentage) override;
     void setTimeErrorThreshold(float percentage) override;
-    void setBabyWeight(float babyWeightInKg) override;
+    void setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg) override;
 
 private:
     bool compressionFeedbackSelected = false;
     bool ventilationFeedbackSelected = false;
     bool fingerPositionFeedbackSelected = false;
     bool headPositionFeedbackSelected = false;
+
+
+    // the bag contains 125 mil
+    //top value for the bag used is 140
+
+    //a baby should be ventilated with 6 to 8 ml per kg of bodyweight
+    const int ML_PER_KG_BABY_WEIGHT = 7;
 };
 
 #endif // FEEDBACKINTERACTORIMPL_H

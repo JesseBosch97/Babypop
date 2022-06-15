@@ -1,4 +1,4 @@
-#include "FingerPositionDataHandler.h"
+#include "FingerPositionSerialData.h"
 #include <iostream>
 
 FingerPositionSerialData::FingerPositionSerialData()

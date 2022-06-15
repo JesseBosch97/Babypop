@@ -6,7 +6,7 @@
 
 #include "SerialData.h"
 #include "FeedbackInteractor.h"
-#include "FingerPositionDataHandler.h"
+#include "FingerPositionSerialData.h"
 #include "StringFunctions.h"
 
 
@@ -28,12 +28,7 @@ private:
     Compression handleCompression(std::vector<std::string> compressionData);
     Ventilation handleVentilation(std::vector<std::string> ventilationData);
     HeadPosition handleHeadPosition(std::vector<std::string> headPositionData);
-
-    const std::string VOLUME_IN_HEADER = "Volume In: ";
-    const std::string VOLUME_OUT_HEADER = "Volume Out: ";
-    const std::string COMPRESSION_HEADER = "Compression: ";
-    const std::string FINGER_POSITION_HEADER = "[";
-    const std::string HEAD_POSITION_HEADER = "Head Position: ";
+    size_t countCommas(std::string &data);
 };
 
 #endif // SERIALDATAIMPL_H

@@ -1,35 +1,13 @@
 #include "CompressionFeedback.h"
 
-CompressionFeedbackImpl::CompressionFeedbackImpl()
+CompressionFeedback::CompressionFeedback()
 {
 
 }
 
 
 
-void CompressionFeedbackImpl::setBpmErrorThreshold(float percentage)
-{
-    this->bpmErrorThreshold = DESIRED_BPM * percentage/100;
-    std::cout << "CompressionFeedback: allowed bpm error high is :" << this->bpmErrorThreshold << std::endl;
-}
-
-
-void CompressionFeedbackImpl::setDepthErrorThreshold(float percentage)
-{
-    this->depthErrorThreshold = DESIRED_DEPTH * percentage/100;
-    std::cout << "CompressionFeedback: allowed depth error high is :" << this->depthErrorThreshold << std::endl;
-}
-
-
-void CompressionFeedbackImpl::setCompressionAmount(int amount)
-{
-    this->compressionAmount = amount;
-   compressionCount = 0;
-}
-
-
-
-uint8_t CompressionFeedbackImpl::handleCompression(Compression compression)
+FeedbackType CompressionFeedback::handleCompression(Compression compression)
 {
     uint8_t feedbackType = 0;
     storeCompression(compression);
@@ -38,7 +16,7 @@ uint8_t CompressionFeedbackImpl::handleCompression(Compression compression)
 }
 
 
-void CompressionFeedbackImpl::storeCompression(Compression compression)
+void CompressionFeedback::storeCompression(Compression compression)
 {
    if (compression.bpm && compression.depthInMm)
    {
@@ -48,10 +26,11 @@ void CompressionFeedbackImpl::storeCompression(Compression compression)
 
       std::cout << "CompressionFeedback: bpm is: " << compression.bpm << std::endl;
       std::cout << "CompressionFeedback: accumulated bpm error is: " << bpmAccumulatedError << std::endl;
+      std::cout << "CompressionFeedback: accumulated depth error is: " << depthAccumulatedError << std::endl;
    }
 }
 
-uint8_t CompressionFeedbackImpl::evaluateCompression()
+FeedbackType CompressionFeedback::evaluateCompression()
 {
    uint8_t feedbackType = 0;
 
@@ -60,17 +39,17 @@ uint8_t CompressionFeedbackImpl::evaluateCompression()
       feedbackType = TOO_MANY;
    }
 
-//   else if (depthAccumulatedError > depthErrorThreshold)
-//   {
-//      feedbackType = TOO_DEEP;
-//      depthAccumulatedError = 0;
-//   }
+   else if (depthAccumulatedError > depthErrorThreshold)
+   {
+      feedbackType = TOO_DEEP;
+      depthAccumulatedError = 0;
+   }
 
-//   else if (depthAccumulatedError < -depthErrorThreshold)
-//   {
-//      feedbackType = TOO_SHALLOW;
-//      depthAccumulatedError = 0;
-//   }
+   else if (depthAccumulatedError < -depthErrorThreshold)
+   {
+      feedbackType = TOO_SHALLOW;
+      depthAccumulatedError = 0;
+   }
 
    else if (bpmAccumulatedError > bpmErrorThreshold)
    {

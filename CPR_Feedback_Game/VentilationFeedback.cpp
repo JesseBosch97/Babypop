@@ -1,13 +1,13 @@
 #include "VentilationFeedback.h"
 
-VentilationFeedbackImpl::VentilationFeedbackImpl()
+VentilationFeedback::VentilationFeedback()
 {
 
 
 }
 
 
-void VentilationFeedbackImpl::storeVentilation(Ventilation ventilation)
+void VentilationFeedback::storeVentilation(Ventilation ventilation)
 {
    if (ventilation.volumeInMl && ventilation.timeInMs)
    {
@@ -22,7 +22,7 @@ void VentilationFeedbackImpl::storeVentilation(Ventilation ventilation)
    }
 }
 
-uint8_t VentilationFeedbackImpl::evaluateVentilation()
+FeedbackType VentilationFeedback::evaluateVentilation()
 {
    uint8_t feedbackType = 0;
 
@@ -33,25 +33,25 @@ uint8_t VentilationFeedbackImpl::evaluateVentilation()
 
    else if (volumeAccumulatedError > volumeErrorThreshold)
    {
-      feedbackType = VENTILATION_TOO_MUCH;
+      feedbackType = TOO_MUCH;
       volumeAccumulatedError = 0;
    }
 
    else if (volumeAccumulatedError < -volumeErrorThreshold)
    {
-      feedbackType = VENTILATION_TOO_LITTLE;
+      feedbackType = TOO_LITTLE;
       volumeAccumulatedError = 0;
    }
 
    else if (timeAccumulatedError > timeErrorThreshold)
    {
-       feedbackType = VENTILATION_TOO_LONG;
+       feedbackType = TOO_LONG;
        timeAccumulatedError = 0;
    }
 
    else if (timeAccumulatedError < -timeErrorThreshold)
    {
-       feedbackType = VENTILATION_TOO_SHORT;
+       feedbackType = TOO_SHORT;
        timeAccumulatedError = 0;
    }
 
@@ -60,7 +60,7 @@ uint8_t VentilationFeedbackImpl::evaluateVentilation()
 }
 
 
-uint8_t VentilationFeedbackImpl::handleVolumeIn(Ventilation ventilation)
+FeedbackType VentilationFeedback::handleVolumeIn(Ventilation ventilation)
 {
     uint8_t feedbackType = 0;
     storeVentilation(ventilation);
@@ -69,7 +69,7 @@ uint8_t VentilationFeedbackImpl::handleVolumeIn(Ventilation ventilation)
 }
 
 
-uint8_t VentilationFeedbackImpl::handleVolumeOut(Ventilation performance)
+FeedbackType VentilationFeedback::handleVolumeOut(Ventilation ventilation)
 {
     uint8_t feedbackType = 0;
     return feedbackType;
@@ -77,30 +77,3 @@ uint8_t VentilationFeedbackImpl::handleVolumeOut(Ventilation performance)
 
 
 
-void VentilationFeedbackImpl::setVolumeErrorThreshold(float percentage)
-{
-   this->volumeErrorThreshold = desiredVolume * percentage/100;
-   std::cout << "VentilationFeedback: allowed volume error is :" << this->volumeErrorThreshold << std::endl;
-}
-
-void VentilationFeedbackImpl::setTimeErrorThreshold(float percentage)
-{
-   this->timeErrorThreshold = DESIRED_TIME_IN_MS * percentage/100;
-    std::cout << "VentilationFeedback: allowed time error is :" << this->timeErrorThreshold << std::endl;
-}
-
-void VentilationFeedbackImpl::setBabyWeight(float babyWeightInKg)
-{
-    this->babyWeightInKg = babyWeightInKg;
-    std::cout << "VentilationFeedback: babyWeight is :" << this->babyWeightInKg << std::endl;
-
-    this->desiredVolume = babyWeightInKg * ML_PER_KG_BABY_WEIGHT;
-    std::cout << "VentilationFeedback: desired volume is :" << this->desiredVolume << std::endl;
-}
-
-
-void VentilationFeedbackImpl::setVentilationAmount(int amount)
-{
-    this->ventilationAmount = amount;
-    ventilationCount = 0;
-}

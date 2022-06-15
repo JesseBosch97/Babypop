@@ -14,7 +14,7 @@ public:
     AudioPlayerImpl();
 
 
-    void giveFeedback(int feedbackType) override;
+    void giveFeedback(FeedbackType feedbackType) override;
     void voiceSelected(QString voice) override;
 
 
@@ -39,13 +39,10 @@ private:
         {TOO_HIGH, "little lower"},
 
         {START_VENTILATION, "ventilate"},
-        {VENTILATION_TOO_SHORT, "blow_longer"},
-        {VENTILATION_TOO_LONG, "blow_shorter"},
-        {VENTILATION_TOO_LITTLE, "more"},
-        {VENTILATION_TOO_MUCH, "less"},
-        {PAUSE_TOO_SHORT, "faster"},
-        {PAUSE_TOO_LONG, "pause_shorter"}};
-
+        {TOO_SHORT, "blow_longer"},
+        {TOO_LONG, "blow_shorter"},
+        {TOO_LITTLE, "more"},
+        {TOO_MUCH, "less"}};
 };
 
 #endif // AUDIOPLAYERIMPL_H

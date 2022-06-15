@@ -52,24 +52,26 @@ void FeedbackInteractorImpl::setCompressionFeedbackSelected(bool state)
 
 void FeedbackInteractorImpl::setCompressionAmount(int amount)
 {
-    compressionFeedback.setCompressionAmount(amount);
-
+    compressionFeedback.compressionAmount = amount;
+    compressionFeedback.compressionCount = 0;
 }
 
 void FeedbackInteractorImpl::setBpmErrorThreshold(float percentage)
 {
-    compressionFeedback.setBpmErrorThreshold(percentage);
+    compressionFeedback.bpmErrorThreshold = compressionFeedback.DESIRED_BPM * percentage/100;
+    std::cout << "FeedbackInteractorImpl: allowed bpm error high is :" << compressionFeedback.bpmErrorThreshold << std::endl;
 }
 
 void FeedbackInteractorImpl::setDepthErrorThreshold(float percentage)
 {
-    compressionFeedback.setDepthErrorThreshold(percentage);
-
+    compressionFeedback.depthErrorThreshold = compressionFeedback.DESIRED_DEPTH * percentage/100;
+    std::cout << "FeedbackInteractorImpl: allowed depth error high is :" << compressionFeedback.depthErrorThreshold << std::endl;
 }
 
 void FeedbackInteractorImpl::setVentilationAmount(int amount)
 {
-    ventilationFeedback.setVentilationAmount(amount);
+    ventilationFeedback.ventilationAmount = amount;
+    ventilationFeedback.ventilationCount = 0;
 }
 
 void FeedbackInteractorImpl::setVentilationFeedbackSelected(bool state)
@@ -85,15 +87,20 @@ void FeedbackInteractorImpl::setVentilationFeedbackSelected(bool state)
 
 void FeedbackInteractorImpl::setVolumeErrorThreshold(float percentage)
 {
-    ventilationFeedback.setVolumeErrorThreshold(percentage);
+    ventilationFeedback.volumeErrorThreshold = ventilationFeedback.desiredVolume * percentage/100;
+    std::cout << "FeedbackInteractorImpl: allowed volume error is :" << ventilationFeedback.volumeErrorThreshold << std::endl;
 }
 
 void FeedbackInteractorImpl::setTimeErrorThreshold(float percentage)
 {
-    ventilationFeedback.setTimeErrorThreshold(percentage);
+    ventilationFeedback.timeErrorThreshold = ventilationFeedback.DESIRED_TIME_IN_MS * percentage/100;
+     std::cout << "FeedbackInteractorImpl: allowed time error is :" << ventilationFeedback.timeErrorThreshold << std::endl;
 }
 
-void FeedbackInteractorImpl::setBabyWeight(float babyWeightInKg)
+void FeedbackInteractorImpl::setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg)
 {
-    ventilationFeedback.setBabyWeight(babyWeightInKg);
+    std::cout << "FeedbackInteractorImpl: babyWeight is :" << babyWeightInKg << std::endl;
+
+    ventilationFeedback.desiredVolume = babyWeightInKg * ML_PER_KG_BABY_WEIGHT;
+    std::cout << "FeedbackInteractorImpl: desired volume is :" << ventilationFeedback.desiredVolume << std::endl;
 }

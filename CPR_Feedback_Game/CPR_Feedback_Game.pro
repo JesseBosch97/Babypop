@@ -8,8 +8,8 @@ SOURCES += \
         AudioPlayerImpl.cpp \
         CompressionFeedback.cpp \
         FeedbackInteractorImpl.cpp \
-        FingerPositionDataHandler.cpp \
         FingerPositionFeedback.cpp \
+        FingerPositionSerialData.cpp \
         HeadPositionFeedback.cpp \
         RequestModel.cpp \
         SerialDataImpl.cpp \
@@ -40,8 +40,8 @@ HEADERS += \
     CprTypes.h \
     FeedbackInteractor.h \
     FeedbackInteractorImpl.h \
-    FingerPositionDataHandler.h \
     FingerPositionFeedback.h \
+    FingerPositionSerialData.h \
     HeadPositionFeedback.h \
     RequestModel.h \
     SerialData.h \

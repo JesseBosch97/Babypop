@@ -64,7 +64,7 @@ void RequestModel::babyWeightChanged(int weight)
 {
     qDebug() << "RequestModel: BabyWeight changed to to " << weight;
     float weightInKg = static_cast<float>(weight) / 100;
-   feedbackInteractor->setBabyWeight(weightInKg);
+   feedbackInteractor->setDesiredVentilationVolumeFromBabyWeight(weightInKg);
 }
 
 
