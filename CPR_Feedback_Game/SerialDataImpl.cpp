@@ -1,11 +1,5 @@
 #include "SerialDataImpl.h"
 
-#include <algorithm>
-
-
-
-
-
 
 SerialDataImpl::SerialDataImpl()
 {
@@ -50,33 +44,59 @@ void SerialDataImpl::handleData(std::string validdata)
        feedbackInteractor->handleCompression(handleCompression(dataCollection));
    }
 
-
    else std::cout << "DataHandler: data not detected!" << std::endl;
-
-
 }
-
-
 
 
 std::vector<std::string> SerialDataImpl::collectData(std::string & data)
 {
-    std::cout << "DataHandler: received data: " << data << std::endl;
-
+    std::vector<std::size_t> startLocations = findDataValueStartLocations(data, ", ");
+    size_t loopAmount = startLocations.size();
     std::vector<std::string> dataCollection;
-
-    size_t loopAmount = countCommas(data);
 
     for (int i = 0; i < static_cast<int>(loopAmount); i++)
     {
-        std::string nextData = copyAndRemoveNextValue(data);
+        std::string nextData = copyDataValue(data, startLocations.at(i));
         dataCollection.push_back(nextData);
     }
 
-    dataCollection.push_back(data); // last remaining value
-
     return dataCollection;
 }
+
+
+std::vector<std::size_t> SerialDataImpl::findDataValueStartLocations(std::string & data, std::string separationCharacters)
+{
+    std::vector<std::size_t> startLocations = findCharacterLocations(data, separationCharacters);
+
+    for (auto & el : startLocations)
+    {
+        el += separationCharacters.size();
+    }
+
+    startLocations.insert(startLocations.begin(), 0);
+    return startLocations;
+}
+
+
+std::string SerialDataImpl::copyDataValue(std::string & data, std::size_t startLocation)
+{
+    std::string value;
+    char c;
+    std::size_t length = data.length();
+
+    for (auto i = startLocation; i<length; i++)
+    {
+        c = data.at(i);
+
+        if (c == ',')
+        {
+            break;
+        }
+        value+=c;
+    }
+    return value;
+}
+
 
 Compression SerialDataImpl::handleCompression(std::vector<std::string> compressionData)
 {
@@ -86,6 +106,7 @@ Compression SerialDataImpl::handleCompression(std::vector<std::string> compressi
     return compression;
 }
 
+
 Ventilation SerialDataImpl::handleVentilation(std::vector<std::string> ventilationData)
 {
     Ventilation ventilation;
@@ -94,23 +115,10 @@ Ventilation SerialDataImpl::handleVentilation(std::vector<std::string> ventilati
     return ventilation;
 }
 
+
 HeadPosition SerialDataImpl::handleHeadPosition(std::vector<std::string> headPositionData)
 {
     HeadPosition headPosition;
     return headPosition;
 }
-
-size_t SerialDataImpl::countCommas(std::string & data)
-{
-    size_t amount = std::count(data.begin(), data.end(), ',');
-    return amount;
-}
-
-
-
-
-
-
-
-
 

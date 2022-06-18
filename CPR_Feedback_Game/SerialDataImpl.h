@@ -21,14 +21,18 @@ public:
 
     FeedbackInteractor * feedbackInteractor;
 
-
 private:
     FingerPositionSerialData fingerPositionSerialData;
+
     std::vector<std::string> collectData(std::string &data);
+    std::vector<std::size_t> findDataValueStartLocations(std::string &data, std::string separationCharacters);
+    std::string copyDataValue(std::string &data, std::size_t startLocation);
+
     Compression handleCompression(std::vector<std::string> compressionData);
     Ventilation handleVentilation(std::vector<std::string> ventilationData);
     HeadPosition handleHeadPosition(std::vector<std::string> headPositionData);
-    size_t countCommas(std::string &data);
+
+
 };
 
 #endif // SERIALDATAIMPL_H
