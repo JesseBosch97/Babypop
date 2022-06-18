@@ -29,6 +29,8 @@ FeedbackType VentilationFeedback::evaluateVentilation()
    if (ventilationCount > ventilationAmount)
    {
       feedbackType = TOO_MANY;
+      volumeAccumulatedError = 0;
+      timeAccumulatedError = 0;
    }
 
    else if (volumeAccumulatedError > volumeErrorThreshold)
@@ -54,6 +56,8 @@ FeedbackType VentilationFeedback::evaluateVentilation()
        feedbackType = TOO_SHORT;
        timeAccumulatedError = 0;
    }
+
+   else feedbackType = NEUTRAL;
 
    return feedbackType;
 
