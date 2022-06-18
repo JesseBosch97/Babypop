@@ -108,8 +108,4 @@ void FeedbackInteractorImpl::setDesiredVentilationVolumeFromBabyWeight(float bab
 void FeedbackInteractorImpl::setFingerPositionFeedbackSelected(bool state)
 {
     this->fingerPositionFeedbackSelected = state;
-    if (state == true)
-    {
-
-    }
 }
