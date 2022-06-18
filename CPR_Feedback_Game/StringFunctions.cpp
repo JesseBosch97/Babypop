@@ -1,4 +1,5 @@
 #include "StringFunctions.h"
+#include <algorithm>
 
 
 bool detectString(std::string completeString, std::string desiredString)
@@ -31,14 +32,36 @@ std::string copyUntil(std::string completeString, char endChar)
     return newString;
 }
 
-std::string copyAndRemoveNextValue(std::string & data)
+//std::string copyAndRemoveNextValue(std::string & data)
+//{
+//    std::string string = copyUntil(data, ',');
+//    std::string unwantedString = ", ";
+
+//    remove(data, string);
+//    remove(data, unwantedString);
+
+//    return string;
+//}
+
+size_t countCharacters(std::string & data, std::string & separationCharacters)
 {
-    std::string string = copyUntil(data, ',');
+    size_t amount = std::count(data.begin(), data.end(), separationCharacters[0]);
+    return amount;
+}
 
-    remove(data, string);
-    remove(data, ", ");
+std::vector<std::size_t> findCharacterLocations(std::string & data, std::string & separationCharacters)
+{
+    int amountOfChars = countCharacters(data, separationCharacters);
+    std::vector<std::size_t> charLocations;
+    std::size_t lastCharLocation = 0;
 
-    return string;
+    for (int i = 0; i<amountOfChars; i++)
+    {
+        lastCharLocation = data.find(separationCharacters, lastCharLocation + 1);
+        charLocations.push_back(lastCharLocation);
+    }
+
+    return charLocations;
 }
 
 
