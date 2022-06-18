@@ -32,16 +32,16 @@ std::string copyUntil(std::string completeString, char endChar)
     return newString;
 }
 
-//std::string copyAndRemoveNextValue(std::string & data)
-//{
-//    std::string string = copyUntil(data, ',');
-//    std::string unwantedString = ", ";
+std::string copyAndRemoveNextValue(std::string & data)
+{
+    std::string string = copyUntil(data, ',');
+    std::string unwantedString = ", ";
 
-//    remove(data, string);
-//    remove(data, unwantedString);
+    remove(data, string);
+    remove(data, unwantedString);
 
-//    return string;
-//}
+    return string;
+}
 
 size_t countCharacters(std::string & data, std::string & separationCharacters)
 {
