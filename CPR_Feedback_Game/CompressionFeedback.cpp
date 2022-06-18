@@ -37,6 +37,8 @@ FeedbackType CompressionFeedback::evaluateCompression()
    if (compressionCount > compressionAmount)
    {
       feedbackType = TOO_MANY;
+      depthAccumulatedError = 0;
+      bpmAccumulatedError = 0;
    }
 
    else if (depthAccumulatedError > depthErrorThreshold)
@@ -62,6 +64,8 @@ FeedbackType CompressionFeedback::evaluateCompression()
       feedbackType = TOO_SLOW;
       bpmAccumulatedError = 0;
    }
+
+   else feedbackType = NEUTRAL;
 
    return feedbackType;
 
