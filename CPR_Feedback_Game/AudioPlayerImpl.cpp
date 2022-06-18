@@ -13,8 +13,8 @@ void AudioPlayerImpl::giveFeedback(FeedbackType feedbackType)
    {
       if (player.state() == QMediaPlayer::StoppedState)
       {
-         //player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(feedbackType))));
-         //player.play();
+         player.setMedia(QUrl(createSoundURL(feedbackWordMap.at(feedbackType))));
+         player.play();
       }
    }
 }
