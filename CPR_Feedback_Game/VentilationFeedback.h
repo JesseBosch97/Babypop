@@ -27,8 +27,8 @@ private:
     void storeVentilation(Ventilation ventilation);
     FeedbackType evaluateVentilation();
 
-    int volumeAccumulatedError = 0;
-    int timeAccumulatedError = 0;
+    float volumeAccumulatedError = 0;
+    float timeAccumulatedError = 0;
 };
 
 #endif // VENTILATIONFEEDBACK_H

@@ -9,11 +9,11 @@ VentilationFeedback::VentilationFeedback()
 
 void VentilationFeedback::storeVentilation(Ventilation ventilation)
 {
-   if (ventilation.volumeInMl && ventilation.timeInMs)
+   if (ventilation.volumeInMl > 0 && ventilation.timeInMs)
    {
       ventilationCount++;
       volumeAccumulatedError += ventilation.volumeInMl - desiredVolume;
-      timeAccumulatedError += ventilation.timeInMs - DESIRED_TIME_IN_MS;
+      timeAccumulatedError += static_cast<float>(ventilation.timeInMs - DESIRED_TIME_IN_MS);
 
       std::cout << "VentilationFeedback: volume is: " << ventilation.volumeInMl << std::endl;
       std::cout << "VentilationFeedback: accumulated volume error is: " << volumeAccumulatedError << std::endl;
