@@ -247,7 +247,7 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 20
+                    value: 40
                     to: 100
                     onMoved: RequestModel.volumeErrorSliderMoved(value)
                     Component.onCompleted: RequestModel.volumeErrorSliderMoved(value)
@@ -262,7 +262,7 @@ Window {
                     snapMode: "SnapOnRelease"
                     stepSize: 10
                     from: 0
-                    value: 20
+                    value: 40
                     to: 100
                     onMoved: RequestModel.timeErrorSliderMoved(value)
                     Component.onCompleted: RequestModel.timeErrorSliderMoved(value)
