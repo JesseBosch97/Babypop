@@ -16,7 +16,7 @@ public:
     FeedbackType handleVolumeOut(Ventilation ventilation);
 
     int ventilationCount = 0;
-    float desiredVolume = 0;
+    float desiredVolume = 21;
     int ventilationAmount = 0;
     float volumeErrorThreshold = 0;
     float timeErrorThreshold = 0;
