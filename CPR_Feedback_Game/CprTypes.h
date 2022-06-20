@@ -10,6 +10,7 @@ const std::string VOLUME_OUT_HEADER = "Volume Out: ";
 const std::string COMPRESSION_HEADER = "Compression: ";
 const std::string FINGER_POSITION_HEADER = "[";
 const std::string HEAD_POSITION_HEADER = "Head Position: ";
+const std::string SEPARATION_CHARACTER = ", ";
 
 
 enum FeedBackTypes {NEUTRAL, START_COMPRESSION, PERFECT, TOO_SLOW, TOO_FAST, TOO_MANY, TOO_DEEP, TOO_SHALLOW,

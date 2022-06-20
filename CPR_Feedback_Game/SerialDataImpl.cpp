@@ -50,7 +50,7 @@ void SerialDataImpl::handleData(std::string validdata)
 
 std::vector<std::string> SerialDataImpl::collectData(std::string & data)
 {
-    std::vector<std::size_t> startLocations = findDataValueStartLocations(data, ", ");
+    std::vector<std::size_t> startLocations = findDataValueStartLocations(data, SEPARATION_CHARACTER);
     size_t loopAmount = startLocations.size();
     std::vector<std::string> dataCollection;
 
