@@ -14,7 +14,7 @@ struct Coordinates
     float y;
 };
 
-enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
+enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT, LOWEST};
 
 class FingerPositionFeedbackImpl
 {

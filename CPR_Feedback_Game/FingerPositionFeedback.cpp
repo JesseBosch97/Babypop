@@ -11,7 +11,7 @@ FeedbackType FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition pos
 {
     int fingerPositionPerformance = CORRECT;
     //enum location {UP_LEFT, UP, UP_RIGHT, LEFT, MID, RIGHT, BOTTOM_LEFT, LOW, BOTTOM_RIGHT};
-    if((pressurePoints(positionOfFingers) < 3) && (pressurePoints(positionOfFingers) > 0))
+    if((pressurePoints(positionOfFingers) <= 3) && (pressurePoints(positionOfFingers) > 0))
     {
         switch(locationOfFingers(positionOfFingers))
         {
@@ -50,8 +50,11 @@ FeedbackType FingerPositionFeedbackImpl::handleFingerPosition(FingerPosition pos
         case BOTTOM_RIGHT:
             fingerPositionPerformance = TOO_LOW;
             std::cout << "FingerPosition: TOO LOW" << std::endl;
+            break;            
+        case LOWEST:
+            fingerPositionPerformance = WAY_TOO_LOW;
+            std::cout << "FingerPosition: WAY TOO LOW" << std::endl;
             break;
-
         }
     }
     else if (pressurePoints(positionOfFingers) > 3)
@@ -106,11 +109,16 @@ location FingerPositionFeedbackImpl::locationOfFingers(FingerPosition positionOf
 
 
 
-
-    thorax.x = ((bottomLeft.x + topLeft.x + topRight.x + mid.x + bottomRight.x + top.x + lowmid.x) / 4);
-    thorax.y = ((bottomLeft.y + topLeft.y + topRight.y + mid.y + bottomRight.y + top.y + lowmid.y) / 6);
-
-    return calculateLocation(thorax);
+    if(positionOfFingers.bottom <= 50)
+    {
+        thorax.x = ((bottomLeft.x + topLeft.x + topRight.x + mid.x + bottomRight.x + top.x + lowmid.x) / 4);
+        thorax.y = ((bottomLeft.y + topLeft.y + topRight.y + mid.y + bottomRight.y + top.y + lowmid.y) / 6);
+        return calculateLocation(thorax);
+    }
+    else
+    {
+      return LOWEST;
+    }
 }
 
 location FingerPositionFeedbackImpl::calculateLocation(Coordinates thorax)
@@ -204,7 +212,6 @@ location FingerPositionFeedbackImpl::calculateLocation(Coordinates thorax)
         retval = MID;
         std::cout << "retval: MID" << std::endl;
     }
-
     return retval;
 }
 
