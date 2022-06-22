@@ -20,8 +20,8 @@ When adding a file, it should be put in the CPR_Feedback_Game/sounds folder and 
 For example MaleTTS_fingers and FemaleTTS_fingers.
 
 Next navigate to the sounds.qrc in Qt Creator.
-![SoundFiles1](https://user-images.githubusercontent.com/78701533/175053088-8645ab39-064a-45cb-a943-948131d1d8d6.PNG)
 
+![SoundFiles1](https://user-images.githubusercontent.com/78701533/175053088-8645ab39-064a-45cb-a943-948131d1d8d6.PNG)
 
 
 Right click on sound.qrc and click "Open in editor"
