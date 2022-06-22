@@ -50,5 +50,4 @@ HEADERS += \
     SerialPortImpl.h \
     StringFunctions.h \
     VentilationFeedback.h \
-    ViewModel.h \
     ViewModelImpl.h

@@ -3,9 +3,8 @@
 
 #include <QObject>
 #include <QDebug>
-#include "ViewModel.h"
 
-class ViewModelImpl : public QObject, public ViewModel
+class ViewModelImpl : public QObject
 {
    Q_OBJECT
    Q_PROPERTY(float babyWeight_mg READ babyWeight_mg NOTIFY babyWeightChanged)
