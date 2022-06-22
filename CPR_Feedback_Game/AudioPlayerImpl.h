@@ -24,7 +24,8 @@ private:
     QString selectedVoice = "maleTTS";
 
     std::unordered_map<int, QString> feedbackWordMap{
-        {START_COMPRESSION, "chest_compression"},
+        //{START_COMPRESSION, "chest_compression"},
+        {START_COMPRESSION, "fingers"},
         {PERFECT, "perfect"},
         {TOO_FAST, "slower"},
         {TOO_SLOW, "faster"},
@@ -32,11 +33,11 @@ private:
         {TOO_SHALLOW, "more"},
         {TOO_MANY, "too_many"},
 
-        {TOO_FAR_LEFT, "little_to_the_right"},
-        {TOO_FAR_RIGHT, "little_to_the_left"},
-        {WAY_TOO_LOW, "higher"},
-        {TOO_LOW, "little_higher"},
-        {TOO_HIGH, "little lower"},
+        {TOO_FAR_LEFT, "fingers"},
+        {TOO_FAR_RIGHT, "fingers"},
+        {WAY_TOO_LOW, "fingers"},
+        {TOO_LOW, "fingers"},
+        {TOO_HIGH, "fingers"},
 
         {START_VENTILATION, "ventilate"},
         {TOO_SHORT, "blow_longer"},
