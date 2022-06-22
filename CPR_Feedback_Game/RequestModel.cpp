@@ -54,11 +54,10 @@ void RequestModel::timeErrorSliderMoved(float value)
 
 }
 
-void RequestModel::babyWeightChanged(int weight)
+void RequestModel::babyWeightChanged(int weight_mg)
 {
-    qDebug() << "RequestModel: BabyWeight changed to to " << weight;
-    float weightInKg = static_cast<float>(weight) / 100;
-   feedbackInteractor->setDesiredVentilationVolumeFromBabyWeight(weightInKg);
+    qDebug() << "RequestModel: BabyWeight changed to to " << weight_mg;
+   feedbackInteractor->setDesiredVentilationVolumeFromBabyWeight(weight_mg);
 }
 
 
@@ -126,7 +125,7 @@ void RequestModel::compressionButtonPressed()
    compression.append(std::to_string(bpm));
    compression.append(", ");
    compression.append(std::to_string(depth));
-   dataHandler->handleData(compression);
+   serialData->handleData(compression);
 }
 
 

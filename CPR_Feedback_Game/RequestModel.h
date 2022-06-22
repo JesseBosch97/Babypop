@@ -18,7 +18,7 @@ public:
     SerialPort * serialPort;
     AudioPlayer * audioPlayer;
     FeedbackInteractor * feedbackInteractor;
-    SerialData * dataHandler;
+    SerialData * serialData;
 
 
 
