@@ -7,6 +7,7 @@
 #include "HeadPositionFeedback.h"
 #include "FingerPositionFeedback.h"
 #include "AudioPlayer.h"
+#include "ViewModelImpl.h"
 
 class FeedbackInteractorImpl : public FeedbackInteractor
 {
@@ -17,6 +18,7 @@ public:
     VentilationFeedback ventilationFeedback;
     HeadPositionFeedbackImpl headPositionFeedback;
     FingerPositionFeedbackImpl fingerPositionFeedback;
+    ViewModelImpl * viewModel;
     AudioPlayer * audioPlayer;
 
 

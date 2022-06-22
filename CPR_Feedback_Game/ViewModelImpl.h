@@ -8,24 +8,20 @@
 class ViewModelImpl : public QObject, public ViewModel
 {
    Q_OBJECT
-   Q_PROPERTY(QString feedbackAmount READ feedbackAmount NOTIFY feedbackAmountChanged)
+   Q_PROPERTY(float babyWeight_mg READ babyWeight_mg NOTIFY babyWeightChanged)
+
 
 public:
    explicit ViewModelImpl(QObject *parent = nullptr);
 
-   void feedbackAmountSelected(int feedbackAmount) override;
-
-   void setFeedbackAmount(const QString &v);
-
-   QString feedbackAmount() const;
-
+   void setBabyWeight_mg(const float &v);
+   float babyWeight_mg() const;
 
 private:
-   QString m_feedbackAmount = "";
-
+   float m_babyWeight_mg = 3000;
 
 signals:
-   void feedbackAmountChanged();
+   void babyWeightChanged();
 
 };
 

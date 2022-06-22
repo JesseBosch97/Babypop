@@ -32,8 +32,9 @@ int main(int argc, char *argv[])
     requestModel.serialPort = &serialPort;
     requestModel.audioPlayer = &audioplayer;
     requestModel.feedbackInteractor = &feedbackInteractor;
-    requestModel.dataHandler = &serialData;
+    requestModel.serialData = &serialData;
     feedbackInteractor.audioPlayer = &audioplayer;
+    feedbackInteractor.viewModel = &viewModel;
     serialPort.serialData = &serialData;
     serialData.feedbackInteractor = &feedbackInteractor;
 

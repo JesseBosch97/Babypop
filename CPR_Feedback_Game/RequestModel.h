@@ -44,7 +44,7 @@ public slots:
     void ventilationAmountChanged(int value);
     void volumeErrorSliderMoved(float value);
     void timeErrorSliderMoved(float value);
-    void babyWeightChanged(int weight);
+    void babyWeightChanged(int weight_mg);
 
     void compressionAmountChanged(int value);
 

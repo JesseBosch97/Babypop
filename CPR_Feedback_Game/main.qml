@@ -124,19 +124,6 @@ Window {
                     Component.onCompleted: RequestModel.compressionAmountChanged(value)
                 }
 
-//                Label {
-//                    text: "Feedback every " + compressionFeedbackFrequencyBox.value + " compressions"
-//                }
-
-//                SpinBox {
-//                    id: compressionFeedbackFrequencyBox
-//                    value: 5
-//                    from: 0
-//                    to: compressionAmountBox.value
-//                    onValueChanged: RequestModel.compressionFeedbackFrequencyChanged(value)
-//                    Component.onCompleted: RequestModel.compressionFeedbackFrequencyChanged(value)
-//                }
-
 
                 Label {
                     text: "BPM allowed error: " + bpmErrorSlider.value + "%"
@@ -212,12 +199,12 @@ Window {
                 SpinBox {
                     id: babyWeightBox
                     from: 0
-                    value: 300
-                    to: 100 * 100
-                    stepSize: 10
+                    value: ViewModel.babyWeight_mg
+                    to: 10000
+                    stepSize: 100
 
                     property int decimals: 1
-                    property real realValue: value / 100
+                    property real realValue: value / 1000
 
                     validator: DoubleValidator {
                         bottom: Math.min(babyWeightBox.from, babyWeightBox.to)
@@ -225,11 +212,11 @@ Window {
                     }
 
                     textFromValue: function(value, locale) {
-                        return Number(value / 100).toLocaleString(locale, 'f', babyWeightBox.decimals)
+                        return Number(value / 1000).toLocaleString(locale, 'f', babyWeightBox.decimals)
                     }
 
                     valueFromText: function(text, locale) {
-                        return Number.fromLocaleString(locale, text) * 100
+                        return Number.fromLocaleString(locale, text) * 1000
                     }
 
                     onValueChanged: RequestModel.babyWeightChanged(value)

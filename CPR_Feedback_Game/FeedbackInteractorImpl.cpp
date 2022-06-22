@@ -87,7 +87,7 @@ void FeedbackInteractorImpl::setVentilationFeedbackSelected(bool state)
 
 void FeedbackInteractorImpl::setVolumeErrorThreshold(float percentage)
 {
-    ventilationFeedback.volumeErrorThreshold = ventilationFeedback.desiredVolume * percentage/100;
+    ventilationFeedback.volumeErrorThreshold = ventilationFeedback.desiredVolume_ml * percentage/100;
     std::cout << "FeedbackInteractorImpl: allowed volume error is :" << ventilationFeedback.volumeErrorThreshold << std::endl;
 }
 
@@ -97,12 +97,13 @@ void FeedbackInteractorImpl::setTimeErrorThreshold(float percentage)
      std::cout << "FeedbackInteractorImpl: allowed time error is :" << ventilationFeedback.timeErrorThreshold << std::endl;
 }
 
-void FeedbackInteractorImpl::setDesiredVentilationVolumeFromBabyWeight(float babyWeightInKg)
+void FeedbackInteractorImpl::setDesiredVentilationVolumeFromBabyWeight(float babyWeight_mg)
 {
-    std::cout << "FeedbackInteractorImpl: babyWeight is :" << babyWeightInKg << std::endl;
+    viewModel->setBabyWeight_mg(babyWeight_mg);
+    std::cout << "FeedbackInteractorImpl: babyWeight is :" << babyWeight_mg << std::endl;
 
-    ventilationFeedback.desiredVolume = babyWeightInKg * ML_PER_KG_BABY_WEIGHT;
-    std::cout << "FeedbackInteractorImpl: desired volume is :" << ventilationFeedback.desiredVolume << std::endl;
+    ventilationFeedback.desiredVolume_ml = babyWeight_mg * ML_PER_KG_BABY_WEIGHT /1000;
+    std::cout << "FeedbackInteractorImpl: desired volume is :" << ventilationFeedback.desiredVolume_ml << std::endl;
 }
 
 void FeedbackInteractorImpl::setFingerPositionFeedbackSelected(bool state)

@@ -5,23 +5,22 @@ ViewModelImpl::ViewModelImpl(QObject *parent) : QObject(parent)
 
 }
 
-void ViewModelImpl::feedbackAmountSelected(int feedbackAmount)
-{
-    setFeedbackAmount(QString::number(feedbackAmount) + "%");
-}
 
-void ViewModelImpl::setFeedbackAmount(const QString &v)
+
+void ViewModelImpl::setBabyWeight_mg(const float &v)
 {
-    if (v != m_feedbackAmount) {
-        m_feedbackAmount = v;
-        emit feedbackAmountChanged();
+    if (v != m_babyWeight_mg) {
+        m_babyWeight_mg = v;
+        emit babyWeightChanged();
     }
 }
 
-QString ViewModelImpl::feedbackAmount() const
+float ViewModelImpl::babyWeight_mg() const
 {
-    return m_feedbackAmount;
+    return m_babyWeight_mg;
 }
+
+
 
 
 
