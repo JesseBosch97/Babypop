@@ -47,11 +47,6 @@ private:
     bool fingerPositionFeedbackSelected = false;
     bool headPositionFeedbackSelected = false;
 
-
-    // the bag contains 125 mil
-    //top value for the bag used is 140
-
-    //a baby should be ventilated with 6 to 8 ml per kg of bodyweight
     const int ML_PER_KG_BABY_WEIGHT = 7;
 };
 

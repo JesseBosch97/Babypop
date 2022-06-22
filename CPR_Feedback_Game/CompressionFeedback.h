@@ -2,13 +2,9 @@
 #define COMPRESSIONFEEDBACK_H
 
 
-
 #include <iostream>
 #include <vector>
 #include "CprTypes.h"
-
-
-
 
 
 class CompressionFeedback

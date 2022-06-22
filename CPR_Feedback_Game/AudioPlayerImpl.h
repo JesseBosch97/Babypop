@@ -13,10 +13,8 @@ class AudioPlayerImpl : public AudioPlayer
 public:
     AudioPlayerImpl();
 
-
     void giveFeedback(FeedbackType feedbackType) override;
     void voiceSelected(QString voice) override;
-
 
 private:
     QString createSoundURL(QString word);
@@ -24,8 +22,7 @@ private:
     QString selectedVoice = "maleTTS";
 
     std::unordered_map<int, QString> feedbackWordMap{
-        //{START_COMPRESSION, "chest_compression"},
-        {START_COMPRESSION, "fingers"},
+        {START_COMPRESSION, "chest_compression"},
         {PERFECT, "perfect"},
         {TOO_FAST, "slower"},
         {TOO_SLOW, "faster"},

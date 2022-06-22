@@ -115,7 +115,7 @@ void RequestModel::compressionButtonPressed()
 {
    lastTimeInterval = timer.restart();
    int bpm = calculateBPM(lastTimeInterval);
-   int depth = 30; //not yet implemented
+   int depth = 30; //not implemented in simulation
 
    qDebug() << "RequestModel: Compression button pressed";
    qDebug() << "RequestModel: Time interval is " << lastTimeInterval;

@@ -20,9 +20,6 @@ public:
     FeedbackInteractor * feedbackInteractor;
     SerialData * serialData;
 
-
-
-
 private:
     QElapsedTimer timer;
     int compressionCount = 0;
