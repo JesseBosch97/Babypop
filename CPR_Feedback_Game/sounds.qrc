@@ -15,6 +15,7 @@
         <file>audiofiles/MaleTTS_more.mp3</file>
         <file>audiofiles/MaleTTS_ventilate.mp3</file>
         <file>audiofiles/MaleTTS_chest_compression.mp3</file>
+        <file>audiofiles/MaleTTS_fingers.mp3</file>
     </qresource>
     <qresource prefix="/sounds/FemaleTTS">
         <file>audiofiles/FemaleTTS_faster.mp3</file>
@@ -31,5 +32,6 @@
         <file>audiofiles/FemaleTTS_less.mp3</file>
         <file>audiofiles/FemaleTTS_more.mp3</file>
         <file>audiofiles/FemaleTTS_ventilate.mp3</file>
+        <file>audiofiles/FemaleTTS_fingers.mp3</file>
     </qresource>
 </RCC>
