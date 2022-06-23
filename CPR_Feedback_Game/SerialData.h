@@ -1,3 +1,7 @@
+/// @date 23-6-2022
+/// @author Niels van Kessel
+/// @version 1.0
+
 #ifndef SERIALDATA_H
 #define SERIALDATA_H
 

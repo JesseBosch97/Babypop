@@ -1,3 +1,7 @@
+/// @date 23-6-2022
+/// @author Jesse Bosch
+/// @version 1.0
+
 #include "FingerPositionSerialData.h"
 #include <iostream>
 

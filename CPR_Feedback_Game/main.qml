@@ -1,3 +1,7 @@
+/// @date 23-6-2022
+/// @author Niels van Kessel
+/// @version 1.0
+
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15

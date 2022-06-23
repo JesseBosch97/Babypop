@@ -1,3 +1,8 @@
+/// @date 23-6-2022
+/// @author Niels van Kessel
+/// @version 1.0
+
+
 #ifndef AUDIOPLAYER_H
 #define AUDIOPLAYER_H
 
