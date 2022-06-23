@@ -1,3 +1,7 @@
+/// @date 23-6-2022
+/// @author Niels van Kessel
+/// @version 1.0
+
 #include <QtTest>
 #include "../StringFunctions.h"
 // add necessary includes here
@@ -129,23 +133,7 @@ void SerialDataUTest::ValueIsConvertedToFloat()
     QVERIFY(qFuzzyCompare(std::stof(value), 51.88f));
 }
 
-//void VolumeDataHandlerUTest::VolumeInDataIsStoredInVolumeInPerformance()
-//{
-//    std::string volumeData = "Volume In: 51.88, 377";
-//    handleVolume(volumeData, VOLUME_IN_HEADER);
 
-//    QVERIFY(qFuzzyCompare(volumePerformance.volume, 51.88f));
-//    QCOMPARE(volumePerformance.time, 377);
-//}
-
-//void VolumeDataHandlerUTest::VolumeOutDataIsStoredInVolumeOutPerformance()
-//{
-//    std::string volumeData = "Volume Out: 45.94, 690";
-//    handleVolume(volumeData, VOLUME_OUT_HEADER);
-
-//    QVERIFY(qFuzzyCompare(volumePerformance.volume, 45.94f));
-//    QCOMPARE(volumePerformance.time, 690);
-//}
 
 QTEST_APPLESS_MAIN(SerialDataUTest)
 
