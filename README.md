@@ -1,5 +1,5 @@
 # Babypop
-S6 project for the Modular Tetherless Baby Patient Simulator.
+S6 project for the Modular Tetherless Baby Patient Simulator. Developed by Niels van Kessel and Jesse Bosch under the guidance of Johan Korten and Jeroen Veen.
 
 This project is a desktop audio feedback application written in C++ and QML with the Qt Quick framework.
 
@@ -11,10 +11,16 @@ This software has been developed using Qt 5.15.2 and the MinGW 8.1.0 compiler.
 Download: https://www.qt.io/download-qt-installer?hsCtaTracking=99d9dd4f-5681-48d2-b096-470725510d34%7C074ddad0-fdef-4e53-8aa8-5e8a876d6ab4
 ![QT tool](https://user-images.githubusercontent.com/78701533/175053143-bcdb167d-bf5b-44c8-baa2-8e04e83a7112.PNG)
 
+# Project structure 
+The main project is the CPR_Feedback_Game folder. Inside are the source files and the following folders:
+* FingerPositionUnitTests contain the unit tests for handling finger position feedback.
+* SerialDataUTest contains the unit tests for collecting data from serial input strings.
+* audiofiles contains the audio files used by the application to give feedback.
+
 
 # Working with QML
 QML is a user interface markup language developed by Qt. The code can be found in the main.qml file in the resources section of the project.
-The main.cpp file makes the connection between the user interface and the c++ classes through the ViewModel and RequestModel c++ classes.
+The main.cpp file makes the connection between the user interface and the c++ classes through the ViewModel and RequestModel.
 The SerialPort has a portListModel that is also available to the user interface to show the found serial ports on screen.
 For more information about QML read Qt's extensive documentation. For example:
 https://doc.qt.io/qt-6/qtqml-cppintegration-overview.html
