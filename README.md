@@ -1,5 +1,7 @@
 # Babypop
-S6 project Babypop
+S6 project for the Modular Tetherless Baby Patient Simulator.
+
+This project is a desktop audio feedback application written in C++ and QML with the Qt Quick framework.
 
 For documentation about the software please see the wiki page of this repository at:
 https://github.com/JesseBosch97/Babypop/wiki
@@ -9,6 +11,13 @@ This software has been developed using Qt 5.15.2 and the MinGW 8.1.0 compiler.
 Download: https://www.qt.io/download-qt-installer?hsCtaTracking=99d9dd4f-5681-48d2-b096-470725510d34%7C074ddad0-fdef-4e53-8aa8-5e8a876d6ab4
 ![QT tool](https://user-images.githubusercontent.com/78701533/175053143-bcdb167d-bf5b-44c8-baa2-8e04e83a7112.PNG)
 
+
+# Working with QML
+QML is a user interface markup language developed by Qt. The code can be found in the main.qml file in the resources section of the project.
+The main.cpp file makes the connection between the user interface and the c++ classes through the ViewModel and RequestModel c++ classes.
+The SerialPort has a portListModel that is also available to the user interface to show the found serial ports on screen.
+For more information about QML read Qt's extensive documentation. For example:
+https://doc.qt.io/qt-6/qtqml-cppintegration-overview.html
 
 
 
